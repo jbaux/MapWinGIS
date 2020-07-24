@@ -233,11 +233,6 @@ namespace MWLite.GUI.Forms
             if (!App.Project.IsEmpty)
                  Text += " - " + App.Project.GetPath();
 
-            toolSetProjection.Enabled = App.Map.NumLayers == 0;
-            toolSetProjection.Text = App.Map.NumLayers == 0
-                ? "Set coordinate system and projection"
-                : "It's not allowed to change projection when layers are already added to the map.";
-
             toolSearch.Enabled = true;
             toolSearch.Text = "Find location";
             if (App.Map.NumLayers > 0 && !App.Map.Measuring.IsUsingEllipsoid)
@@ -252,10 +247,6 @@ namespace MWLite.GUI.Forms
             toolSelect.Checked = Map.CursorMode == tkCursorMode.cmSelection;
             toolSelectByPolygon.Checked = Map.CursorMode == tkCursorMode.cmSelectByPolygon;
             toolIdentify.Checked = Map.CursorMode == tkCursorMode.cmIdentify;
-
-            bool distance = Map.Measuring.MeasuringType == tkMeasuringType.MeasureDistance;
-            toolMeasure.Checked = Map.CursorMode == tkCursorMode.cmMeasure && distance;
-            toolMeasureArea.Checked = Map.CursorMode == tkCursorMode.cmMeasure && !distance;
 
             if (Map.CursorMode != tkCursorMode.cmIdentify)
             {
@@ -284,7 +275,6 @@ namespace MWLite.GUI.Forms
                 toolZoomToSelected.Enabled = false;
             }
 
-            toolRemoveLayer.Enabled = hasLayer;
             Editor.RefreshUI();
 
             Map.Focus();
