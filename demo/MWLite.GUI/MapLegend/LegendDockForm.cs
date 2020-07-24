@@ -24,6 +24,11 @@ namespace MWLite.GUI.MapLegend
             get { return legend1;  }
         }
 
+        public ListBox Projects
+        {
+            get { return listBox1;  }
+        }
+
         private void legend1_LayerDoubleClick(int Handle)
         {
             LayerHelper.ShowLayerProperties(Handle);

@@ -46,6 +46,7 @@ namespace MWLite.GUI.MapLegend
             this.legend1 = new MWLite.Symbology.LegendControl.Legend();
             this.ctxCalculateArea = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -161,9 +162,17 @@ namespace MWLite.GUI.MapLegend
             this.ctxCalculateArea.Text = "Calculate area";
             // 
             // toolStripSeparator5
+            // listBox1
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(152, 6);
+            this.listBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 17;
+            this.listBox1.Location = new System.Drawing.Point(0, 235);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(331, 123);
+            this.listBox1.TabIndex = 3;
             // 
             // LegendDockForm
             // 
@@ -171,6 +180,7 @@ namespace MWLite.GUI.MapLegend
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(331, 358);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.legend1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "LegendDockForm";
@@ -200,6 +210,6 @@ namespace MWLite.GUI.MapLegend
         private System.Windows.Forms.ToolStripMenuItem ctxLoadLayerStyle;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem ctxCalculateArea;
-
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

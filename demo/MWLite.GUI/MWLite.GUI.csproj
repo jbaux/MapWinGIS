@@ -117,6 +117,7 @@
     <Compile Include="Forms\MeasuringForm.Designer.cs">
       <DependentUpon>MeasuringForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ProjectDesc.cs" />
     <Compile Include="Helpers\ComboBoxEnumItem.cs" />
     <Compile Include="Helpers\ComboBoxHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />

@@ -7,6 +7,8 @@ using MWLite.GUI.Helpers;
 using MWLite.GUI.MapLegend;
 using MWLite.GUI.Properties;
 using MWLite.ShapeEditor;
+using System;
+using System.Collections;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -24,6 +26,8 @@ namespace MWLite.GUI.Forms
         public MainForm()
         {
             InitializeComponent();
+
+            _projSelectChanged = new System.EventHandler(ProjectList_SelectedValueChanged);
 
             _callback = new MapCallback(statusStrip1, progressBar1, lblProgressMessage);
 
@@ -56,10 +60,53 @@ namespace MWLite.GUI.Forms
             Shown += (s, e) => Map.Focus();
 
             FormClosing += MainForm_FormClosing;
+            
+            string projectPath = AppSettings.Instance.LastProject;
+
+            RefreshProjectList(currentProjectPath: projectPath);
 
             App.Project.ProjectChanged += (s, e) => RefreshUI();
 
-            App.Project.Load(AppSettings.Instance.LastProject);
+            App.Project.Load(projectPath);
+        }
+
+        private void RefreshProjectList(string currentProjectPath)
+        {
+            var projectPaths = System.IO.Directory.EnumerateFiles(path:".\\", searchPattern:"*.mwxml", searchOption:System.IO.SearchOption.AllDirectories);
+            var projectDescs = new ArrayList();
+            foreach (string p in projectPaths) {
+                projectDescs.Add(new ProjectDesc(p));
+            }
+            ListBox projectListControl = _legendForm.Projects;
+            projectListControl.SelectedValueChanged -= _projSelectChanged; // Avoid triggering a project change
+            projectListControl.DataSource = projectDescs;
+
+            projectListControl.DisplayMember = "DisplayName";
+            projectListControl.ValueMember = "Path";
+
+            int i = 0;
+            int? index = null;
+            string normalisedCurrentProjectPath = System.IO.Path.GetFullPath(currentProjectPath);
+            foreach (string p in projectPaths)
+            {
+                if (normalisedCurrentProjectPath == System.IO.Path.GetFullPath(p))
+                {
+                    index = i;
+                    break;
+                }
+                i++;
+            }
+
+            if (index.HasValue)
+            {
+                projectListControl.SetSelected(index.Value, true);
+            }
+            else
+            {
+                projectListControl.ClearSelected();
+            }
+
+            projectListControl.SelectedValueChanged += _projSelectChanged;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -106,16 +153,14 @@ namespace MWLite.GUI.Forms
         {
             _legendForm = new LegendDockForm();
             _legendForm.Show(dockPanel1, DockState.DockLeft);
+            _legendForm.CloseButton = false;
 
             _mapForm = new MapForm();
             _mapForm.Show(dockPanel1, DockState.Document);
             _mapForm.SelectionChanged += (s, e) => RefreshUI();
             _mapForm.CloseButton = false;
-            
+            _mapForm.CloseButtonVisible = false;
 
-            var form = new DonationForm();
-            form.Show(dockPanel1, DockState.Document);
-            form.CloseButton = false;
 
             _mapForm.Activate();
 
@@ -180,6 +225,8 @@ namespace MWLite.GUI.Forms
             toolStripContainer1.TopToolStripPanel.Join(toolbar, _mainToolStrip.Left + _mainToolStrip.Width, 0);
         }
 
+        private readonly System.EventHandler _projSelectChanged = null;
+
         public void RefreshUI()
         {
             Text = WINDOW_TITLE;
@@ -241,6 +288,17 @@ namespace MWLite.GUI.Forms
             Editor.RefreshUI();
 
             Map.Focus();
+        }
+
+        private void ProjectList_SelectedValueChanged(object sender, EventArgs e) {
+            var selectedProjectPath = (string)_legendForm.Projects.SelectedValue;
+            if (System.IO.Path.GetFullPath(App.Project.GetPath()) != System.IO.Path.GetFullPath(selectedProjectPath))
+            {
+                if (App.Project.TryClose())
+                {
+                    App.Project.Load(selectedProjectPath);
+                }
+            }
         }
 
         #endregion
