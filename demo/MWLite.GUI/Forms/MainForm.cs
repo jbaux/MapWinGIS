@@ -146,7 +146,6 @@ namespace MWLite.GUI.Forms
             Dispatcher.InitMenu(mnuFile.DropDownItems);
             Dispatcher.InitMenu(mnuMap.DropDownItems);
             Dispatcher.InitMenu(_mainToolStrip.Items);
-            Dispatcher.InitMenu(_toolStripLayer.Items);
         }
 
         private void InitDockLayout()
