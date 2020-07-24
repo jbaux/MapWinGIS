@@ -1,4 +1,4 @@
-﻿namespace MWLite.GUI.Forms
+﻿namespace MWLite.GUI.Classes
 {
     public class ProjectDesc
     {
