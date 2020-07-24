@@ -42,8 +42,9 @@ namespace MWLite.ShapeEditor.UI
 
             foreach (var item in _editToolStrip.Items.OfType<ToolStripItem>().
                     Where(item => item != toolEditLayer))
-            
-            item.Enabled = editing;
+            {
+                item.Enabled = editing;
+            }
             toolEditLayer.Enabled = hasShapefile;
             toolEditLayer.Image = editing ? Resources.save1 : Resources.edit;  // save
             toolEditLayer.Text = editing ? "Save Changes" : "Edit Layer";
