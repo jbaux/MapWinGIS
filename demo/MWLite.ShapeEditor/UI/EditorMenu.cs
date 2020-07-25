@@ -30,8 +30,6 @@ namespace MWLite.ShapeEditor.UI
 
         void mnuShapeEditor_DropDownOpening(object sender, EventArgs e)
         {
-            mnuEditorVertices.Checked = Map.ShapeEditor.VerticesVisible;
-
             var list = new[] {mnuCopy, mnuPaste, mnuCut, mnuUndo, mnuRedo};
             foreach (var item in list)
             {

@@ -144,7 +144,6 @@ namespace MWLite.GUI.Forms
         private void InitMenus()
         {
             Dispatcher.InitMenu(mnuFile.DropDownItems);
-            Dispatcher.InitMenu(mnuMap.DropDownItems);
             Dispatcher.InitMenu(_mainToolStrip.Items);
         }
 
@@ -214,9 +213,9 @@ namespace MWLite.GUI.Forms
             _mapForm.LoadMapState(filename);
         }
 
-        public void AddMenu(ToolStripMenuItem menu)
+        public void AddMenu(ToolStripMenuItem menu, int index)
         {
-            MainMenuStrip.Items.Add(menu);
+            MainMenuStrip.Items.Insert(index, menu);
         }
 
         public void AddToolbar(ToolStrip toolbar)
@@ -232,20 +231,11 @@ namespace MWLite.GUI.Forms
             if (!App.Project.IsEmpty)
                  Text += " - " + App.Project.GetPath();
 
-            toolSearch.Enabled = true;
-            toolSearch.Text = "Find location";
-            if (App.Map.NumLayers > 0 && !App.Map.Measuring.IsUsingEllipsoid)
-            {
-                toolSearch.Enabled = false;
-                toolSearch.Text = "Unsupported projection. Search isn't allowed.";
-            }
-
             toolZoomIn.Checked = Map.CursorMode == tkCursorMode.cmZoomIn;
             toolZoomOut.Checked = Map.CursorMode == tkCursorMode.cmZoomOut;
             toolPan.Checked = Map.CursorMode == tkCursorMode.cmPan;
             toolSelect.Checked = Map.CursorMode == tkCursorMode.cmSelection;
             toolSelectByPolygon.Checked = Map.CursorMode == tkCursorMode.cmSelectByPolygon;
-            toolIdentify.Checked = Map.CursorMode == tkCursorMode.cmIdentify;
 
             if (Map.CursorMode != tkCursorMode.cmIdentify)
             {

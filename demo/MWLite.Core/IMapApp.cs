@@ -13,7 +13,7 @@ namespace MWLite.Core
         Legend Legend { get; }
         AxMapWinGIS.AxMap Map { get; }
         void RefreshUI();
-        void AddMenu(ToolStripMenuItem menu);
+        void AddMenu(ToolStripMenuItem menu, int index);
         void AddToolbar(ToolStrip toolbar);
         IProject Project { get; }
         void RunCommand(AppCommand command);

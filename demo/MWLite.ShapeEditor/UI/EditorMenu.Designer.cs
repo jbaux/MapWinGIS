@@ -36,8 +36,6 @@
             this.mnuCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCut = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPaste = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuEditorVertices = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,64 +57,56 @@
             this.toolStripSeparator2,
             this.mnuCopy,
             this.mnuCut,
-            this.mnuPaste,
-            this.toolStripSeparator1,
-            this.mnuEditorVertices});
+            this.mnuPaste});
             this.mnuShapeEditor.Name = "mnuShapeEditor";
             this.mnuShapeEditor.Size = new System.Drawing.Size(39, 20);
             this.mnuShapeEditor.Text = "Edit";
             // 
             // mnuUndo
             // 
+            this.mnuUndo.Image = global::MWLite.ShapeEditor.Properties.Resources.undo;
             this.mnuUndo.Name = "mnuUndo";
             this.mnuUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mnuUndo.Size = new System.Drawing.Size(174, 22);
+            this.mnuUndo.Size = new System.Drawing.Size(180, 22);
             this.mnuUndo.Text = "Undo";
             // 
             // mnuRedo
             // 
+            this.mnuRedo.Image = global::MWLite.ShapeEditor.Properties.Resources.redo;
             this.mnuRedo.Name = "mnuRedo";
             this.mnuRedo.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.Z)));
-            this.mnuRedo.Size = new System.Drawing.Size(174, 22);
+            this.mnuRedo.Size = new System.Drawing.Size(180, 22);
             this.mnuRedo.Text = "Redo";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(171, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // mnuCopy
             // 
+            this.mnuCopy.Image = global::MWLite.ShapeEditor.Properties.Resources.edit_copy;
             this.mnuCopy.Name = "mnuCopy";
             this.mnuCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.mnuCopy.Size = new System.Drawing.Size(174, 22);
+            this.mnuCopy.Size = new System.Drawing.Size(180, 22);
             this.mnuCopy.Text = "Copy";
             // 
             // mnuCut
             // 
+            this.mnuCut.Image = global::MWLite.ShapeEditor.Properties.Resources.edit_cut;
             this.mnuCut.Name = "mnuCut";
             this.mnuCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.mnuCut.Size = new System.Drawing.Size(174, 22);
+            this.mnuCut.Size = new System.Drawing.Size(180, 22);
             this.mnuCut.Text = "Cut";
             // 
             // mnuPaste
             // 
+            this.mnuPaste.Image = global::MWLite.ShapeEditor.Properties.Resources.edit_paste;
             this.mnuPaste.Name = "mnuPaste";
             this.mnuPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.mnuPaste.Size = new System.Drawing.Size(174, 22);
+            this.mnuPaste.Size = new System.Drawing.Size(180, 22);
             this.mnuPaste.Text = "Paste";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
-            // 
-            // mnuEditorVertices
-            // 
-            this.mnuEditorVertices.Name = "mnuEditorVertices";
-            this.mnuEditorVertices.Size = new System.Drawing.Size(174, 22);
-            this.mnuEditorVertices.Text = "Vertices Visible";
             // 
             // EditorMenu
             // 
@@ -136,13 +126,11 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mnuShapeEditor;
-        private System.Windows.Forms.ToolStripMenuItem mnuEditorVertices;
         private System.Windows.Forms.ToolStripMenuItem mnuUndo;
         private System.Windows.Forms.ToolStripMenuItem mnuRedo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mnuCopy;
         private System.Windows.Forms.ToolStripMenuItem mnuCut;
         private System.Windows.Forms.ToolStripMenuItem mnuPaste;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

@@ -33,7 +33,7 @@ namespace MWLite.ShapeEditor
         internal static bool Init(IMapApp app)
         {
             _app = app;
-            app.AddMenu(_menu.Menu);
+            app.AddMenu(_menu.Menu, 1); // Add "Edit" to the right of "File"
             app.AddToolbar(_toolbar.Toolbar);
             MapEventHandlers.Init(App.Map);
             Editor.RefreshUI();
