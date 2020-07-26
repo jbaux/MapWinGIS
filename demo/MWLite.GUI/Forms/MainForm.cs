@@ -50,7 +50,7 @@ namespace MWLite.GUI.Forms
 
             InitLegend();
 
-            this.InitMenus();
+            InitMenus();
 
             RefreshUI();
 
