@@ -65,7 +65,19 @@ namespace MWLite.GUI.Forms
 
             RefreshProjectList(currentProjectPath: projectPath);
 
-            App.Project.ProjectChanged += (s, e) => RefreshUI();
+            App.Project.ProjectChanged += (s, e) => {
+                // Begin each project with the vector shape file ready for editing.
+                int handle = -1;
+                foreach (var l in App.Legend.Layers)
+                {
+                    if (l.Type == Symbology.Classes.eLayerType.PolygonShapefile)
+                    {
+                        handle = l.Handle;
+                    }
+                }
+                App.Legend.SelectedLayer = handle;
+                RefreshUI();
+            };
 
             App.Project.Load(projectPath);
         }
