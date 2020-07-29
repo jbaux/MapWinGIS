@@ -71,7 +71,6 @@ namespace MWLite.GUI.Forms
             this.toolStripPanel1 = new System.Windows.Forms.ToolStripPanel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.mnuCompleteMap = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -218,7 +217,6 @@ namespace MWLite.GUI.Forms
             // 
             this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuSelectMapsFolder,
-            this.mnuCompleteMap,
             this.toolStripSeparator2,
             this.mnuCloseApp});
             this.mnuFile.Name = "mnuFile";
@@ -369,12 +367,6 @@ namespace MWLite.GUI.Forms
             this.dockPanel1.Skin = dockPanelSkin1;
             this.dockPanel1.TabIndex = 0;
             // 
-            // mnuCompleteMap
-            // 
-            this.mnuCompleteMap.Name = "mnuCompleteMap";
-            this.mnuCompleteMap.Size = new System.Drawing.Size(265, 30);
-            this.mnuCompleteMap.Text = "Mark map as complete";
-            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(1010, 614);
@@ -430,7 +422,6 @@ namespace MWLite.GUI.Forms
         private ToolStripMenuItem toolSelect;
         private ToolStripMenuItem toolSelectByPolygon;
         private ToolStripSeparator toolStripSeparator10;
-        private ToolStripMenuItem mnuCompleteMap;
     }
 }
 

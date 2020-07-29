@@ -24,9 +24,9 @@ namespace MWLite.GUI.MapLegend
             get { return legend1;  }
         }
 
-        public ListBox Projects
+        public CheckedListBox Projects
         {
-            get { return listBox1;  }
+            get { return checkedListBox1;  }
         }
 
         private void legend1_LayerDoubleClick(int Handle)

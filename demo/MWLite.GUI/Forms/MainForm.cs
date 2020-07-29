@@ -29,6 +29,7 @@ namespace MWLite.GUI.Forms
             InitializeComponent();
 
             _projSelectChanged = new System.EventHandler(ProjectList_SelectedValueChanged);
+            _projCheckChanged = new ItemCheckEventHandler(ProjectList_CheckChanged);
 
             _callback = new MapCallback(statusStrip1, progressBar1, lblProgressMessage);
 
@@ -36,7 +37,7 @@ namespace MWLite.GUI.Forms
 
             Init();
         }
-        
+
         #region Initialization
 
         private void Init()
@@ -95,24 +96,6 @@ namespace MWLite.GUI.Forms
             App.Project.Load(projectPath);
         }
 
-        internal void MarkMapComplete()
-        {
-            if (App.Project.IsEmpty)
-            {
-                return;
-            }
-            string projDir = System.IO.Path.GetDirectoryName(App.Project.GetPath());
-            string filePath = System.IO.Path.Combine(projDir, "state");
-            using (var stream = new System.IO.FileStream(filePath, System.IO.FileMode.CreateNew))
-            {
-                stream.WriteByte((byte)'d');
-                stream.WriteByte((byte)'o');
-                stream.WriteByte((byte)'n');
-                stream.WriteByte((byte)'e');
-            }
-            RefreshProjectList(AppSettings.Instance.MapFoldersPath, App.Project.GetPath());
-        }
-
         internal void SelectMapsFolder()
         {
             if (DisplayMapFoldersDialog())
@@ -138,21 +121,22 @@ namespace MWLite.GUI.Forms
                 path: mapFoldersPath,
                 searchPattern: "*.mwxml",
                 searchOption: System.IO.SearchOption.AllDirectories);
-            var projectDescs = new ArrayList();
-            foreach (string p in projectPaths) {
-                var x = new ProjectDesc(p);
-                string s = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(p), "state");
-                if (System.IO.File.Exists(s))
-                {
-                    x.DisplayName = $"Completed     {x.DisplayName}";
-                }
-                projectDescs.Add(x);
-            }
-            ListBox projectListControl = _legendForm.Projects;
+            CheckedListBox projectListControl = _legendForm.Projects;
+            projectListControl.ItemCheck -= _projCheckChanged; // Avoid incorrectly changing project completion states
             projectListControl.SelectedValueChanged -= _projSelectChanged; // Avoid triggering a project change
             projectListControl.DisplayMember = "DisplayName";
             projectListControl.ValueMember = "Path";
-            projectListControl.DataSource = projectDescs;
+            var items = projectListControl.Items;
+            items.Clear();
+            foreach (string p in projectPaths) {
+                var x = new ProjectDesc(p);
+                var state = CheckState.Unchecked;
+                if (IsMapComplete(p))
+                {
+                    state = CheckState.Checked;
+                }
+                items.Add(x, state);
+            }
 
             int? index = null;
             if (!string.IsNullOrWhiteSpace(currentProjectPath))
@@ -180,6 +164,7 @@ namespace MWLite.GUI.Forms
             }
 
             projectListControl.SelectedValueChanged += _projSelectChanged;
+            projectListControl.ItemCheck += _projCheckChanged;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -298,6 +283,7 @@ namespace MWLite.GUI.Forms
         }
 
         private readonly System.EventHandler _projSelectChanged = null;
+        private readonly ItemCheckEventHandler _projCheckChanged = null;
 
         public void RefreshUI()
         {
@@ -344,7 +330,9 @@ namespace MWLite.GUI.Forms
         }
 
         private void ProjectList_SelectedValueChanged(object sender, EventArgs e) {
-            var selectedProjectPath = (string)_legendForm.Projects.SelectedValue;
+            var control = (CheckedListBox)sender;
+            var projectDesc = (ProjectDesc)control.SelectedItem;
+            string selectedProjectPath = projectDesc.Path;
             if (App.Project.IsEmpty
                 || System.IO.Path.GetFullPath(App.Project.GetPath()) != System.IO.Path.GetFullPath(selectedProjectPath))
             {
@@ -352,6 +340,42 @@ namespace MWLite.GUI.Forms
                 {
                     App.Project.Load(selectedProjectPath);
                 }
+            }
+        }
+
+        
+        private void ProjectList_CheckChanged(object sender, ItemCheckEventArgs e)
+        {
+            if (e.CurrentValue != e.NewValue && e.NewValue != CheckState.Indeterminate)
+            {
+                var control = (CheckedListBox)sender;
+                var item = (ProjectDesc)control.Items[e.Index];
+                MarkMapComplete(item.Path, e.NewValue == CheckState.Checked);
+            }
+        }
+
+        internal void MarkMapComplete(string projectPath, bool complete)
+        {
+            string projDir = System.IO.Path.GetDirectoryName(projectPath);
+            string filePath = System.IO.Path.Combine(projDir, "state");
+            using (var stream = new System.IO.FileStream(filePath, System.IO.FileMode.Create))
+            {
+                stream.WriteByte(complete ? (byte)'c' : (byte)'n');
+            }
+            RefreshProjectList(AppSettings.Instance.MapFoldersPath, App.Project.GetPath());
+        }
+
+        internal bool IsMapComplete(string projectPath)
+        {
+            string filePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(projectPath), "state");
+            if (!System.IO.File.Exists(filePath))
+            {
+                return false;
+            }
+            using (var stream = new System.IO.FileStream(filePath, System.IO.FileMode.Open))
+            {
+                var c = (char)stream.ReadByte();
+                return c == 'c';
             }
         }
 
