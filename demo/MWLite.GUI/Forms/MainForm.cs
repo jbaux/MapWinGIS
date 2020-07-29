@@ -223,7 +223,7 @@ namespace MWLite.GUI.Forms
         private void InitDockLayout()
         {
             _legendForm = new LegendDockForm();
-            _legendForm.Show(dockPanel1, DockState.DockLeft);
+            _legendForm.Show(dockPanel1, DockState.DockRight);
             _legendForm.CloseButton = false;
 
             _mapForm = new MapForm();
