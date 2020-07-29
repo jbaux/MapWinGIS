@@ -191,3 +191,6 @@ docs/Assets/Syncfusion Logos/
 tmp/
 docs/OptimizedImages/
 src/.scannerwork/
+
+# A short-term method of distributing releases. Should be removed and replaced with GitHub releases.
+!demo/release.zip
