@@ -76,6 +76,9 @@ namespace MWLite.GUI.Forms
                     }
                 }
                 App.Legend.SelectedLayer = handle;
+                var sf = App.Map.get_Shapefile(handle);
+                sf.InteractiveEditing = true;
+                
                 RefreshUI();
             };
 
