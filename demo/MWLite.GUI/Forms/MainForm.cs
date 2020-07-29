@@ -91,10 +91,9 @@ namespace MWLite.GUI.Forms
             }
             ListBox projectListControl = _legendForm.Projects;
             projectListControl.SelectedValueChanged -= _projSelectChanged; // Avoid triggering a project change
-            projectListControl.DataSource = projectDescs;
-
             projectListControl.DisplayMember = "DisplayName";
             projectListControl.ValueMember = "Path";
+            projectListControl.DataSource = projectDescs;
 
             int i = 0;
             int? index = null;
