@@ -94,7 +94,7 @@ namespace MWLite.GUI.Forms
 
         public static void DisplayMapFoldersDialog()
         {
-            var dlg = new FolderBrowserDialog{ ShowNewFolderButton=false, Description="" };
+            var dlg = new FolderBrowserDialog{ ShowNewFolderButton=false, Description="Please select the folder of maps." };
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 AppSettings.Instance.MapFoldersPath = dlg.SelectedPath;
