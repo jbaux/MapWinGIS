@@ -90,6 +90,28 @@ namespace MWLite.ShapeEditor.Helpers
         {
             var map = App.Map;
 
+            var sf = map.get_Shapefile(layerHandle);
+            var ogrLayer = map.get_OgrLayer(layerHandle);
+            
+            bool success = false;
+            if (ogrLayer != null)
+            {
+                tkOgrSaveResult saveResult = ogrLayer.SaveChanges(out int savedCount);
+                success = saveResult == tkOgrSaveResult.osrAllSaved || saveResult == tkOgrSaveResult.osrNoChanges;
+            }
+            else
+            {
+                success = sf.StopEditingShapes(ApplyChanges:true, StopEditTable:true, cBack:null);
+            }
+            
+            if (success)
+            {
+                sf.InteractiveEditing = false;
+                map.ShapeEditor.Clear();
+                map.UndoList.ClearForLayer(layerHandle);
+            }
+            return true;
+            /*
             string prompt = string.Format("Save changes for the layer: {0}?", map.get_LayerName(layerHandle));
             var result = MessageHelper.AskYesNoCancel(prompt);
             switch (result)
@@ -125,7 +147,7 @@ namespace MWLite.ShapeEditor.Helpers
                 case DialogResult.Cancel:
                 default:
                     return false;
-            }
+            }*/
         }
 
         public static void CreateLayer()
