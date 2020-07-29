@@ -85,11 +85,32 @@ namespace MWLite.GUI.Forms
                     var sf = App.Map.get_Shapefile(handle);
                     sf.InteractiveEditing = true;
                 }
+
+                AppSettings.Instance.LastProject = App.Project.GetPath();
+                AppSettings.Save(); // TODO: this is a blocking operation and shouldn't be done on the main thread.
                 
                 RefreshUI();
             };
 
             App.Project.Load(projectPath);
+        }
+
+        internal void MarkMapComplete()
+        {
+            if (App.Project.IsEmpty)
+            {
+                return;
+            }
+            string projDir = System.IO.Path.GetDirectoryName(App.Project.GetPath());
+            string filePath = System.IO.Path.Combine(projDir, "state");
+            using (var stream = new System.IO.FileStream(filePath, System.IO.FileMode.CreateNew))
+            {
+                stream.WriteByte((byte)'d');
+                stream.WriteByte((byte)'o');
+                stream.WriteByte((byte)'n');
+                stream.WriteByte((byte)'e');
+            }
+            RefreshProjectList(AppSettings.Instance.MapFoldersPath, App.Project.GetPath());
         }
 
         internal void SelectMapsFolder()
@@ -119,7 +140,13 @@ namespace MWLite.GUI.Forms
                 searchOption: System.IO.SearchOption.AllDirectories);
             var projectDescs = new ArrayList();
             foreach (string p in projectPaths) {
-                projectDescs.Add(new ProjectDesc(p));
+                var x = new ProjectDesc(p);
+                string s = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(p), "state");
+                if (System.IO.File.Exists(s))
+                {
+                    x.DisplayName = $"Completed     {x.DisplayName}";
+                }
+                projectDescs.Add(x);
             }
             ListBox projectListControl = _legendForm.Projects;
             projectListControl.SelectedValueChanged -= _projSelectChanged; // Avoid triggering a project change

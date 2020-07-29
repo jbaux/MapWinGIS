@@ -30,5 +30,6 @@
         AddDatabase = 25,
         Snapshot = 26,
         SelectMapsFolder = 27,
+        CompleteMap = 28,
     }
 }

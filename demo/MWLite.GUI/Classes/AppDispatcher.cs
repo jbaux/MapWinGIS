@@ -52,6 +52,9 @@ namespace MWLite.GUI.Classes
                 case AppCommand.SelectMapsFolder:
                     MainForm.Instance.SelectMapsFolder();
                     break;
+                case AppCommand.CompleteMap:
+                    MainForm.Instance.MarkMapComplete();
+                    break;
                 case AppCommand.LoadProject:
                     {
                         string filename;
