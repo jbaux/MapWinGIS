@@ -17,11 +17,13 @@ namespace MWLite.GUI.Classes
             BingApiKey = "";
             LastProject = "";
             ShowTooltip = true;
+            MapFoldersPath = "";
         }
 
         public bool ShowTooltip { get; set; }
         public string LastProject { get; set;}
         public string BingApiKey { get; set; }
+        public string MapFoldersPath { get; set; }
 
         private static AppSettings _settings;
 

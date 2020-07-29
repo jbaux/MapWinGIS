@@ -11,6 +11,7 @@ using System;
 using System.Collections;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using System.Collections.Generic;
 
 namespace MWLite.GUI.Forms
 {
@@ -60,10 +61,14 @@ namespace MWLite.GUI.Forms
             Shown += (s, e) => Map.Focus();
 
             FormClosing += MainForm_FormClosing;
-            
+
+            if (string.IsNullOrWhiteSpace(AppSettings.Instance.MapFoldersPath))
+            {
+                DisplayMapFoldersDialog();
+            }
             string projectPath = AppSettings.Instance.LastProject;
 
-            RefreshProjectList(currentProjectPath: projectPath);
+            RefreshProjectList(mapFoldersPath: AppSettings.Instance.MapFoldersPath,  currentProjectPath: projectPath);
 
             App.Project.ProjectChanged += (s, e) => {
                 // Begin each project with the vector shape file ready for editing.
@@ -87,9 +92,21 @@ namespace MWLite.GUI.Forms
             App.Project.Load(projectPath);
         }
 
-        private void RefreshProjectList(string currentProjectPath)
+        public static void DisplayMapFoldersDialog()
         {
-            var projectPaths = System.IO.Directory.EnumerateFiles(path:".\\", searchPattern:"*.mwxml", searchOption:System.IO.SearchOption.AllDirectories);
+            var dlg = new FolderBrowserDialog{ ShowNewFolderButton=false, Description="" };
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                AppSettings.Instance.MapFoldersPath = dlg.SelectedPath;
+            }
+        }
+
+        private void RefreshProjectList(string mapFoldersPath, string currentProjectPath)
+        {
+            IEnumerable<string> projectPaths = System.IO.Directory.EnumerateFiles(
+                path: mapFoldersPath,
+                searchPattern: "*.mwxml",
+                searchOption: System.IO.SearchOption.AllDirectories);
             var projectDescs = new ArrayList();
             foreach (string p in projectPaths) {
                 projectDescs.Add(new ProjectDesc(p));
@@ -100,17 +117,20 @@ namespace MWLite.GUI.Forms
             projectListControl.ValueMember = "Path";
             projectListControl.DataSource = projectDescs;
 
-            int i = 0;
             int? index = null;
-            string normalisedCurrentProjectPath = System.IO.Path.GetFullPath(currentProjectPath);
-            foreach (string p in projectPaths)
+            if (!string.IsNullOrWhiteSpace(currentProjectPath))
             {
-                if (normalisedCurrentProjectPath == System.IO.Path.GetFullPath(p))
+                int i = 0;
+                string normalisedCurrentProjectPath = System.IO.Path.GetFullPath(currentProjectPath);
+                foreach (string p in projectPaths)
                 {
-                    index = i;
-                    break;
+                    if (normalisedCurrentProjectPath == System.IO.Path.GetFullPath(p))
+                    {
+                        index = i;
+                        break;
+                    }
+                    i++;
                 }
-                i++;
             }
 
             if (index.HasValue)
@@ -287,7 +307,8 @@ namespace MWLite.GUI.Forms
 
         private void ProjectList_SelectedValueChanged(object sender, EventArgs e) {
             var selectedProjectPath = (string)_legendForm.Projects.SelectedValue;
-            if (System.IO.Path.GetFullPath(App.Project.GetPath()) != System.IO.Path.GetFullPath(selectedProjectPath))
+            if (App.Project.IsEmpty
+                || System.IO.Path.GetFullPath(App.Project.GetPath()) != System.IO.Path.GetFullPath(selectedProjectPath))
             {
                 if (App.Project.TryClose())
                 {
