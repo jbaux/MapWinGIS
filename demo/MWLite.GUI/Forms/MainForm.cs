@@ -92,13 +92,23 @@ namespace MWLite.GUI.Forms
             App.Project.Load(projectPath);
         }
 
-        public static void DisplayMapFoldersDialog()
+        internal void SelectMapsFolder()
+        {
+            if (DisplayMapFoldersDialog())
+            {
+                RefreshProjectList(mapFoldersPath: AppSettings.Instance.MapFoldersPath,  currentProjectPath: "");
+            }
+        }
+
+        public static bool DisplayMapFoldersDialog()
         {
             var dlg = new FolderBrowserDialog{ ShowNewFolderButton=false, Description="Please select the folder of maps." };
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 AppSettings.Instance.MapFoldersPath = dlg.SelectedPath;
+                return true;
             }
+            return false;
         }
 
         private void RefreshProjectList(string mapFoldersPath, string currentProjectPath)
@@ -195,6 +205,7 @@ namespace MWLite.GUI.Forms
             _mapForm.CloseButton = false;
             _mapForm.CloseButtonVisible = false;
 
+            // TODO: delete the donation form
 
             _mapForm.Activate();
 
@@ -318,5 +329,6 @@ namespace MWLite.GUI.Forms
         }
 
         #endregion
+
     }
 }

@@ -49,6 +49,9 @@ namespace MWLite.GUI.Classes
                         form.ShowDialog(MainForm.Instance);
                     }
                     break;
+                case AppCommand.SelectMapsFolder:
+                    MainForm.Instance.SelectMapsFolder();
+                    break;
                 case AppCommand.LoadProject:
                     {
                         string filename;
