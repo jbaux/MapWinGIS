@@ -42,19 +42,15 @@ namespace MWLite.GUI.Classes
 
         private static void Deserialize()
         {
-            try
+            if (File.Exists(PathHelper.GetSettingsPath()))
             {
-                if (File.Exists(PathHelper.GetSettingsPath()))
+                var ser = new XmlSerializer(typeof(AppSettings));
+                using (var stream = new FileStream(PathHelper.GetSettingsPath(), FileMode.Open))
                 {
-                    var ser = new XmlSerializer(typeof(AppSettings));
-                    using (var stream = new FileStream(PathHelper.GetSettingsPath(), FileMode.Open))
-                    {
-                        _settings = ser.Deserialize(stream) as AppSettings;
-                        stream.Close();
-                    }
+                    _settings = ser.Deserialize(stream) as AppSettings;
+                    stream.Close();
                 }
             }
-            catch { }
         }
 
         public static void Save()
