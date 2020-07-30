@@ -17,7 +17,7 @@ namespace MWLite.GUI.Classes
             BingApiKey = "";
             LastProject = "";
             ShowTooltip = true;
-            MapFoldersPath = "";
+            MapFoldersPath = "w:\\my drive\\";
         }
 
         public bool ShowTooltip { get; set; }
