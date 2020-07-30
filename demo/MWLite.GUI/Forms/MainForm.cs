@@ -23,13 +23,17 @@ namespace MWLite.GUI.Forms
         private MapForm _mapForm = null;
         private LegendDockForm _legendForm = null;
         private MapCallback _callback = null;
+        private readonly EventHandler _projSelectChanged = null;
+        private readonly ItemCheckEventHandler _projCheckChanged = null;
+        private readonly System.Windows.Forms.Timer _autosaveTimer = null;
 
         public MainForm()
         {
             InitializeComponent();
 
-            _projSelectChanged = new System.EventHandler(ProjectList_SelectedValueChanged);
+            _projSelectChanged = new EventHandler(ProjectList_SelectedValueChanged);
             _projCheckChanged = new ItemCheckEventHandler(ProjectList_CheckChanged);
+            _autosaveTimer = new System.Windows.Forms.Timer();
 
             _callback = new MapCallback(statusStrip1, progressBar1, lblProgressMessage);
 
@@ -72,28 +76,41 @@ namespace MWLite.GUI.Forms
             RefreshProjectList(mapFoldersPath: AppSettings.Instance.MapFoldersPath,  currentProjectPath: projectPath);
 
             App.Project.ProjectChanged += (s, e) => {
-                // Begin each project with the vector shape file ready for editing.
-                int handle = -1;
-                foreach (var l in App.Legend.Layers)
-                {
-                    if (l.Type == Symbology.Classes.eLayerType.PolygonShapefile)
+                if (!App.Project.IsEmpty) {
+                    // Begin each project with the vector shape file ready for editing.
+                    int handle = -1;
+                    foreach (var l in App.Legend.Layers)
                     {
-                        handle = l.Handle;
+                        if (l.Type == Symbology.Classes.eLayerType.PolygonShapefile)
+                        {
+                            handle = l.Handle;
+                        }
                     }
-                }
-                App.Legend.SelectedLayer = handle;
-                if (handle != -1) {
-                    var sf = App.Map.get_Shapefile(handle);
-                    sf.InteractiveEditing = true;
-                }
+                    App.Legend.SelectedLayer = handle;
+                    if (handle != -1) {
+                        var sf = App.Map.get_Shapefile(handle);
+                        sf.InteractiveEditing = true;
+                    }
 
-                AppSettings.Instance.LastProject = App.Project.GetPath();
-                AppSettings.Save(); // TODO: this is a blocking operation and shouldn't be done on the main thread.
-                
+                    AppSettings.Instance.LastProject = App.Project.GetPath();
+                    AppSettings.Save(); // TODO: this is a blocking operation and shouldn't be done on the main thread.
+                }
                 RefreshUI();
             };
 
             App.Project.Load(projectPath);
+
+            _autosaveTimer.Tick += new EventHandler(AutosaveTick);
+            _autosaveTimer.Interval = 5 * 60 * 1000; // 5 minutes
+            _autosaveTimer.Start();
+        }
+
+        private void AutosaveTick(Object s, EventArgs e)
+        {
+            if (!App.Project.IsEmpty)
+            {
+                App.Project.Save();
+            }
         }
 
         internal void SelectMapsFolder()
@@ -281,9 +298,6 @@ namespace MWLite.GUI.Forms
         {
             toolStripContainer1.TopToolStripPanel.Join(toolbar, _mainToolStrip.Left + _mainToolStrip.Width, 0);
         }
-
-        private readonly System.EventHandler _projSelectChanged = null;
-        private readonly ItemCheckEventHandler _projCheckChanged = null;
 
         public void RefreshUI()
         {

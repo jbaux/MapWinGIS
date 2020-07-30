@@ -16,8 +16,7 @@ namespace MWLite.GUI.Classes
 
         protected virtual void OnProjectChanged()
         {
-            EventHandler<EventArgs> handler = ProjectChanged;
-            if (handler != null) handler(this, new EventArgs());
+            ProjectChanged?.Invoke(this, new EventArgs());
         }
 
         internal ProjectBase()
@@ -101,11 +100,39 @@ namespace MWLite.GUI.Classes
 
         private void SaveInternal(string filename)
         {
-            bool saved = App.Map.SaveMapState(filename, true, true);
-            if (!saved)
-                MessageHelper.Warn("Failed to save project.");
-            else
-                Filename = filename;
+            var map = App.Map;
+            bool savedMapState = map.SaveMapState(filename, relativePaths:true, overwrite:true);
+            if (!savedMapState)
+            {
+                MessageHelper.Warn("Failed to save the map.");
+                return;
+            }
+            Filename = filename;
+
+            var saveFailLayerNames = new System.Collections.Generic.List<string>();
+            int layerCount = map.NumLayers;
+            for (int i = 0; i < layerCount; i++)
+            {
+                int layerHandle = map.get_LayerHandle(i);
+                MapWinGIS.Shapefile sf = map.get_Shapefile(layerHandle);
+                if (sf != null && sf.InteractiveEditing)
+                {
+                    if (!sf.Save(cBack: null))
+                    {
+                        saveFailLayerNames.Add(sf.Filename);
+                    }
+                }
+            }
+
+            if (saveFailLayerNames.Count != 0)
+            {
+                string msg = "Failed to save the layers: ";
+                foreach (string name in saveFailLayerNames)
+                {
+                    msg += $"'{name}'  ";
+                }
+                MessageHelper.Warn(msg);
+            }
         }
 
         protected void LoadProject(string filename)
