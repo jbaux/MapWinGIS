@@ -8,16 +8,17 @@ using MWLite.GUI.MapLegend;
 using MWLite.GUI.Properties;
 using MWLite.ShapeEditor;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Collections;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
-using System.Collections.Generic;
 
 namespace MWLite.GUI.Forms
 {
     public partial class MainForm : DockContent, IMapApp
     {
-        private const string WINDOW_TITLE = "MapWinGIS Demo";
+        private const string WINDOW_TITLE = "MapWinGIS";
         private readonly AppDispatcher _dispatcher = new AppDispatcher();
         private static MainForm _form = null;
         private MapForm _mapForm = null;
@@ -71,12 +72,13 @@ namespace MWLite.GUI.Forms
             {
                 DisplayMapFoldersDialog();
             }
-            string projectPath = AppSettings.Instance.LastProject;
+            string lastProjectPath = AppSettings.Instance.LastProject;
 
-            RefreshProjectList(mapFoldersPath: AppSettings.Instance.MapFoldersPath,  currentProjectPath: projectPath);
+            RefreshProjectList(mapFoldersPath: AppSettings.Instance.MapFoldersPath,  currentProjectPath: lastProjectPath);
 
-            App.Project.ProjectChanged += (s, e) => {
-                if (!App.Project.IsEmpty) {
+            var project = App.Project;
+            project.ProjectChanged += (s, e) => {
+                if (!project.IsEmpty) {
                     // Begin each project with the vector shape file ready for editing.
                     int handle = -1;
                     foreach (var l in App.Legend.Layers)
@@ -92,13 +94,26 @@ namespace MWLite.GUI.Forms
                         sf.InteractiveEditing = true;
                     }
 
-                    AppSettings.Instance.LastProject = App.Project.GetPath();
+                    // When opening a new map, change the state to in-progress.
+                    if (MapState.New == FetchMapState(project.GetPath()))
+                    {
+                        string projDir = System.IO.Path.GetDirectoryName(project.GetPath());
+                        string filePath = System.IO.Path.Combine(projDir, "state");
+                        using (var stream = new System.IO.FileStream(filePath, System.IO.FileMode.Create))
+                        {
+                            stream.WriteByte((byte)'p');
+                        }
+                        // TODO: instead of refreshing the entire queue, just update the current project
+                        RefreshProjectList(AppSettings.Instance.MapFoldersPath, App.Project.GetPath());
+                    }
+
+                    AppSettings.Instance.LastProject = project.GetPath();
                     AppSettings.Save(); // TODO: this is a blocking operation and shouldn't be done on the main thread.
                 }
                 RefreshUI();
             };
 
-            App.Project.Load(projectPath);
+            project.Load(lastProjectPath);
 
             _autosaveTimer.Tick += new EventHandler(AutosaveTick);
             _autosaveTimer.Interval = 5 * 60 * 1000; // 5 minutes
@@ -148,9 +163,14 @@ namespace MWLite.GUI.Forms
             foreach (string p in projectPaths) {
                 var x = new ProjectDesc(p);
                 var state = CheckState.Unchecked;
-                if (IsMapComplete(p))
+                MapState s = FetchMapState(p);
+                if (s == MapState.Complete)
                 {
                     state = CheckState.Checked;
+                }
+                if (s == MapState.New)
+                {
+                    x.DisplayName = $"New    {x.DisplayName}";
                 }
                 items.Add(x, state);
             }
@@ -374,23 +394,47 @@ namespace MWLite.GUI.Forms
             string filePath = System.IO.Path.Combine(projDir, "state");
             using (var stream = new System.IO.FileStream(filePath, System.IO.FileMode.Create))
             {
-                stream.WriteByte(complete ? (byte)'c' : (byte)'n');
+                stream.WriteByte(complete ? (byte)'c' : (byte)'p');
             }
             RefreshProjectList(AppSettings.Instance.MapFoldersPath, App.Project.GetPath());
         }
 
-        internal bool IsMapComplete(string projectPath)
+        internal enum MapState
+        {
+            Complete,
+            InProgress,
+            New,
+            Unknown,
+        }
+        internal MapState FetchMapState(string projectPath)
         {
             string filePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(projectPath), "state");
             if (!System.IO.File.Exists(filePath))
             {
-                return false;
+                return MapState.New;
             }
+            char c = '\0';
             using (var stream = new System.IO.FileStream(filePath, System.IO.FileMode.Open))
             {
-                var c = (char)stream.ReadByte();
-                return c == 'c';
+                c = (char)stream.ReadByte();
+                if (c == 'c')
+                {
+                    return MapState.Complete;
+                }
+                else if (c == 'n')
+                {
+                    return MapState.New;
+                }
+                else if (c == 'p')
+                {
+                    return MapState.InProgress;
+                }
             }
+
+            Debug.Fail($"FetchMapState: unknown state: {c}");
+            // Recover from the unknown state problem by returning to "new"
+            System.IO.File.Delete(filePath);
+            return MapState.New;
         }
 
         #endregion
