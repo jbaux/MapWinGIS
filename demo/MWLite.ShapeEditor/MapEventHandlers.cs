@@ -23,6 +23,16 @@ namespace MWLite.ShapeEditor
             _map.BeforeShapeEdit += _map_BeforeShapeEdit;
             _map.ShapeValidationFailed += _map_ShapeValidationFailed;
             _map.ValidateShape += _map_ValidateShape;
+            _map.DblClick += _map_DblClick;
+        }
+
+        private static void _map_DblClick(object sender, EventArgs e)
+        {
+            tkCursorMode cm = _map.CursorMode;
+            if (cm == tkCursorMode.cmAddShape)
+            {
+                _map.ShapeEditor.SaveChanges();
+            }
         }
 
         static void _map_ChooseLayer(object sender, _DMapEvents_ChooseLayerEvent e)
