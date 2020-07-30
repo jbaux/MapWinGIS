@@ -388,7 +388,35 @@ namespace MWLite.GUI.Forms
             {
                 var control = (CheckedListBox)sender;
                 var item = (ProjectDesc)control.Items[e.Index];
-                MarkMapComplete(item.Path, e.NewValue == CheckState.Checked);
+                string name = item.DisplayName;
+                string confirmMsg;
+                if (e.NewValue == CheckState.Checked)
+                {
+                    confirmMsg = $"Complete {name}?";
+                }
+                else
+                {
+                    confirmMsg = $"Remove the completion of {name}?";
+                }
+
+                if (DialogResult.Yes == Core.UI.MessageHelper.Ask(confirmMsg))
+                {
+                    MarkMapComplete(item.Path, e.NewValue == CheckState.Checked);
+                }
+                else
+                {
+                    // Revert the checkbox back to its previous state.
+
+                    int index = e.Index; // Make a private copy of the state, in case the control properties change.
+                    CheckState cs = e.CurrentValue;
+                    // Don't change the check state until after ProjectList_CheckChanged has returned.
+                    BeginInvoke((MethodInvoker)delegate
+                    {
+                        control.ItemCheck -= _projCheckChanged; // Avoid re-entering ProjectList_CheckChanged
+                        control.SetItemCheckState(index, cs);
+                        control.ItemCheck += _projCheckChanged;
+                    });
+                }
             }
         }
 
