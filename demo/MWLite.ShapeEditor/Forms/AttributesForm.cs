@@ -125,7 +125,13 @@ namespace MWLite.ShapeEditor.Forms
                 case FieldType.DOUBLE_FIELD:
                     return 0.0;
                 case FieldType.STRING_FIELD:
+                    return "";
+                case FieldType.DATE_FIELD:
+                    return "";
+                case FieldType.BOOLEAN_FIELD:
+                    return false;
                 default:
+                    Debug.Fail($"AttributesForm.GetDefaultValue: unknown field type: {type.ToString()}");
                     return "";
             }
         }
@@ -140,7 +146,8 @@ namespace MWLite.ShapeEditor.Forms
                     return "d";
                 case FieldType.STRING_FIELD:
                 default:
-                    return "s";
+                    Debug.Fail($"AttributesForm.GetFieldTypeName: unknown field type: {type.ToString()}");
+                    return "?";
             }
         }
 
@@ -179,12 +186,26 @@ namespace MWLite.ShapeEditor.Forms
                             if (!Double.TryParse(txt.Text, out val))
                             {
                                 txt.Focus();
-                                MessageHelper.Info("Faield to parse double value: " + txt.Text);
+                                MessageHelper.Info("Failed to parse double value: " + txt.Text);
                                 return false;
                             }
                             _sf.EditCellValue(fieldIndex, _shapeIndex, val);
                             break;
                         }
+                    case FieldType.BOOLEAN_FIELD:
+                        {
+                            if (!Boolean.TryParse(txt.Text, out bool val))
+                            {
+                                txt.Focus();
+                                MessageHelper.Info("Failed to parse Boolean value: " + txt.Text);
+                                return false;
+                            }
+                            _sf.EditCellValue(fieldIndex, _shapeIndex, val);
+                            break;
+                        }
+                    default:
+                        Debug.Fail($"AttributesForm.Save: unknown field type: {fld.Type.ToString()}");
+                        break;
                 }
             }
             return true;
