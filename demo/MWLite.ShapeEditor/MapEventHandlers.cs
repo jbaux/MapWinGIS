@@ -60,6 +60,28 @@ namespace MWLite.ShapeEditor
 
         static void _map_AfterShapeEdit(object sender, _DMapEvents_AfterShapeEditEvent e)
         {
+            // Tag modified shapes as having being modified by an analyst.
+            {
+                var sf = _map.get_Shapefile(e.layerHandle);
+                if (sf != null)
+                {
+                    int fieldIndex = sf.Table.FieldIndexByName["owner"];
+                    Debug.Assert(fieldIndex != -1);
+                    if (fieldIndex != -1)
+                    {
+                        object ownerValue = sf.CellValue[fieldIndex, e.shapeIndex];
+                        const int ownerAnalyst = 1;
+                        if (ownerValue == null || (int)ownerValue != ownerAnalyst)
+                        {
+                            Debug.Assert(sf.EditCellValue(fieldIndex, e.shapeIndex, ownerAnalyst));
+
+                            // Apply the change of colour to the shape that was edited.
+                            sf.Categories.ApplyExpressions();
+                        }
+                    }
+                }
+            }
+
             if (e.operation == tkUndoOperation.uoAddShape)
             {
                 var sf = _map.get_Shapefile(e.layerHandle);

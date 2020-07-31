@@ -90,7 +90,11 @@ namespace MWLite.GUI.Forms
                     }
                     App.Legend.SelectedLayer = handle;
                     if (handle != -1) {
-                        var sf = App.Map.get_Shapefile(handle);
+                        Shapefile sf = App.Map.get_Shapefile(handle);
+                        
+                        ColourShapesByOwner(sf);
+                        
+                        // Begin each project with shape editing enabled, as this is the primary use for the app.
                         sf.InteractiveEditing = true;
                     }
 
@@ -118,6 +122,33 @@ namespace MWLite.GUI.Forms
             _autosaveTimer.Tick += new EventHandler(AutosaveTick);
             _autosaveTimer.Interval = 5 * 60 * 1000; // 5 minutes
             _autosaveTimer.Start();
+        }
+
+        private void ColourShapesByOwner(Shapefile sf)
+        {
+            sf.DefaultDrawingOptions.FillType = tkFillType.ftStandard;
+
+            int fieldIndex = sf.Table.FieldIndexByName["owner"];
+            if (fieldIndex == -1)
+            {
+                bool success = sf.StartEditingTable();
+                Debug.Assert(success);
+                if (success)
+                {
+                    fieldIndex = sf.EditAddField("owner", FieldType.INTEGER_FIELD, Precision:0, Width:9);
+                    Debug.Assert(fieldIndex != -1);
+                    sf.StopEditingShapes(false, true, null);
+                }
+            }
+
+            // TODO: don't destroy and re-create categories every time.
+            sf.Categories.Clear();
+            Debug.Assert(sf.Categories.Generate(fieldIndex, tkClassificationType.ctUniqueValues, numClasses:0)); // numClasses is ignored when ctUniqueValues is used.
+            sf.Categories.ApplyExpressions();
+
+            var scheme = new ColorScheme();
+            scheme.SetColors2(tkMapColor.Purple, tkMapColor.Orange);
+            sf.Categories.ApplyColorScheme3(tkColorSchemeType.ctSchemeGraduated, scheme, tkShapeElements.shElementFill, CategoryStartIndex:0, CategoryEndIndex:1);
         }
 
         private void AutosaveTick(Object s, EventArgs e)
