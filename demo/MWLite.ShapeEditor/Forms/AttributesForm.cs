@@ -97,7 +97,7 @@ namespace MWLite.ShapeEditor.Forms
                 lbl.BackColor = Color.White;
                 tableLayoutPanel1.Controls.Add(lbl, cmnIndex, rowIndex);
 
-                lbl = new System.Windows.Forms.Label() { Text = editing ? GetShortFieldType(fieldType) : "" };
+                lbl = new System.Windows.Forms.Label() { Text = editing ? GetFieldTypeName(fieldType) : "" };
                 lbl.Dock = DockStyle.Fill;
                 lbl.TextAlign = ContentAlignment.MiddleLeft;
                 lbl.AutoSize = true;
@@ -136,15 +136,20 @@ namespace MWLite.ShapeEditor.Forms
             }
         }
 
-        private string GetShortFieldType(FieldType type)
+        private string GetFieldTypeName(FieldType type)
         {
             switch (type)
             {
                 case FieldType.INTEGER_FIELD:
-                    return "i";
+                    return "integer";
                 case FieldType.DOUBLE_FIELD:
-                    return "d";
+                    return "double (floating-point)";
                 case FieldType.STRING_FIELD:
+                    return "string";
+                case FieldType.BOOLEAN_FIELD:
+                    return "Boolean";
+                case FieldType.DATE_FIELD:
+                    return "date";
                 default:
                     Debug.Fail($"AttributesForm.GetFieldTypeName: unknown field type: {type.ToString()}");
                     return "?";
