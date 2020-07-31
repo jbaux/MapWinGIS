@@ -25,6 +25,36 @@ namespace MWLite.GUI.Classes
         public string BingApiKey { get; set; }
         public string MapFoldersPath { get; set; }
 
+        public void Validate()
+        {
+            // If the map folders path is invalid, remove it all together to avoid further problems.
+            try
+            {
+                var unused = System.IO.Path.GetFullPath(MapFoldersPath);
+            }
+            catch
+            {
+                MapFoldersPath = string.Empty;
+            }
+            if (!System.IO.Directory.Exists(MapFoldersPath))
+            {
+                MapFoldersPath = string.Empty;
+            }
+
+            try
+            {
+                var unused = System.IO.Path.GetFullPath(LastProject);
+            }
+            catch
+            {
+                LastProject = string.Empty;
+            }
+            if (!System.IO.File.Exists(LastProject))
+            {
+                LastProject = string.Empty;
+            }
+        }
+
         private static AppSettings _settings;
 
         public static AppSettings Instance
@@ -35,6 +65,7 @@ namespace MWLite.GUI.Classes
                 {
                     Deserialize();
                     if (_settings == null) _settings = new AppSettings();
+                    _settings.Validate();
                 }
                 return _settings;
             }
