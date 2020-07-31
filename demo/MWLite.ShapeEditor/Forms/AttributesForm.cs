@@ -105,7 +105,7 @@ namespace MWLite.ShapeEditor.Forms
                 tableLayoutPanel1.Controls.Add(lbl, cmnIndex + 2, rowIndex);
 
                 var value = _sf.CellValue[i, _shapeIndex] ?? GetDefaultValue(fieldType);
-                var control = new TextBox() { ReadOnly = !editing,  Text = value.ToString() };;
+                var control = new TextBox() { ReadOnly = !editing,  Text = value.ToString() };
                 control.Dock = DockStyle.Fill;
                 control.Padding = new Padding(padding);
                 control.Tag = i;
