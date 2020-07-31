@@ -70,7 +70,10 @@ namespace MWLite.GUI.Forms
 
             if (string.IsNullOrWhiteSpace(AppSettings.Instance.MapFoldersPath))
             {
-                DisplayMapFoldersDialog();
+                if (!DisplayMapFoldersDialog())
+                {
+                    Environment.Exit(0);
+                }
             }
             string lastProjectPath = AppSettings.Instance.LastProject;
 
