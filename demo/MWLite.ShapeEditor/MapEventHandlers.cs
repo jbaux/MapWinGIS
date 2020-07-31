@@ -73,7 +73,8 @@ namespace MWLite.ShapeEditor
                         const int ownerAnalyst = 1;
                         if (ownerValue == null || (int)ownerValue != ownerAnalyst)
                         {
-                            Debug.Assert(sf.EditCellValue(fieldIndex, e.shapeIndex, ownerAnalyst));
+                            bool success = sf.EditCellValue(fieldIndex, e.shapeIndex, ownerAnalyst);
+                            Debug.Assert(success);
 
                             // Apply the change of colour to the shape that was edited.
                             sf.Categories.ApplyExpressions();

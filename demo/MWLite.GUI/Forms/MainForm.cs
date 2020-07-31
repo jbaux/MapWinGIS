@@ -131,9 +131,9 @@ namespace MWLite.GUI.Forms
             int fieldIndex = sf.Table.FieldIndexByName["owner"];
             if (fieldIndex == -1)
             {
-                bool success = sf.StartEditingTable();
-                Debug.Assert(success);
-                if (success)
+                bool successEdit = sf.StartEditingTable();
+                Debug.Assert(successEdit);
+                if (successEdit)
                 {
                     fieldIndex = sf.EditAddField("owner", FieldType.INTEGER_FIELD, Precision:0, Width:9);
                     Debug.Assert(fieldIndex != -1);
@@ -143,7 +143,8 @@ namespace MWLite.GUI.Forms
 
             // TODO: don't destroy and re-create categories every time.
             sf.Categories.Clear();
-            Debug.Assert(sf.Categories.Generate(fieldIndex, tkClassificationType.ctUniqueValues, numClasses:0)); // numClasses is ignored when ctUniqueValues is used.
+            bool success = sf.Categories.Generate(fieldIndex, tkClassificationType.ctUniqueValues, numClasses:0);  // numClasses is ignored when ctUniqueValues is used.⌈
+            Debug.Assert(success);
             sf.Categories.ApplyExpressions();
 
             var scheme = new ColorScheme();
