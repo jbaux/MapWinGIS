@@ -3,8 +3,9 @@ if (Test-Path $result)
 {
     Remove-Item -Path $result -ErrorAction Stop
 }
+Set-Content -Path ".\MWLite.GUI\bin\x86\Release\run_with_logging.bat" -Value "@ECHO OFF`r`nECHO Writing logs to: error.log`r`nMapWindowLite.exe 2> error.log`r`n"
 $compress = @{
-Path= ".\MWLite.GUI\bin\x86\Release\*.dll", ".\MWLite.GUI\bin\x86\Release\*.exe"
+Path= ".\MWLite.GUI\bin\x86\Release\*.dll", ".\MWLite.GUI\bin\x86\Release\*.exe", ".\MWLite.GUI\bin\x86\Release\*.bat"
 CompressionLevel = "Optimal"
 DestinationPath = $result
 }
