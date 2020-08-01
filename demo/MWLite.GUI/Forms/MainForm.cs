@@ -81,7 +81,8 @@ namespace MWLite.GUI.Forms
 
             var project = App.Project;
             project.ProjectChanged += (s, e) => {
-                if (!project.IsEmpty) {
+                if (!project.IsEmpty)
+                {
                     // Begin each project with the vector shape file ready for editing.
                     int handle = -1;
                     foreach (var l in App.Legend.Layers)
@@ -92,7 +93,8 @@ namespace MWLite.GUI.Forms
                         }
                     }
                     App.Legend.SelectedLayer = handle;
-                    if (handle != -1) {
+                    if (handle != -1)
+                    {
                         Shapefile sf = App.Map.get_Shapefile(handle);
                         
                         ColourShapesByOwner(sf);
@@ -140,7 +142,7 @@ namespace MWLite.GUI.Forms
                 {
                     fieldIndex = sf.EditAddField("owner", FieldType.INTEGER_FIELD, Precision:0, Width:9);
                     Debug.Assert(fieldIndex != -1);
-                    sf.StopEditingShapes(false, true, null);
+                    sf.StopEditingShapes(ApplyChanges:false, StopEditTable:true, cBack:null);
                 }
             }
 
@@ -199,7 +201,8 @@ namespace MWLite.GUI.Forms
             projectListControl.ValueMember = "Path";
             var items = projectListControl.Items;
             items.Clear();
-            foreach (string p in projectPaths) {
+            foreach (string p in projectPaths)
+            {
                 var x = new ProjectDesc(p);
                 var state = CheckState.Unchecked;
                 MapState s = FetchMapState(p);
@@ -402,7 +405,8 @@ namespace MWLite.GUI.Forms
             Map.Focus();
         }
 
-        private void ProjectList_SelectedValueChanged(object sender, EventArgs e) {
+        private void ProjectList_SelectedValueChanged(object sender, EventArgs e)
+        {
             var control = (CheckedListBox)sender;
             var projectDesc = (ProjectDesc)control.SelectedItem;
             string selectedProjectPath = projectDesc.Path;

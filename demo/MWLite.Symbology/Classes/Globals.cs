@@ -246,12 +246,15 @@ namespace MWLite.Symbology.Classes
         }
         public void Progress(string KeyOfSender, int Percent, string Message)
         {
-            if (string.IsNullOrEmpty(Message)) {
+            if (string.IsNullOrEmpty(Message))
+            {
                 //MapWinUtility.Logger.Progress(Percent, 100);
             }
             else
+            {
                 //MapWinUtility.Logger.Progress(Message, Percent, 100);
                 Debug.Print("{0}: {1}", Message, Percent);
+            }
         }
         public void Clear()
         {
