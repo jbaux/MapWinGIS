@@ -12,8 +12,19 @@ if (Test-Path "$MWLitePath\MapWinGIS")
 }
 Copy-Item ..\src\bin\Win32 -Destination "$MWLitePath\MapWinGIS\" -Recurse
 # Create scripts used in releases
-Set-Content -Path "$MWLitePath\run_with_logging.bat" -Value "@ECHO OFF`r`nECHO Writing logs to: error.log`r`nMapWindowLite.exe 2> error.log`r`n"
-Set-Content -Path "$MWLitePath\install.cmd" -Value "cd MapWinGIS`r`nregsvr32 /u /s MapWinGIS.ocx`r`nregsvr32 MapWinGIS.ocx`r`n"
+Set-Content -Path "$MWLitePath\run_with_logging.bat" -Value @"
+@ECHO OFF
+ECHO Writing logs to: error.log
+MapWindowLite.exe 2> error.log
+"@
+Set-Content -Path "$MWLitePath\install.cmd" -Value @"
+@setlocal enableextensions
+@cd /d "%~dp0"
+rem The lines above are from http://www.codeproject.com/Tips/119828/Running-a-bat-file-as-administrator-Correcting-cur.aspx
+cd MapWinGIS
+regsvr32 /u /s MapWinGIS.ocx
+regsvr32 MapWinGIS.ocx
+"@
 # Delete files that aren't needed in releases
 Remove-Item -Path "$MWLitePath\*.pdb", "$MWLitePath\MWLite.Symbology.xml", "$MWLitePath\mwtiles.db3" -ErrorAction Ignore
 # Package up the release
