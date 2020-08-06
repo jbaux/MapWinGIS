@@ -14,7 +14,7 @@ namespace MWLite.GUI.Classes
 
         public event EventHandler<EventArgs> ProjectChanged;
 
-        protected virtual void OnProjectChanged()
+        protected void OnProjectChanged()
         {
             ProjectChanged?.Invoke(this, new EventArgs());
         }
