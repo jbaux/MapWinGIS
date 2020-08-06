@@ -59,15 +59,17 @@ namespace MWLite.GUI.Forms
             //axMap1.Tiles.SetProxyAuthentication("temp", "1234", "");
             axMap1.GrabProjectionFromData = true;
             axMap1.CursorMode = tkCursorMode.cmPan;
-            axMap1.SendSelectBoxFinal = true;
+            axMap1.SendSelectBoxFinal = false;
             axMap1.SendMouseDown = true;
             axMap1.SendMouseUp = true;
             axMap1.InertiaOnPanning = tkCustomState.csAuto;
-            axMap1.ShowRedrawTime = false;
+            axMap1.ShowRedrawTime = true;
             Map.Identifier.IdentifierMode = tkIdentifierMode.imSingleLayer;
-            Map.Identifier.HotTracking = true;
+            Map.Identifier.HotTracking = false;
             Map.ShapeEditor.HighlightVertices = tkLayerSelection.lsNoLayer;
             Map.ShapeEditor.SnapBehavior = tkLayerSelection.lsNoLayer;
+            Map.ShapeEditor.ShowLength = false; // Reduce the visual clutter.
+            Map.ShapeEditor.ShowBearing = false; // Reduce the visual clutter.
             axMap1.Measuring.UndoButton = tkUndoShortcut.usCtrlZ;
         }
 
