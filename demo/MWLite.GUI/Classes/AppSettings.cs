@@ -79,7 +79,6 @@ namespace MWLite.GUI.Classes
                 using (var stream = new FileStream(PathHelper.GetSettingsPath(), FileMode.Open))
                 {
                     _settings = ser.Deserialize(stream) as AppSettings;
-                    stream.Close();
                 }
             }
         }
@@ -96,7 +95,6 @@ namespace MWLite.GUI.Classes
                     {
                         ser.Serialize(stream, _settings);
                         stream.Flush();
-                        stream.Close();
                     }
                 }
             }
