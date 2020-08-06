@@ -8,12 +8,12 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MWLite.GUI</RootNamespace>
-    <AssemblyName>MapWindowLite</AssemblyName>
+    <AssemblyName>Piano Player</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\MapWindow.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\PPDA.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -321,6 +321,7 @@
     <Content Include="obj\x86\Debug\AxInterop.MapWinGIS.XML" />
     <Content Include="obj\x86\Debug\Interop.MapWinGIS.dll" />
     <Content Include="obj\x86\Debug\Interop.MapWinGIS.XML" />
+    <Content Include="Resources\PPDA.ico" />
     <Content Include="Resources\MapWindow.ico" />
     <None Include="Resources\Snapshot.png" />
     <None Include="Resources\layer-db-add.png" />
