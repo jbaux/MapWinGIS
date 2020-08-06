@@ -18,7 +18,7 @@ namespace MWLite.GUI.Forms
 {
     public partial class MainForm : DockContent, IMapApp
     {
-        private const string WINDOW_TITLE = "MapWinGIS";
+        private const string WINDOW_TITLE = "Piano Player";
         private readonly AppDispatcher _dispatcher = new AppDispatcher();
         private static MainForm _form = null;
         private MapForm _mapForm = null;
@@ -365,7 +365,7 @@ namespace MWLite.GUI.Forms
         {
             Text = WINDOW_TITLE;
             if (!App.Project.IsEmpty)
-                 Text += " - " + App.Project.GetPath();
+                 Text += " – " + App.Project.GetPath();
 
             toolZoomIn.Checked = Map.CursorMode == tkCursorMode.cmZoomIn;
             toolZoomOut.Checked = Map.CursorMode == tkCursorMode.cmZoomOut;
