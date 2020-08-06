@@ -80,7 +80,6 @@ namespace MWLite.GUI.Forms
             axMap1.ShapeIdentified += axMap1_ShapeIdentified;
             axMap1.MouseUpEvent += axMap1_MouseUpEvent;
             axMap1.ShapeHighlighted += axMap1_ShapeHighlighted;
-            axMap1.SelectBoxFinal += axMap1_SelectBoxFinal;
             axMap1.LayerProjectionIsEmpty += axMap1_LayerProjectionIsEmpty;
             axMap1.ProjectionMismatch += axMap1_ProjectionMismatch;
             axMap1.LayerReprojected += axMap1_LayerReprojected;
@@ -150,14 +149,6 @@ namespace MWLite.GUI.Forms
         void axMap1_LayerProjectionIsEmpty(object sender, _DMapEvents_LayerProjectionIsEmptyEvent e)
         {
             Debug.Print("Layer without projection");
-        }
-
-        void axMap1_SelectBoxFinal(object sender, _DMapEvents_SelectBoxFinalEvent e)
-        {
-            if (axMap1.CursorMode == tkCursorMode.cmSelection)
-            {
-                MessageHelper.Info("No shapefile layer is selected.");
-            }
         }
 
         void axMap1_ShapeHighlighted(object sender, _DMapEvents_ShapeHighlightedEvent e)
