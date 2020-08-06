@@ -10,6 +10,7 @@ using MWLite.ShapeEditor;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Collections;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -153,7 +154,9 @@ namespace MWLite.GUI.Forms
             sf.Categories.ApplyExpressions();
 
             var scheme = new ColorScheme();
-            scheme.SetColors2(tkMapColor.Purple, tkMapColor.Orange);
+            var AI = (uint)ColorTranslator.ToOle(Color.FromArgb(red:192, green:0, blue:255));
+            var human = (uint)ColorTranslator.ToOle(Color.FromArgb(red:251, green:176, blue:64));
+            scheme.SetColors(AI, human);
             sf.Categories.ApplyColorScheme3(tkColorSchemeType.ctSchemeGraduated, scheme, tkShapeElements.shElementFill, CategoryStartIndex:0, CategoryEndIndex:1);
         }
 
