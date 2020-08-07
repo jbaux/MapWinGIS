@@ -10,9 +10,9 @@ namespace MWLite.ShapeEditor.Operations
 {
     public static class RemoveOperation
     {
-        public static void Remove(Shapefile sf, int layerHandle)
+        public static void Remove(AxMapWinGIS.AxMap map, Shapefile sf, int layerHandle)
         {
-             var list = App.Map.UndoList;
+            var list = map.UndoList;
             list.BeginBatch();
             for (int i = sf.NumShapes - 1; i >= 0; i--)
             {

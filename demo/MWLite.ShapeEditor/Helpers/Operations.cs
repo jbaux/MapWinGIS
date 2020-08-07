@@ -67,13 +67,13 @@ namespace MWLite.ShapeEditor.Helpers
         public static void RemoveShapes()
         {
             var sf = App.SelectedShapefile;
-            if (sf == null || !sf.InteractiveEditing || sf.NumSelected == 0) return;
-            if (MessageHelper.Ask("Remove selected shapes: " + sf.NumSelected + "?") == DialogResult.Yes)
+            if (sf == null || !sf.InteractiveEditing || sf.NumSelected == 0)
             {
-                int layerHandle = App.Legend.SelectedLayer;
-                RemoveOperation.Remove(sf, layerHandle);
-                App.Map.Redraw();
+                return;
             }
+            int layerHandle = App.Legend.SelectedLayer;
+            RemoveOperation.Remove(App.Map, sf, layerHandle);
+            App.Map.Redraw();
         }
 
         public static bool BufferIsEmpty
@@ -90,7 +90,7 @@ namespace MWLite.ShapeEditor.Helpers
 
         public static void PasteShapes()
         {
-            var result = _copyOperation.Paste(App.Legend.SelectedLayer, App.SelectedShapefile);
+            var result = _copyOperation.Paste(App.Map, App.Legend.SelectedLayer, App.SelectedShapefile);
             switch (result)
             {
                 case PasteResult.Ok:
@@ -109,7 +109,7 @@ namespace MWLite.ShapeEditor.Helpers
 
         public static void CutShapes()
         {
-            _copyOperation.Cut(App.Legend.SelectedLayer, App.SelectedShapefile);
+            _copyOperation.Cut(App.Map, App.Legend.SelectedLayer, App.SelectedShapefile);
             App.Map.Redraw();
         }
     }

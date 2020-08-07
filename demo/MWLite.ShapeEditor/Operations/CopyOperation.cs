@@ -46,15 +46,15 @@ namespace MWLite.ShapeEditor.Operations
             OffsetShapes();
         }
 
-        public bool Cut(int layerHandle, Shapefile sf)
+        public bool Cut(AxMapWinGIS.AxMap map, int layerHandle, Shapefile sf)
         {
             if (sf == null || sf.NumSelected == 0) return false;
             PopulateBuffer(sf);
-            RemoveOperation.Remove(sf, layerHandle);
+            RemoveOperation.Remove(map, sf, layerHandle);
             return true;
         }
 
-        public PasteResult Paste(int layerHandle, Shapefile sf)
+        public PasteResult Paste(AxMapWinGIS.AxMap map, int layerHandle, Shapefile sf)
         {
             if (sf == null || IsEmpty) return PasteResult.NoInput;
             if (!sf.InteractiveEditing) return PasteResult.NoInput;
@@ -65,7 +65,7 @@ namespace MWLite.ShapeEditor.Operations
 
             var fieldMap = _buffer.BuildFieldMap(sf);
 
-            var undoList = App.Map.UndoList;
+            var undoList = map.UndoList;
             undoList.BeginBatch();
 
             sf.SelectNone();

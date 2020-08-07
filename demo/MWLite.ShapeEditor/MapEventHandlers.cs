@@ -1,6 +1,6 @@
 ﻿using AxMapWinGIS;
 using MapWinGIS;
-using MWLite.ShapeEditor.Forms;
+using MWLite.ShapeEditor.Helpers;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -24,7 +24,17 @@ namespace MWLite.ShapeEditor
             _map.ShapeValidationFailed += _map_ShapeValidationFailed;
             _map.ValidateShape += _map_ValidateShape;
             _map.DblClick += _map_DblClick;
+            _map.PreviewKeyDown += _map_PreviewKeyDown;
         }
+
+        private static void _map_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                OperationHelper.RemoveShapes();
+            }
+        }
+
 
         private static void _map_DblClick(object sender, EventArgs e)
         {
