@@ -169,7 +169,6 @@ namespace MWLite.GUI.Forms
             this.toolSelect.Padding = new System.Windows.Forms.Padding(5);
             this.toolSelect.Size = new System.Drawing.Size(38, 38);
             this.toolSelect.Text = "Select by rectangle (Ctrl+R)";
-            this.toolSelect.ToolTipText = "Select by rectangle ";
             // 
             // toolZoomToSelected
             // 
