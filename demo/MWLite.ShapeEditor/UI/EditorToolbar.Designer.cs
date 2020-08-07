@@ -28,11 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
             this.toolUndoCount = new System.Windows.Forms.ToolStripLabel();
             this._editToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolEditLayer = new System.Windows.Forms.ToolStripButton();
             this.toolAddShape = new System.Windows.Forms.ToolStripButton();
             this.toolEditShape = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
@@ -55,11 +53,6 @@
             this._editToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStripSeparator21
-            // 
-            this.toolStripSeparator21.Name = "toolStripSeparator21";
-            this.toolStripSeparator21.Size = new System.Drawing.Size(6, 41);
-            // 
             // toolStripSeparator24
             // 
             this.toolStripSeparator24.Name = "toolStripSeparator24";
@@ -69,15 +62,14 @@
             // 
             this.toolUndoCount.Name = "toolUndoCount";
             this.toolUndoCount.Padding = new System.Windows.Forms.Padding(5);
-            this.toolUndoCount.Size = new System.Drawing.Size(34, 38);
+            this.toolUndoCount.Size = new System.Drawing.Size(41, 38);
             this.toolUndoCount.Text = "0/0";
             // 
             // _editToolStrip
             // 
             this._editToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._editToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this._editToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolEditLayer,
-            this.toolStripSeparator21,
             this.toolAddShape,
             this.toolEditShape,
             this.toolStripSeparator25,
@@ -100,20 +92,8 @@
             this._editToolStrip.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this._editToolStrip.Name = "_editToolStrip";
             this._editToolStrip.Padding = new System.Windows.Forms.Padding(0);
-            this._editToolStrip.Size = new System.Drawing.Size(641, 41);
+            this._editToolStrip.Size = new System.Drawing.Size(613, 41);
             this._editToolStrip.TabIndex = 2;
-            // 
-            // toolEditLayer
-            // 
-            this.toolEditLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolEditLayer.Image = global::MWLite.ShapeEditor.Properties.Resources.edit;
-            this.toolEditLayer.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolEditLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolEditLayer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.toolEditLayer.Name = "toolEditLayer";
-            this.toolEditLayer.Padding = new System.Windows.Forms.Padding(5);
-            this.toolEditLayer.Size = new System.Drawing.Size(38, 39);
-            this.toolEditLayer.Text = "Edit Layer";
             // 
             // toolAddShape
             // 
@@ -205,25 +185,25 @@
             this.toolPolygonOperation.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolPolygonOperation.Name = "toolPolygonOperation";
             this.toolPolygonOperation.Padding = new System.Windows.Forms.Padding(5);
-            this.toolPolygonOperation.Size = new System.Drawing.Size(47, 38);
+            this.toolPolygonOperation.Size = new System.Drawing.Size(48, 38);
             this.toolPolygonOperation.Text = "Polygon Overlay";
             // 
             // toolEraseByPolygon
             // 
             this.toolEraseByPolygon.Name = "toolEraseByPolygon";
-            this.toolEraseByPolygon.Size = new System.Drawing.Size(164, 22);
+            this.toolEraseByPolygon.Size = new System.Drawing.Size(196, 26);
             this.toolEraseByPolygon.Text = "Erase By Polygon";
             // 
             // toolClipByPolygon
             // 
             this.toolClipByPolygon.Name = "toolClipByPolygon";
-            this.toolClipByPolygon.Size = new System.Drawing.Size(164, 22);
+            this.toolClipByPolygon.Size = new System.Drawing.Size(196, 26);
             this.toolClipByPolygon.Text = "Clip By Polygon";
             // 
             // toolSplitByPolygon
             // 
             this.toolSplitByPolygon.Name = "toolSplitByPolygon";
-            this.toolSplitByPolygon.Size = new System.Drawing.Size(164, 22);
+            this.toolSplitByPolygon.Size = new System.Drawing.Size(196, 26);
             this.toolSplitByPolygon.Text = "Split By Polygon";
             // 
             // toolSplitByPolyline
@@ -310,9 +290,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ToolStripButton toolEditLayer;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator21;
         private System.Windows.Forms.ToolStripButton toolAddShape;
         private System.Windows.Forms.ToolStripButton toolMergeShapes;
         private System.Windows.Forms.ToolStripButton toolSplitShapes;

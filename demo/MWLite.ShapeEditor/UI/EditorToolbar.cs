@@ -24,8 +24,6 @@ namespace MWLite.ShapeEditor.UI
             var sf = App.Instance.Map.get_Shapefile(layerHandle);
             bool hasShapefile = sf != null;
 
-            toolEditLayer.Checked = false;
-
             toolSplitShapes.Enabled = false;
             toolMergeShapes.Enabled = false;
             toolRotateShapes.Enabled = false;
@@ -39,15 +37,6 @@ namespace MWLite.ShapeEditor.UI
                 toolMergeShapes.Enabled = numSelected > 1;
                 toolRotateShapes.Enabled = numSelected > 0;
             }
-
-            foreach (var item in _editToolStrip.Items.OfType<ToolStripItem>().
-                    Where(item => item != toolEditLayer))
-            {
-                item.Enabled = editing;
-            }
-            toolEditLayer.Enabled = hasShapefile;
-            toolEditLayer.Image = editing ? Resources.save1 : Resources.edit;  // save
-            toolEditLayer.Text = editing ? "Save Changes" : "Edit Layer";
 
             var map = App.Instance.Map;
             toolAddShape.Checked = map.CursorMode == tkCursorMode.cmAddShape;
