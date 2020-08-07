@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -13,16 +14,22 @@ namespace MWLite.ShapeEditor.Operations
         public static void Remove(AxMapWinGIS.AxMap map, Shapefile sf, int layerHandle)
         {
             var list = map.UndoList;
-            list.BeginBatch();
-            for (int i = sf.NumShapes - 1; i >= 0; i--)
+            bool beginSuccess = list.BeginBatch();
+            Debug.Assert(beginSuccess);
+            if (beginSuccess)
             {
-                if (sf.ShapeSelected[i])
+                for (int i = sf.NumShapes - 1; i >= 0; i--)
                 {
-                    list.Add(tkUndoOperation.uoRemoveShape, layerHandle , i);
-                    sf.EditDeleteShape(i);
+                    if (sf.ShapeSelected[i])
+                    {
+                        bool undoSuccess = list.Add(tkUndoOperation.uoRemoveShape, layerHandle, i);
+                        Debug.Assert(undoSuccess);
+                        bool editSuccess = sf.EditDeleteShape(i);
+                        Debug.Assert(editSuccess);
+                    }
                 }
+                list.EndBatch();
             }
-            list.EndBatch();
         }
     }
 }
