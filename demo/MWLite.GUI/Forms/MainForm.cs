@@ -367,16 +367,18 @@ namespace MWLite.GUI.Forms
 
         public void RefreshUI()
         {
-            Text = WINDOW_TITLE;
+            string title = WINDOW_TITLE;
             if (!App.Project.IsEmpty)
-                 Text += " – " + App.Project.GetPath();
+                 title += " – " + App.Project.GetPath();
+            Text = title;
 
-            toolZoomIn.Checked = Map.CursorMode == tkCursorMode.cmZoomIn;
-            toolZoomOut.Checked = Map.CursorMode == tkCursorMode.cmZoomOut;
-            toolPan.Checked = Map.CursorMode == tkCursorMode.cmPan;
-            toolSelect.Checked = Map.CursorMode == tkCursorMode.cmSelection;
+            var cursorMode = Map.CursorMode;
+            toolZoomIn.Checked = cursorMode == tkCursorMode.cmZoomIn;
+            toolZoomOut.Checked = cursorMode == tkCursorMode.cmZoomOut;
+            toolPan.Checked = cursorMode == tkCursorMode.cmPan;
+            toolSelect.Checked = cursorMode == tkCursorMode.cmSelection;
 
-            if (Map.CursorMode != tkCursorMode.cmIdentify)
+            if (cursorMode != tkCursorMode.cmIdentify)
             {
                 MapForm.HideTooltip();
             }
