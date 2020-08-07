@@ -102,7 +102,7 @@ namespace MWLite.GUI.Forms
             this._mainToolStrip.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this._mainToolStrip.Name = "_mainToolStrip";
             this._mainToolStrip.Padding = new System.Windows.Forms.Padding(0);
-            this._mainToolStrip.Size = new System.Drawing.Size(283, 41);
+            this._mainToolStrip.Size = new System.Drawing.Size(322, 41);
             this._mainToolStrip.TabIndex = 0;
             this._mainToolStrip.Text = "toolStrip1";
             // 
@@ -116,7 +116,7 @@ namespace MWLite.GUI.Forms
             this.toolZoomIn.Name = "toolZoomIn";
             this.toolZoomIn.Padding = new System.Windows.Forms.Padding(5);
             this.toolZoomIn.Size = new System.Drawing.Size(38, 39);
-            this.toolZoomIn.Text = "Zoom In";
+            this.toolZoomIn.Text = "Zoom in (+ key)";
             // 
             // toolZoomOut
             // 
@@ -128,7 +128,7 @@ namespace MWLite.GUI.Forms
             this.toolZoomOut.Name = "toolZoomOut";
             this.toolZoomOut.Padding = new System.Windows.Forms.Padding(5);
             this.toolZoomOut.Size = new System.Drawing.Size(38, 39);
-            this.toolZoomOut.Text = "Zoom Out";
+            this.toolZoomOut.Text = "Zoom out (- key)";
             // 
             // toolZoomMax
             // 
@@ -140,7 +140,7 @@ namespace MWLite.GUI.Forms
             this.toolZoomMax.Name = "toolZoomMax";
             this.toolZoomMax.Padding = new System.Windows.Forms.Padding(5);
             this.toolZoomMax.Size = new System.Drawing.Size(38, 39);
-            this.toolZoomMax.Text = "Zoom To Max Extents";
+            this.toolZoomMax.Text = "Zoom to max extents";
             // 
             // toolPan
             // 
@@ -152,7 +152,7 @@ namespace MWLite.GUI.Forms
             this.toolPan.Name = "toolPan";
             this.toolPan.Padding = new System.Windows.Forms.Padding(5);
             this.toolPan.Size = new System.Drawing.Size(38, 39);
-            this.toolPan.Text = "Pan";
+            this.toolPan.Text = "Pan (Hold space key)";
             // 
             // toolStripSeparator10
             // 
@@ -283,12 +283,14 @@ namespace MWLite.GUI.Forms
             // zoomInToolStripMenuItem
             // 
             this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
+            this.zoomInToolStripMenuItem.ShortcutKeyDisplayString = "+";
             this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
             this.zoomInToolStripMenuItem.Text = "Zoom in";
             // 
             // zoomOutToolStripMenuItem
             // 
             this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
+            this.zoomOutToolStripMenuItem.ShortcutKeyDisplayString = "-";
             this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
             this.zoomOutToolStripMenuItem.Text = "Zoom out";
             // 
