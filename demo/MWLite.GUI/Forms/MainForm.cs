@@ -54,7 +54,7 @@ namespace MWLite.GUI.Forms
 
             ToolStripManager.LoadSettings(this);
 
-            TilesHelper.Init(mnuTiles);
+            //TilesHelper.Init(mnuTiles);
 
             InitLegend();
 
@@ -284,6 +284,7 @@ namespace MWLite.GUI.Forms
         private void InitMenus()
         {
             Dispatcher.InitMenu(mnuFile.DropDownItems);
+            Dispatcher.InitMenu(mnuSelections.DropDownItems);
             Dispatcher.InitMenu(_mainToolStrip.Items);
         }
 
@@ -374,7 +375,6 @@ namespace MWLite.GUI.Forms
             toolZoomOut.Checked = Map.CursorMode == tkCursorMode.cmZoomOut;
             toolPan.Checked = Map.CursorMode == tkCursorMode.cmPan;
             toolSelect.Checked = Map.CursorMode == tkCursorMode.cmSelection;
-            toolSelectByPolygon.Checked = Map.CursorMode == tkCursorMode.cmSelectByPolygon;
 
             if (Map.CursorMode != tkCursorMode.cmIdentify)
             {
@@ -512,6 +512,5 @@ namespace MWLite.GUI.Forms
         }
 
         #endregion
-
     }
 }
