@@ -11,6 +11,9 @@ namespace MWLite.ShapeEditor
     {
         static AxMap _map = null;
 
+        // Hack: there is no key up event and no cursor changed event, so this timer will poll for the pan cursor ending.
+        private static System.Windows.Forms.Timer _panTimer = null;
+
         public static void Init(AxMap map)
         {
             _map = map;
@@ -25,6 +28,21 @@ namespace MWLite.ShapeEditor
             _map.ValidateShape += _map_ValidateShape;
             _map.DblClick += _map_DblClick;
             _map.PreviewKeyDown += _map_PreviewKeyDown;
+
+            if (_panTimer == null)
+            {
+                _panTimer = new Timer();
+                _panTimer.Tick += new EventHandler(PanCheckTick);
+            }
+        }
+
+        private static void PanCheckTick(object sender, EventArgs e)
+        {
+            if (_map.CursorMode != tkCursorMode.cmPan)
+            {
+                App.Instance.RefreshUI();
+                _panTimer.Stop();
+            }
         }
 
         private static void _map_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -33,8 +51,14 @@ namespace MWLite.ShapeEditor
             {
                 OperationHelper.RemoveShapes();
             }
+            else if (e.KeyCode == Keys.Space)
+            {
+                // Give people feedback that holding space puts the cursor into pan mode.
+                App.Instance.RefreshUI();
+                _panTimer.Interval = 50; // 20 Hz
+                _panTimer.Start();
+            }
         }
-
 
         private static void _map_DblClick(object sender, EventArgs e)
         {
