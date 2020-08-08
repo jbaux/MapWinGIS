@@ -45,7 +45,7 @@
             this.toolEraseByPolygon2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolClipByPolygon = new System.Windows.Forms.ToolStripMenuItem();
             this.toolSplitByPolygon = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolRemoveShapes = new System.Windows.Forms.ToolStripButton();
             this.toolEraseByPolygon = new System.Windows.Forms.ToolStripButton();
             this.toolSplitByPolyline = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
@@ -81,7 +81,7 @@
             this.toolRotateShapes,
             this.toolStripSeparator28,
             this.toolPolygonOperation,
-            this.toolDelete,
+            this.toolRemoveShapes,
             this.toolEraseByPolygon,
             this.toolSplitByPolyline,
             this.toolStripSeparator23});
@@ -228,15 +228,15 @@
             this.toolSplitByPolygon.Size = new System.Drawing.Size(216, 26);
             this.toolSplitByPolygon.Text = "Split By Polygon";
             // 
-            // toolDelete
+            // toolRemoveShapes
             // 
-            this.toolDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolDelete.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
-            this.toolDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolDelete.Name = "toolDelete";
-            this.toolDelete.Padding = new System.Windows.Forms.Padding(5);
-            this.toolDelete.Size = new System.Drawing.Size(52, 52);
-            this.toolDelete.Text = "Delete selection (Delete key)";
+            this.toolRemoveShapes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolRemoveShapes.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
+            this.toolRemoveShapes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolRemoveShapes.Name = "toolRemoveShapes";
+            this.toolRemoveShapes.Padding = new System.Windows.Forms.Padding(5);
+            this.toolRemoveShapes.Size = new System.Drawing.Size(52, 52);
+            this.toolRemoveShapes.Text = "Delete selection (Delete key)";
             // 
             // toolEraseByPolygon
             // 
@@ -305,7 +305,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolSplitByPolygon;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
         private System.Windows.Forms.ToolStripButton toolEraseByPolygon;
-        private System.Windows.Forms.ToolStripButton toolDelete;
+        private System.Windows.Forms.ToolStripButton toolRemoveShapes;
         private System.Windows.Forms.ToolStripButton toolSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
