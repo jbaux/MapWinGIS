@@ -58,7 +58,7 @@ namespace MWLite.GUI.Forms
             //axMap1.Tiles.SetProxy("127.0.0.1", 8888);
             //axMap1.Tiles.SetProxyAuthentication("temp", "1234", "");
             axMap1.GrabProjectionFromData = true;
-            axMap1.CursorMode = tkCursorMode.cmPan;
+            axMap1.CursorMode = tkCursorMode.cmSelection;
             axMap1.SendSelectBoxFinal = false;
             axMap1.SendMouseDown = true;
             axMap1.SendMouseUp = true;
