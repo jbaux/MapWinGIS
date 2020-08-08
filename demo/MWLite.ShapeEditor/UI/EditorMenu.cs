@@ -18,14 +18,19 @@ namespace MWLite.ShapeEditor.UI
             get { return App.Instance.Map;  }
         }
 
-        public ToolStripMenuItem Menu
+        public ToolStripMenuItem EditMenu
         {
-            get { return mnuShapeEditor; }
+            get { return mnuEdit; }
+        }
+
+        public ToolStripMenuItem ShapesEditMenu
+        {
+            get { return mnuShapesEdit; }
         }
 
         private void InitShapeEditorOptions()
         {
-            mnuShapeEditor.DropDownOpening += mnuShapeEditor_DropDownOpening;
+            mnuEdit.DropDownOpening += mnuShapeEditor_DropDownOpening;
         }
 
         void mnuShapeEditor_DropDownOpening(object sender, EventArgs e)

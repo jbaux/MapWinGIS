@@ -27,13 +27,15 @@ namespace MWLite.ShapeEditor
             _dispatcher.InitMenu(_toolbar.Toolbar.Items);
             _dispatcher.InitMenu(_selectionContextMenu.Menu.Items);
             _dispatcher.InitMenu(_vertexContextMenu.Menu.Items);
-            _dispatcher.InitMenu(_menu.Menu.DropDownItems);
+            _dispatcher.InitMenu(_menu.EditMenu.DropDownItems);
+            _dispatcher.InitMenu(_menu.ShapesEditMenu.DropDownItems);
         }
 
         internal static bool Init(IMapApp app)
         {
             _app = app;
-            app.AddMenu(_menu.Menu, 1); // Add "Edit" to the right of "File"
+            app.AddMenu(_menu.EditMenu, 1); // Add "Edit" to the right of "File"
+            app.AddMenu(_menu.ShapesEditMenu, 4); // Add "Edit" to the right of "Navigate"
             app.AddToolbar(_toolbar.Toolbar);
             MapEventHandlers.Init(App.Map);
             Editor.RefreshUI();

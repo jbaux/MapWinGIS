@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.mnuShapeEditor = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUndo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRedo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCut = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPaste = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rotateShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eraseByShapeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitByLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuShapesEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAddShape = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEditShape = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMoveShapes = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRotateShapes = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEraseByPolygon = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSplitByPolyline = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,8 +50,8 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuShapeEditor,
-            this.toolStripMenuItem1});
+            this.mnuEdit,
+            this.mnuShapesEdit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -59,25 +59,25 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // mnuShapeEditor
+            // mnuEdit
             // 
-            this.mnuShapeEditor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuUndo,
             this.mnuRedo,
             this.toolStripSeparator2,
             this.mnuCopy,
             this.mnuCut,
             this.mnuPaste});
-            this.mnuShapeEditor.Name = "mnuShapeEditor";
-            this.mnuShapeEditor.Size = new System.Drawing.Size(47, 24);
-            this.mnuShapeEditor.Text = "Edit";
+            this.mnuEdit.Name = "mnuEdit";
+            this.mnuEdit.Size = new System.Drawing.Size(47, 24);
+            this.mnuEdit.Text = "Edit";
             // 
             // mnuUndo
             // 
             this.mnuUndo.Image = global::MWLite.ShapeEditor.Properties.Resources.undo;
             this.mnuUndo.Name = "mnuUndo";
             this.mnuUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mnuUndo.Size = new System.Drawing.Size(210, 26);
+            this.mnuUndo.Size = new System.Drawing.Size(216, 26);
             this.mnuUndo.Text = "Undo";
             // 
             // mnuRedo
@@ -86,20 +86,20 @@
             this.mnuRedo.Name = "mnuRedo";
             this.mnuRedo.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.Z)));
-            this.mnuRedo.Size = new System.Drawing.Size(210, 26);
+            this.mnuRedo.Size = new System.Drawing.Size(216, 26);
             this.mnuRedo.Text = "Redo";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(207, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(213, 6);
             // 
             // mnuCopy
             // 
             this.mnuCopy.Image = global::MWLite.ShapeEditor.Properties.Resources.edit_copy;
             this.mnuCopy.Name = "mnuCopy";
             this.mnuCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.mnuCopy.Size = new System.Drawing.Size(210, 26);
+            this.mnuCopy.Size = new System.Drawing.Size(216, 26);
             this.mnuCopy.Text = "Copy";
             // 
             // mnuCut
@@ -107,7 +107,7 @@
             this.mnuCut.Image = global::MWLite.ShapeEditor.Properties.Resources.edit_cut;
             this.mnuCut.Name = "mnuCut";
             this.mnuCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.mnuCut.Size = new System.Drawing.Size(210, 26);
+            this.mnuCut.Size = new System.Drawing.Size(216, 26);
             this.mnuCut.Text = "Cut";
             // 
             // mnuPaste
@@ -115,64 +115,71 @@
             this.mnuPaste.Image = global::MWLite.ShapeEditor.Properties.Resources.edit_paste;
             this.mnuPaste.Name = "mnuPaste";
             this.mnuPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.mnuPaste.Size = new System.Drawing.Size(210, 26);
+            this.mnuPaste.Size = new System.Drawing.Size(216, 26);
             this.mnuPaste.Text = "Paste";
             // 
-            // toolStripMenuItem1
+            // mnuShapesEdit
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.moveShapesToolStripMenuItem,
-            this.rotateShapesToolStripMenuItem,
-            this.eraseByShapeToolStripMenuItem,
-            this.splitByLineToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(68, 24);
-            this.toolStripMenuItem1.Text = "Shapes";
+            this.mnuShapesEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAddShape,
+            this.mnuEditShape,
+            this.mnuMoveShapes,
+            this.mnuRotateShapes,
+            this.mnuEraseByPolygon,
+            this.mnuSplitByPolyline});
+            this.mnuShapesEdit.Name = "mnuShapesEdit";
+            this.mnuShapesEdit.Size = new System.Drawing.Size(68, 24);
+            this.mnuShapesEdit.Text = "Shapes";
             // 
-            // moveShapesToolStripMenuItem
+            // mnuAddShape
             // 
-            this.moveShapesToolStripMenuItem.Name = "moveShapesToolStripMenuItem";
-            this.moveShapesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.moveShapesToolStripMenuItem.Text = "Move";
+            this.mnuAddShape.Name = "mnuAddShape";
+            this.mnuAddShape.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.mnuAddShape.Size = new System.Drawing.Size(287, 26);
+            this.mnuAddShape.Text = "Add";
             // 
-            // rotateShapesToolStripMenuItem
+            // mnuEditShape
             // 
-            this.rotateShapesToolStripMenuItem.Name = "rotateShapesToolStripMenuItem";
-            this.rotateShapesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.rotateShapesToolStripMenuItem.Text = "Rotate";
+            this.mnuEditShape.Name = "mnuEditShape";
+            this.mnuEditShape.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.mnuEditShape.Size = new System.Drawing.Size(287, 26);
+            this.mnuEditShape.Text = "Edit";
             // 
-            // eraseByShapeToolStripMenuItem
+            // mnuMoveShapes
             // 
-            this.eraseByShapeToolStripMenuItem.Name = "eraseByShapeToolStripMenuItem";
-            this.eraseByShapeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.eraseByShapeToolStripMenuItem.Text = "Erase by shape";
+            this.mnuMoveShapes.Name = "mnuMoveShapes";
+            this.mnuMoveShapes.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.mnuMoveShapes.Size = new System.Drawing.Size(287, 26);
+            this.mnuMoveShapes.Text = "Move";
             // 
-            // splitByLineToolStripMenuItem
+            // mnuRotateShapes
             // 
-            this.splitByLineToolStripMenuItem.Name = "splitByLineToolStripMenuItem";
-            this.splitByLineToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.splitByLineToolStripMenuItem.Text = "Split by line";
+            this.mnuRotateShapes.Name = "mnuRotateShapes";
+            this.mnuRotateShapes.Size = new System.Drawing.Size(287, 26);
+            this.mnuRotateShapes.Text = "Rotate";
             // 
-            // addToolStripMenuItem
+            // mnuEraseByPolygon
             // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.addToolStripMenuItem.Text = "Add";
+            this.mnuEraseByPolygon.Name = "mnuEraseByPolygon";
+            this.mnuEraseByPolygon.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.Delete)));
+            this.mnuEraseByPolygon.Size = new System.Drawing.Size(287, 26);
+            this.mnuEraseByPolygon.Text = "Erase by shape";
             // 
-            // editToolStripMenuItem
+            // mnuSplitByPolyline
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.mnuSplitByPolyline.Name = "mnuSplitByPolyline";
+            this.mnuSplitByPolyline.ShortcutKeyDisplayString = "Ctrl + \\";
+            this.mnuSplitByPolyline.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemBackslash)));
+            this.mnuSplitByPolyline.Size = new System.Drawing.Size(287, 26);
+            this.mnuSplitByPolyline.Text = "Split by line";
             // 
             // EditorMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.menuStrip1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EditorMenu";
             this.Size = new System.Drawing.Size(304, 185);
             this.menuStrip1.ResumeLayout(false);
@@ -185,19 +192,19 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem mnuShapeEditor;
+        private System.Windows.Forms.ToolStripMenuItem mnuEdit;
         private System.Windows.Forms.ToolStripMenuItem mnuUndo;
         private System.Windows.Forms.ToolStripMenuItem mnuRedo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mnuCopy;
         private System.Windows.Forms.ToolStripMenuItem mnuCut;
         private System.Windows.Forms.ToolStripMenuItem mnuPaste;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem moveShapesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rotateShapesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eraseByShapeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem splitByLineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuShapesEdit;
+        private System.Windows.Forms.ToolStripMenuItem mnuAddShape;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditShape;
+        private System.Windows.Forms.ToolStripMenuItem mnuMoveShapes;
+        private System.Windows.Forms.ToolStripMenuItem mnuRotateShapes;
+        private System.Windows.Forms.ToolStripMenuItem mnuEraseByPolygon;
+        private System.Windows.Forms.ToolStripMenuItem mnuSplitByPolyline;
     }
 }
