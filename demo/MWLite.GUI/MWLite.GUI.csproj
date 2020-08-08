@@ -287,10 +287,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />
-    <Content Include="obj\x86\Debug\AxInterop.MapWinGIS.dll" />
-    <Content Include="obj\x86\Debug\AxInterop.MapWinGIS.XML" />
-    <Content Include="obj\x86\Debug\Interop.MapWinGIS.dll" />
-    <Content Include="obj\x86\Debug\Interop.MapWinGIS.XML" />
+    <Content Include="obj\x86\$(Configuration)\AxInterop.MapWinGIS.dll" />
+    <Content Include="obj\x86\$(Configuration)\AxInterop.MapWinGIS.XML" />
+    <Content Include="obj\x86\$(Configuration)\Interop.MapWinGIS.dll" />
+    <Content Include="obj\x86\$(Configuration)\Interop.MapWinGIS.XML" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
