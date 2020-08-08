@@ -491,6 +491,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\Resources\GlobalResources.resx">
+      <Link>GlobalResources.resx</Link>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <ProjectReference Include="..\Resources\Resources.csproj">
       <Project>{19147f4d-82b7-498c-b516-f04b49683cac}</Project>
       <Name>Resources</Name>
