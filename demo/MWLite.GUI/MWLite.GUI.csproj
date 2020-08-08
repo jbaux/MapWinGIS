@@ -69,6 +69,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\Resources\GlobalResources.resx">
+      <Link>GlobalResources.resx</Link>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResources1.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <Compile Include="..\Resources\GlobalResources1.Designer.cs">
+      <Link>GlobalResources1.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="App.cs" />
     <Compile Include="Classes\AppSettings.cs" />
     <Compile Include="Classes\MapCallback.cs" />
@@ -197,22 +209,12 @@
     <EmbeddedResource Include="MapLegend\LegendDockForm.resx">
       <DependentUpon>LegendDockForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -271,29 +273,12 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-    <None Include="Resources\zoom-extent.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\zoom-in.png" />
-  </ItemGroup>
-  <ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />
     <Content Include="obj\x86\Debug\AxInterop.MapWinGIS.dll" />
     <Content Include="obj\x86\Debug\AxInterop.MapWinGIS.XML" />
     <Content Include="obj\x86\Debug\Interop.MapWinGIS.dll" />
     <Content Include="obj\x86\Debug\Interop.MapWinGIS.XML" />
-    <None Include="Resources\save-as.png" />
-    <None Include="Resources\save.png" />
-    <None Include="Resources\crs-change.png" />
-    <None Include="Resources\layer-more.png" />
-    <None Include="Resources\layer-vector-thematic-add.png" />
-    <None Include="Resources\label-add.png" />
-    <None Include="Resources\save1.png" />
-    <None Include="Resources\zoom-selection.png" />
-    <None Include="Resources\selected-delete.png" />
-    <None Include="Resources\layer-vector-add.png" />
-    <None Include="Resources\layer-raster-add.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
