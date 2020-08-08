@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="GlobalResources1.Designer.cs">
+    <None Include="GlobalResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GlobalResources.resx</DependentUpon>
@@ -71,7 +71,7 @@
   <ItemGroup>
     <None Include="GlobalResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>GlobalResources1.Designer.cs</LastGenOutput>
+      <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </None>
   </ItemGroup>

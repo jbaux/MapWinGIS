@@ -69,18 +69,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\Resources\GlobalResources.resx">
-      <Link>GlobalResources.resx</Link>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GlobalResources1.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Resources</CustomToolNamespace>
-    </EmbeddedResource>
-    <Compile Include="..\Resources\GlobalResources1.Designer.cs">
-      <Link>GlobalResources1.Designer.cs</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GlobalResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="App.cs" />
     <Compile Include="Classes\AppSettings.cs" />
     <Compile Include="Classes\MapCallback.cs" />

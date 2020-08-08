@@ -22,7 +22,7 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class GlobalResources {
+    public class GlobalResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.GlobalResources", typeof(GlobalResources).Assembly);
@@ -51,7 +51,7 @@ namespace Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _01noun_Zoom_In_2758630 {
+        public static System.Drawing.Bitmap _01noun_Zoom_In_2758630 {
             get {
                 object obj = ResourceManager.GetObject("_01noun_Zoom_In_2758630", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _02noun_Zoom_Out_2758617 {
+        public static System.Drawing.Bitmap _02noun_Zoom_Out_2758617 {
             get {
                 object obj = ResourceManager.GetObject("_02noun_Zoom_Out_2758617", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _03noun_Log_Out_2458064 {
+        public static System.Drawing.Bitmap _03noun_Log_Out_2458064 {
             get {
                 object obj = ResourceManager.GetObject("_03noun_Log_Out_2458064", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _04noun_Hand_640765 {
+        public static System.Drawing.Bitmap _04noun_Hand_640765 {
             get {
                 object obj = ResourceManager.GetObject("_04noun_Hand_640765", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _05noun_sent_2557483 {
+        public static System.Drawing.Bitmap _05noun_sent_2557483 {
             get {
                 object obj = ResourceManager.GetObject("_05noun_sent_2557483", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _06noun_minimize_2758631 {
+        public static System.Drawing.Bitmap _06noun_minimize_2758631 {
             get {
                 object obj = ResourceManager.GetObject("_06noun_minimize_2758631", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _07noun_Delete_2458056 {
+        public static System.Drawing.Bitmap _07noun_Delete_2458056 {
             get {
                 object obj = ResourceManager.GetObject("_07noun_Delete_2458056", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _08noun_Save_2585853 {
+        public static System.Drawing.Bitmap _08noun_Save_2585853 {
             get {
                 object obj = ResourceManager.GetObject("_08noun_Save_2585853", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _09noun_Add_Anchor_Point_Tool_764914 {
+        public static System.Drawing.Bitmap _09noun_Add_Anchor_Point_Tool_764914 {
             get {
                 object obj = ResourceManager.GetObject("_09noun_Add_Anchor_Point_Tool_764914", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _10noun_transform_2758635 {
+        public static System.Drawing.Bitmap _10noun_transform_2758635 {
             get {
                 object obj = ResourceManager.GetObject("_10noun_transform_2758635", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +163,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _11noun_merge_2758598 {
+        public static System.Drawing.Bitmap _11noun_merge_2758598 {
             get {
                 object obj = ResourceManager.GetObject("_11noun_merge_2758598", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +173,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _12noun_Arrow_2458053 {
+        public static System.Drawing.Bitmap _12noun_Arrow_2458053 {
             get {
                 object obj = ResourceManager.GetObject("_12noun_Arrow_2458053", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +183,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _13noun_Refresh_2458028 {
+        public static System.Drawing.Bitmap _13noun_Refresh_2458028 {
             get {
                 object obj = ResourceManager.GetObject("_13noun_Refresh_2458028", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +193,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _14noun_eraser_2758606 {
+        public static System.Drawing.Bitmap _14noun_eraser_2758606 {
             get {
                 object obj = ResourceManager.GetObject("_14noun_eraser_2758606", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +203,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _15noun_Split_Tool_2758633 {
+        public static System.Drawing.Bitmap _15noun_Split_Tool_2758633 {
             get {
                 object obj = ResourceManager.GetObject("_15noun_Split_Tool_2758633", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +213,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _16noun_Undo_2458027 {
+        public static System.Drawing.Bitmap _16noun_Undo_2458027 {
             get {
                 object obj = ResourceManager.GetObject("_16noun_Undo_2458027", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +223,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _17noun_redo_2458031 {
+        public static System.Drawing.Bitmap _17noun_redo_2458031 {
             get {
                 object obj = ResourceManager.GetObject("_17noun_redo_2458031", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
