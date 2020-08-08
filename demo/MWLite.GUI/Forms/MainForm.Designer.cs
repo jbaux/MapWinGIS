@@ -48,14 +48,7 @@ namespace MWLite.GUI.Forms
             WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient7 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolZoomIn = new System.Windows.Forms.ToolStripButton();
-            this.toolZoomOut = new System.Windows.Forms.ToolStripButton();
-            this.toolZoomMax = new System.Windows.Forms.ToolStripButton();
-            this.toolPan = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolSelect = new System.Windows.Forms.ToolStripButton();
-            this.toolZoomToSelected = new System.Windows.Forms.ToolStripButton();
-            this.toolClearSelection = new System.Windows.Forms.ToolStripButton();
             this._menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSelectMapsFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,6 +71,15 @@ namespace MWLite.GUI.Forms
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.mnuSaveProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolZoomIn = new System.Windows.Forms.ToolStripButton();
+            this.toolZoomOut = new System.Windows.Forms.ToolStripButton();
+            this.toolZoomMax = new System.Windows.Forms.ToolStripButton();
+            this.toolPan = new System.Windows.Forms.ToolStripButton();
+            this.toolSelect = new System.Windows.Forms.ToolStripButton();
+            this.toolZoomToSelected = new System.Windows.Forms.ToolStripButton();
+            this.toolClearSelection = new System.Windows.Forms.ToolStripButton();
+            this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -107,85 +109,10 @@ namespace MWLite.GUI.Forms
             this._mainToolStrip.TabIndex = 0;
             this._mainToolStrip.Text = "toolStrip1";
             // 
-            // toolZoomIn
-            // 
-            this.toolZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolZoomIn.Image = global::Resources.GlobalResources._01noun_Zoom_In_2758630;
-            this.toolZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolZoomIn.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.toolZoomIn.Name = "toolZoomIn";
-            this.toolZoomIn.Padding = new System.Windows.Forms.Padding(5);
-            this.toolZoomIn.Size = new System.Drawing.Size(52, 53);
-            this.toolZoomIn.Text = "Zoom in (+ key)";
-            // 
-            // toolZoomOut
-            // 
-            this.toolZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolZoomOut.Image = global::Resources.GlobalResources._02noun_Zoom_Out_2758617;
-            this.toolZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolZoomOut.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.toolZoomOut.Name = "toolZoomOut";
-            this.toolZoomOut.Padding = new System.Windows.Forms.Padding(5);
-            this.toolZoomOut.Size = new System.Drawing.Size(52, 53);
-            this.toolZoomOut.Text = "Zoom out (- key)";
-            // 
-            // toolZoomMax
-            // 
-            this.toolZoomMax.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolZoomMax.Image = global::Resources.GlobalResources._03noun_Log_Out_2458064;
-            this.toolZoomMax.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolZoomMax.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.toolZoomMax.Name = "toolZoomMax";
-            this.toolZoomMax.Padding = new System.Windows.Forms.Padding(5);
-            this.toolZoomMax.Size = new System.Drawing.Size(52, 53);
-            this.toolZoomMax.Text = "Zoom to max extents";
-            // 
-            // toolPan
-            // 
-            this.toolPan.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolPan.Image = global::Resources.GlobalResources._04noun_Hand_640765;
-            this.toolPan.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolPan.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.toolPan.Name = "toolPan";
-            this.toolPan.Padding = new System.Windows.Forms.Padding(5);
-            this.toolPan.Size = new System.Drawing.Size(52, 53);
-            this.toolPan.Text = "Pan (Hold space key)";
-            // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             this.toolStripSeparator10.Size = new System.Drawing.Size(6, 55);
-            // 
-            // toolSelect
-            // 
-            this.toolSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolSelect.Image = global::Resources.GlobalResources._05noun_sent_2557483;
-            this.toolSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolSelect.Name = "toolSelect";
-            this.toolSelect.Padding = new System.Windows.Forms.Padding(5);
-            this.toolSelect.Size = new System.Drawing.Size(52, 52);
-            this.toolSelect.Text = "Select by rectangle (Ctrl+R)";
-            // 
-            // toolZoomToSelected
-            // 
-            this.toolZoomToSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolZoomToSelected.Image = global::Resources.GlobalResources._06noun_minimize_2758631;
-            this.toolZoomToSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolZoomToSelected.Name = "toolZoomToSelected";
-            this.toolZoomToSelected.Padding = new System.Windows.Forms.Padding(5);
-            this.toolZoomToSelected.Size = new System.Drawing.Size(52, 52);
-            this.toolZoomToSelected.Text = "Zoom To Selected (Ctrl +)";
-            // 
-            // toolClearSelection
-            // 
-            this.toolClearSelection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolClearSelection.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
-            this.toolClearSelection.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolClearSelection.Name = "toolClearSelection";
-            this.toolClearSelection.Padding = new System.Windows.Forms.Padding(5);
-            this.toolClearSelection.Size = new System.Drawing.Size(52, 52);
-            this.toolClearSelection.Text = "Clear Selection (Ctrl+Backspace)";
-            this.toolClearSelection.Visible = false;
             // 
             // _menuStrip1
             // 
@@ -193,7 +120,8 @@ namespace MWLite.GUI.Forms
             this._menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFile,
             this.mnuSelections,
-            this.mnuNavigate});
+            this.mnuNavigate,
+            this.mnuAbout});
             this._menuStrip1.Location = new System.Drawing.Point(0, 0);
             this._menuStrip1.Name = "_menuStrip1";
             this._menuStrip1.Size = new System.Drawing.Size(1010, 28);
@@ -426,6 +354,95 @@ namespace MWLite.GUI.Forms
             this.mnuSaveProject.Size = new System.Drawing.Size(261, 26);
             this.mnuSaveProject.Text = "Save changes";
             // 
+            // toolZoomIn
+            // 
+            this.toolZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolZoomIn.Image = global::Resources.GlobalResources._01noun_Zoom_In_2758630;
+            this.toolZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolZoomIn.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.toolZoomIn.Name = "toolZoomIn";
+            this.toolZoomIn.Padding = new System.Windows.Forms.Padding(5);
+            this.toolZoomIn.Size = new System.Drawing.Size(52, 53);
+            this.toolZoomIn.Text = "Zoom in (+ key)";
+            // 
+            // toolZoomOut
+            // 
+            this.toolZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolZoomOut.Image = global::Resources.GlobalResources._02noun_Zoom_Out_2758617;
+            this.toolZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolZoomOut.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.toolZoomOut.Name = "toolZoomOut";
+            this.toolZoomOut.Padding = new System.Windows.Forms.Padding(5);
+            this.toolZoomOut.Size = new System.Drawing.Size(52, 53);
+            this.toolZoomOut.Text = "Zoom out (- key)";
+            // 
+            // toolZoomMax
+            // 
+            this.toolZoomMax.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolZoomMax.Image = global::Resources.GlobalResources._03noun_Log_Out_2458064;
+            this.toolZoomMax.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolZoomMax.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.toolZoomMax.Name = "toolZoomMax";
+            this.toolZoomMax.Padding = new System.Windows.Forms.Padding(5);
+            this.toolZoomMax.Size = new System.Drawing.Size(52, 53);
+            this.toolZoomMax.Text = "Zoom to max extents";
+            // 
+            // toolPan
+            // 
+            this.toolPan.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolPan.Image = global::Resources.GlobalResources._04noun_Hand_640765;
+            this.toolPan.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolPan.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.toolPan.Name = "toolPan";
+            this.toolPan.Padding = new System.Windows.Forms.Padding(5);
+            this.toolPan.Size = new System.Drawing.Size(52, 53);
+            this.toolPan.Text = "Pan (Hold space key)";
+            // 
+            // toolSelect
+            // 
+            this.toolSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolSelect.Image = global::Resources.GlobalResources._05noun_sent_2557483;
+            this.toolSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolSelect.Name = "toolSelect";
+            this.toolSelect.Padding = new System.Windows.Forms.Padding(5);
+            this.toolSelect.Size = new System.Drawing.Size(52, 52);
+            this.toolSelect.Text = "Select by rectangle (Ctrl+R)";
+            // 
+            // toolZoomToSelected
+            // 
+            this.toolZoomToSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolZoomToSelected.Image = global::Resources.GlobalResources._06noun_minimize_2758631;
+            this.toolZoomToSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolZoomToSelected.Name = "toolZoomToSelected";
+            this.toolZoomToSelected.Padding = new System.Windows.Forms.Padding(5);
+            this.toolZoomToSelected.Size = new System.Drawing.Size(52, 52);
+            this.toolZoomToSelected.Text = "Zoom To Selected (Ctrl +)";
+            // 
+            // toolClearSelection
+            // 
+            this.toolClearSelection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolClearSelection.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
+            this.toolClearSelection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolClearSelection.Name = "toolClearSelection";
+            this.toolClearSelection.Padding = new System.Windows.Forms.Padding(5);
+            this.toolClearSelection.Size = new System.Drawing.Size(52, 52);
+            this.toolClearSelection.Text = "Clear Selection (Ctrl+Backspace)";
+            this.toolClearSelection.Visible = false;
+            // 
+            // mnuAbout
+            // 
+            this.mnuAbout.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.mnuAbout.Name = "mnuAbout";
+            this.mnuAbout.Size = new System.Drawing.Size(53, 24);
+            this.mnuAbout.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(1010, 614);
@@ -487,6 +504,8 @@ namespace MWLite.GUI.Forms
         private ToolStripMenuItem zoomToLayerToolStripMenuItem;
         private ToolStripMenuItem panToolStripMenuItem;
         private ToolStripMenuItem mnuSaveProject;
+        private ToolStripMenuItem mnuAbout;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 
