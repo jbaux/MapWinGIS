@@ -40,5 +40,6 @@ namespace MWLite.ShapeEditor
         HighlightingNone = 30,
         HighlightingCurrent = 31,
         HighlightingAll = 32,
+        Save = 33,
     }
 }

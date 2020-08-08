@@ -82,8 +82,8 @@ namespace MWLite.GUI.Classes
                     return true;
                 case AppCommand.SaveProject:
                     {
-                        if (App.Project.Save())
-                            MessageHelper.Info("Project was saved: " + App.Project.GetPath());
+                        if (!App.Project.Save())
+                            MessageHelper.Info("Project failed to save: " + App.Project.GetPath());
                     }
                     return true;
                 case AppCommand.SaveProjectAs:

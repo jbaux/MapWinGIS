@@ -50,6 +50,12 @@ namespace MWLite.ShapeEditor
                 case EditorCommand.ClearSelection:
                     App.Instance.RunCommand(AppCommand.ClearSelection);
                     break;
+                case EditorCommand.Save:
+                    if (!App.Map.ShapeEditor.SaveChanges())
+                    {
+                        MessageHelper.Info($"Failed to save.");
+                    }
+                    break;
             }
             
             App.Instance.RefreshUI();

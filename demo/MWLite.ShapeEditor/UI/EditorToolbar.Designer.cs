@@ -49,6 +49,8 @@
             this.toolEraseByPolygon = new System.Windows.Forms.ToolStripButton();
             this.toolSplitByPolyline = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._editToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +69,9 @@
             this.toolRedo,
             this.toolUndoCount,
             this.toolUndo,
+            this.toolStripSeparator2,
             this.toolSave,
+            this.toolStripSeparator1,
             this.toolAddShape,
             this.toolEditShape,
             this.toolStripSeparator25,
@@ -85,7 +89,7 @@
             this._editToolStrip.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this._editToolStrip.Name = "_editToolStrip";
             this._editToolStrip.Padding = new System.Windows.Forms.Padding(0);
-            this._editToolStrip.Size = new System.Drawing.Size(795, 55);
+            this._editToolStrip.Size = new System.Drawing.Size(807, 55);
             this._editToolStrip.TabIndex = 2;
             // 
             // toolRedo
@@ -96,7 +100,7 @@
             this.toolRedo.Name = "toolRedo";
             this.toolRedo.Padding = new System.Windows.Forms.Padding(5);
             this.toolRedo.Size = new System.Drawing.Size(52, 52);
-            this.toolRedo.Text = "Redo";
+            this.toolRedo.Text = "Redo (Ctrl+Shift+Z)";
             // 
             // toolUndo
             // 
@@ -106,7 +110,7 @@
             this.toolUndo.Name = "toolUndo";
             this.toolUndo.Padding = new System.Windows.Forms.Padding(5);
             this.toolUndo.Size = new System.Drawing.Size(52, 52);
-            this.toolUndo.Text = "Undo";
+            this.toolUndo.Text = "Undo (Ctrl+Z)";
             // 
             // toolSave
             // 
@@ -116,7 +120,7 @@
             this.toolSave.Name = "toolSave";
             this.toolSave.Padding = new System.Windows.Forms.Padding(5);
             this.toolSave.Size = new System.Drawing.Size(52, 52);
-            this.toolSave.Text = "Undo";
+            this.toolSave.Text = "Save (Ctrl+S)";
             // 
             // toolAddShape
             // 
@@ -154,12 +158,11 @@
             this.toolMergeShapes.Padding = new System.Windows.Forms.Padding(5);
             this.toolMergeShapes.Size = new System.Drawing.Size(52, 52);
             this.toolMergeShapes.Text = "Merge Shapes";
-            this.toolMergeShapes.Visible = false;
             // 
             // toolSplitShapes
             // 
             this.toolSplitShapes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolSplitShapes.Image = global::Resources.GlobalResources._12noun_Arrow_2458053;
+            this.toolSplitShapes.Image = global::Resources.GlobalResources._15noun_Split_Tool_2758633;
             this.toolSplitShapes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolSplitShapes.Name = "toolSplitShapes";
             this.toolSplitShapes.Padding = new System.Windows.Forms.Padding(5);
@@ -210,25 +213,25 @@
             // toolEraseByPolygon2
             // 
             this.toolEraseByPolygon2.Name = "toolEraseByPolygon2";
-            this.toolEraseByPolygon2.Size = new System.Drawing.Size(196, 26);
+            this.toolEraseByPolygon2.Size = new System.Drawing.Size(216, 26);
             this.toolEraseByPolygon2.Text = "Erase By Polygon";
             // 
             // toolClipByPolygon
             // 
             this.toolClipByPolygon.Name = "toolClipByPolygon";
-            this.toolClipByPolygon.Size = new System.Drawing.Size(196, 26);
+            this.toolClipByPolygon.Size = new System.Drawing.Size(216, 26);
             this.toolClipByPolygon.Text = "Clip By Polygon";
             // 
             // toolSplitByPolygon
             // 
             this.toolSplitByPolygon.Name = "toolSplitByPolygon";
-            this.toolSplitByPolygon.Size = new System.Drawing.Size(196, 26);
+            this.toolSplitByPolygon.Size = new System.Drawing.Size(216, 26);
             this.toolSplitByPolygon.Text = "Split By Polygon";
             // 
             // toolDelete
             // 
             this.toolDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolDelete.Image = global::Resources.GlobalResources._14noun_eraser_2758606;
+            this.toolDelete.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
             this.toolDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolDelete.Name = "toolDelete";
             this.toolDelete.Padding = new System.Windows.Forms.Padding(5);
@@ -260,11 +263,21 @@
             this.toolStripSeparator23.Name = "toolStripSeparator23";
             this.toolStripSeparator23.Size = new System.Drawing.Size(6, 55);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
+            // 
             // EditorToolbar
             // 
             this.Controls.Add(this._editToolStrip);
             this.Name = "EditorToolbar";
-            this.Size = new System.Drawing.Size(653, 55);
+            this.Size = new System.Drawing.Size(1102, 55);
             this._editToolStrip.ResumeLayout(false);
             this._editToolStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -294,5 +307,7 @@
         private System.Windows.Forms.ToolStripButton toolEraseByPolygon;
         private System.Windows.Forms.ToolStripButton toolDelete;
         private System.Windows.Forms.ToolStripButton toolSave;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
