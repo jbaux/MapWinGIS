@@ -102,6 +102,8 @@ namespace MWLite.GUI.Forms
                         
                         // Begin each project with shape editing enabled, as this is the primary use for the app.
                         sf.InteractiveEditing = true;
+
+                        App.Map.Redraw(); // ensure categories are displayed correctly on first load
                     }
 
                     // When opening a new map, change the state to in-progress.
