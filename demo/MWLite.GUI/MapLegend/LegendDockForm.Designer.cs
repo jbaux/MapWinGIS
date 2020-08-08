@@ -168,12 +168,13 @@ namespace MWLite.GUI.MapLegend
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.legend1);
+            this.splitContainer1.Panel1MinSize = 1;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.checkedListBox1);
             this.splitContainer1.Size = new System.Drawing.Size(331, 358);
-            this.splitContainer1.SplitterDistance = 167;
+            this.splitContainer1.SplitterDistance = 1;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -188,8 +189,9 @@ namespace MWLite.GUI.MapLegend
             this.legend1.SelectedLayer = -1;
             this.legend1.ShowGroupFolders = true;
             this.legend1.ShowLabels = false;
-            this.legend1.Size = new System.Drawing.Size(331, 167);
+            this.legend1.Size = new System.Drawing.Size(331, 1);
             this.legend1.TabIndex = 3;
+            this.legend1.Visible = false;
             // 
             // checkedListBox1
             // 
@@ -197,7 +199,7 @@ namespace MWLite.GUI.MapLegend
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(0, 0);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(331, 185);
+            this.checkedListBox1.Size = new System.Drawing.Size(331, 351);
             this.checkedListBox1.TabIndex = 5;
             // 
             // LegendDockForm
@@ -211,7 +213,6 @@ namespace MWLite.GUI.MapLegend
             this.Name = "LegendDockForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "Legend";
             this.contextMenuStrip1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
