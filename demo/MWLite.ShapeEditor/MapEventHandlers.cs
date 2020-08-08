@@ -62,10 +62,13 @@ namespace MWLite.ShapeEditor
 
         private static void _map_DblClick(object sender, EventArgs e)
         {
+            // Double-click finalises polygons
             tkCursorMode cm = _map.CursorMode;
-            if (cm == tkCursorMode.cmAddShape)
+            if (cm == tkCursorMode.cmAddShape ||
+                cm == tkCursorMode.cmEraseByPolygon)
             {
                 _map.ShapeEditor.SaveChanges();
+                _map.Redraw2(tkRedrawType.RedrawSkipDataLayers);
             }
         }
 
