@@ -88,7 +88,7 @@ namespace MWLite.GUI.Forms
             // _mainToolStrip
             // 
             this._mainToolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this._mainToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this._mainToolStrip.ImageScalingSize = new System.Drawing.Size(38, 38);
             this._mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolZoomIn,
             this.toolZoomOut,
@@ -109,8 +109,8 @@ namespace MWLite.GUI.Forms
             // toolZoomIn
             // 
             this.toolZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolZoomIn.Image = ((System.Drawing.Image)(resources.GetObject("toolZoomIn.Image")));
-            this.toolZoomIn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolZoomIn.Image = global::Resources.GlobalResources._01noun_Zoom_In_2758630;
+            this.toolZoomIn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.toolZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolZoomIn.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.toolZoomIn.Name = "toolZoomIn";
@@ -121,8 +121,8 @@ namespace MWLite.GUI.Forms
             // toolZoomOut
             // 
             this.toolZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolZoomOut.Image = ((System.Drawing.Image)(resources.GetObject("toolZoomOut.Image")));
-            this.toolZoomOut.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolZoomOut.Image = global::Resources.GlobalResources._02noun_Zoom_Out_2758617;
+            this.toolZoomOut.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.toolZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolZoomOut.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.toolZoomOut.Name = "toolZoomOut";
@@ -133,8 +133,8 @@ namespace MWLite.GUI.Forms
             // toolZoomMax
             // 
             this.toolZoomMax.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolZoomMax.Image = ((System.Drawing.Image)(resources.GetObject("toolZoomMax.Image")));
-            this.toolZoomMax.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolZoomMax.Image = global::Resources.GlobalResources._03noun_Log_Out_2458064;
+            this.toolZoomMax.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.toolZoomMax.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolZoomMax.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.toolZoomMax.Name = "toolZoomMax";
@@ -145,8 +145,8 @@ namespace MWLite.GUI.Forms
             // toolPan
             // 
             this.toolPan.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolPan.Image = global::MWLite.GUI.Properties.Resources.pan;
-            this.toolPan.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolPan.Image = global::Resources.GlobalResources._04noun_Hand_640765;
+            this.toolPan.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.toolPan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolPan.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.toolPan.Name = "toolPan";
@@ -162,8 +162,8 @@ namespace MWLite.GUI.Forms
             // toolSelect
             // 
             this.toolSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolSelect.Image = global::MWLite.GUI.Properties.Resources.select;
-            this.toolSelect.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolSelect.Image = global::Resources.GlobalResources._05noun_sent_2557483;
+            this.toolSelect.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.toolSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolSelect.Name = "toolSelect";
             this.toolSelect.Padding = new System.Windows.Forms.Padding(5);
@@ -173,8 +173,8 @@ namespace MWLite.GUI.Forms
             // toolZoomToSelected
             // 
             this.toolZoomToSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolZoomToSelected.Image = global::MWLite.GUI.Properties.Resources.zoom_selection;
-            this.toolZoomToSelected.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolZoomToSelected.Image = global::Resources.GlobalResources._06noun_minimize_2758631;
+            this.toolZoomToSelected.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.toolZoomToSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolZoomToSelected.Name = "toolZoomToSelected";
             this.toolZoomToSelected.Padding = new System.Windows.Forms.Padding(5);
@@ -184,8 +184,8 @@ namespace MWLite.GUI.Forms
             // toolClearSelection
             // 
             this.toolClearSelection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolClearSelection.Image = global::MWLite.GUI.Properties.Resources.selected_delete;
-            this.toolClearSelection.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolClearSelection.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
+            this.toolClearSelection.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.toolClearSelection.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolClearSelection.Name = "toolClearSelection";
             this.toolClearSelection.Padding = new System.Windows.Forms.Padding(5);
@@ -217,7 +217,6 @@ namespace MWLite.GUI.Forms
             // 
             // mnuSelectMapsFolder
             // 
-            this.mnuSelectMapsFolder.Image = global::MWLite.GUI.Properties.Resources.folder1;
             this.mnuSelectMapsFolder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mnuSelectMapsFolder.Name = "mnuSelectMapsFolder";
             this.mnuSelectMapsFolder.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
@@ -231,7 +230,6 @@ namespace MWLite.GUI.Forms
             // 
             // mnuCloseApp
             // 
-            this.mnuCloseApp.Image = global::MWLite.GUI.Properties.Resources.quit;
             this.mnuCloseApp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mnuCloseApp.Name = "mnuCloseApp";
             this.mnuCloseApp.Size = new System.Drawing.Size(265, 30);

@@ -130,7 +130,7 @@
   <data name="application_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\application_delete.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="layer-vector-thematic-add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="layer_vector_thematic_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\layer-vector-thematic-add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="folder_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -145,7 +145,7 @@
   <data name="colorschemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\colorschemes.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
-  <data name="layer-more" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="layer_more" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\layer-more.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="palette" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -196,7 +196,7 @@
   <data name="Gear" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Gear.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="layer-remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="layer_remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\layer-remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="linepatterns" type="System.Resources.ResXFileRef, System.Windows.Forms">

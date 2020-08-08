@@ -180,14 +180,14 @@ namespace MWLite.GUI.Forms
 
         void axMap1_ShapeIdentified(object sender, _DMapEvents_ShapeIdentifiedEvent e)
         {
-            var sf = axMap1.get_Shapefile(e.layerHandle);
+            /*var sf = axMap1.get_Shapefile(e.layerHandle);
             if (sf != null)
             {
                 using (var form = new AttributesForm(sf, e.shapeIndex, e.layerHandle))
                 {
                     form.ShowDialog(MainForm.Instance);
                 }
-            }
+            }*/
         }
 
         void axMap1_SelectionChanged(object sender, _DMapEvents_SelectionChangedEvent e)

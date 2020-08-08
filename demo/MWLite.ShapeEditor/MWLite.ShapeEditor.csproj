@@ -70,6 +70,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\Resources\GlobalResources.resx">
+      <Link>GlobalResources.resx</Link>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResources1.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <Compile Include="..\Resources\GlobalResources1.Designer.cs">
+      <Link>GlobalResources1.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="App.cs" />
     <Compile Include="Forms\AttributesForm.cs">
       <SubType>Form</SubType>
@@ -127,11 +139,6 @@
     <Compile Include="Helpers\Operations.cs" />
     <Compile Include="Operations\RemoveOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="UI\VertexContextMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -147,6 +154,10 @@
     <ProjectReference Include="..\MWLite.Core\MWLite.Core.csproj">
       <Project>{D34E2EA4-6B09-40EE-9829-208C2F27ED8E}</Project>
       <Name>MWLite.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{19147f4d-82b7-498c-b516-f04b49683cac}</Project>
+      <Name>Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -171,97 +182,9 @@
     <EmbeddedResource Include="Forms\NewLayerForm.resx">
       <DependentUpon>NewLayerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\VertexContextMenu.resx">
       <DependentUpon>VertexContextMenu.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\element-add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-create.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ring-add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ring-delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\vector-create.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\vertex.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\redo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\undo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\save1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-vector-add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-raster-add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\split.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\merge.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\vertex-tools.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\shape_rotate.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\move.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\selected-delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\element-delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\edit-copy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\edit-paste.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\edit-cut.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\attributes-display.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\table.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\line-polygon-edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\polygon_erase.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\select.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\selected-delete1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

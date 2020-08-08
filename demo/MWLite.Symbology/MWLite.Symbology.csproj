@@ -110,6 +110,12 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\Resources\GlobalResources.resx">
+      <Link>GlobalResources.resx</Link>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResources1.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="LegendControl\Legend.resx">
       <DependentUpon>Legend.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,6 +242,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="..\Resources\GlobalResources1.Designer.cs">
+      <Link>GlobalResources1.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Classes\clsInputBox.cs" />
     <Compile Include="Classes\FormHelper.cs" />
     <Compile Include="Classes\Globals.cs">
@@ -491,64 +503,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ok2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\application_add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\application_delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\application_edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\application_link.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\door_open.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Gear.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\label-mover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-categories.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-query.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\labels.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\linepatterns.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\colorschemes.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\folder.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\folder_open.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-vector-thematic-add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-more.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-remove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\down.png" />
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{19147f4d-82b7-498c-b516-f04b49683cac}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

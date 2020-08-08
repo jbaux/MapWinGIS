@@ -236,6 +236,10 @@
       <Project>{c1b26cf0-f7af-49e1-88f7-cb0c5500643e}</Project>
       <Name>MWLite.ShapeEditor</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{19147f4d-82b7-498c-b516-f04b49683cac}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AxMapWinGIS">
@@ -267,71 +271,18 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pan.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\area-measure.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\attribute-show.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-remove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\layer-sqlite-add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\measure.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\vertex.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\element-add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\select.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pan1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\zoom-extent.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zoom-in.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\zoom-out.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\zoom-layer.png" />
-  </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />
     <Content Include="obj\x86\Debug\AxInterop.MapWinGIS.dll" />
     <Content Include="obj\x86\Debug\AxInterop.MapWinGIS.XML" />
     <Content Include="obj\x86\Debug\Interop.MapWinGIS.dll" />
     <Content Include="obj\x86\Debug\Interop.MapWinGIS.XML" />
-    <Content Include="Resources\PPDA.ico" />
-    <Content Include="Resources\MapWindow.ico" />
-    <None Include="Resources\Snapshot.png" />
-    <None Include="Resources\layer-db-add.png" />
-    <None Include="Resources\select_by_polygon.png" />
-    <None Include="Resources\layer-create.png" />
-    <None Include="Resources\folder1.png" />
-    <None Include="Resources\open1.png" />
-    <None Include="Resources\search.png" />
-    <None Include="Resources\quit.png" />
-    <None Include="Resources\map.png" />
     <None Include="Resources\save-as.png" />
     <None Include="Resources\save.png" />
     <None Include="Resources\crs-change.png" />

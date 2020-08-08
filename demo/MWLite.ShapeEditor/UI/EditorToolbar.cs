@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
 using MapWinGIS;
-using MWLite.ShapeEditor.Properties;
 
 namespace MWLite.ShapeEditor.UI
 {
@@ -44,7 +43,7 @@ namespace MWLite.ShapeEditor.UI
             toolMoveShapes.Checked = map.CursorMode == tkCursorMode.cmMoveShapes;
             toolRotateShapes.Checked = map.CursorMode == tkCursorMode.cmRotateShapes;
             toolSplitByPolyline.Checked = map.CursorMode == tkCursorMode.cmSplitByPolyline;
-            toolEraseByPolygon.Checked = map.CursorMode == tkCursorMode.cmEraseByPolygon;
+            toolEraseByPolygon2.Checked = map.CursorMode == tkCursorMode.cmEraseByPolygon;
             toolClipByPolygon.Checked = map.CursorMode == tkCursorMode.cmClipByPolygon;
             toolSplitByPolygon.Checked = map.CursorMode == tkCursorMode.cmSplitByPolygon;
            
@@ -61,7 +60,7 @@ namespace MWLite.ShapeEditor.UI
                 toolRotateShapes.Enabled = selectedCount > 0;
             }
 
-            var list = new[] { toolCopy, toolPaste, toolCut, toolUndo, toolRedo };
+            var list = new[] { toolUndo, toolRedo };
             foreach (var item in list)
             {
                 item.Enabled = StateHelper.GetEnabled(item);
