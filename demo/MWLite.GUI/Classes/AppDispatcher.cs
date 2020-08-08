@@ -92,6 +92,14 @@ namespace MWLite.GUI.Classes
                 case AppCommand.CloseApp:
                     MainForm.Instance.Close();
                     return true;
+                case AppCommand.About:
+                {
+                    using (var form = new AboutForm())
+                    {
+                        form.ShowDialog(MainForm.Instance);
+                    }
+                    return true;
+                }
             }
             return false;
         }

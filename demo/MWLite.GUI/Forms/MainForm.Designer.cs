@@ -59,10 +59,10 @@ namespace MWLite.GUI.Forms
             this.mnuZoomToSelected = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuClearSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNavigate = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomToLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuZoomIn = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuZoomOut = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuZoomMax = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPan = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusSelectedCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblProgressMessage = new System.Windows.Forms.ToolStripStatusLabel();
@@ -71,6 +71,8 @@ namespace MWLite.GUI.Forms
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.mnuSaveProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolZoomIn = new System.Windows.Forms.ToolStripButton();
             this.toolZoomOut = new System.Windows.Forms.ToolStripButton();
             this.toolZoomMax = new System.Windows.Forms.ToolStripButton();
@@ -78,8 +80,6 @@ namespace MWLite.GUI.Forms
             this.toolSelect = new System.Windows.Forms.ToolStripButton();
             this.toolZoomToSelected = new System.Windows.Forms.ToolStripButton();
             this.toolClearSelection = new System.Windows.Forms.ToolStripButton();
-            this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -121,7 +121,7 @@ namespace MWLite.GUI.Forms
             this.mnuFile,
             this.mnuSelections,
             this.mnuNavigate,
-            this.mnuAbout});
+            this.mnuHelp});
             this._menuStrip1.Location = new System.Drawing.Point(0, 0);
             this._menuStrip1.Name = "_menuStrip1";
             this._menuStrip1.Size = new System.Drawing.Size(1010, 28);
@@ -196,40 +196,40 @@ namespace MWLite.GUI.Forms
             // mnuNavigate
             // 
             this.mnuNavigate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zoomInToolStripMenuItem,
-            this.zoomOutToolStripMenuItem,
-            this.zoomToLayerToolStripMenuItem,
-            this.panToolStripMenuItem});
+            this.mnuZoomIn,
+            this.mnuZoomOut,
+            this.mnuZoomMax,
+            this.mnuPan});
             this.mnuNavigate.Name = "mnuNavigate";
             this.mnuNavigate.Size = new System.Drawing.Size(81, 24);
             this.mnuNavigate.Text = "Navigate";
             // 
-            // zoomInToolStripMenuItem
+            // mnuZoomIn
             // 
-            this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
-            this.zoomInToolStripMenuItem.ShortcutKeyDisplayString = "+";
-            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
-            this.zoomInToolStripMenuItem.Text = "Zoom in";
+            this.mnuZoomIn.Name = "mnuZoomIn";
+            this.mnuZoomIn.ShortcutKeyDisplayString = "+";
+            this.mnuZoomIn.Size = new System.Drawing.Size(232, 26);
+            this.mnuZoomIn.Text = "Zoom in";
             // 
-            // zoomOutToolStripMenuItem
+            // mnuZoomOut
             // 
-            this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-            this.zoomOutToolStripMenuItem.ShortcutKeyDisplayString = "-";
-            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
-            this.zoomOutToolStripMenuItem.Text = "Zoom out";
+            this.mnuZoomOut.Name = "mnuZoomOut";
+            this.mnuZoomOut.ShortcutKeyDisplayString = "-";
+            this.mnuZoomOut.Size = new System.Drawing.Size(232, 26);
+            this.mnuZoomOut.Text = "Zoom out";
             // 
-            // zoomToLayerToolStripMenuItem
+            // mnuZoomMax
             // 
-            this.zoomToLayerToolStripMenuItem.Name = "zoomToLayerToolStripMenuItem";
-            this.zoomToLayerToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
-            this.zoomToLayerToolStripMenuItem.Text = "Zoom to max extents";
+            this.mnuZoomMax.Name = "mnuZoomMax";
+            this.mnuZoomMax.Size = new System.Drawing.Size(232, 26);
+            this.mnuZoomMax.Text = "Zoom to max extents";
             // 
-            // panToolStripMenuItem
+            // mnuPan
             // 
-            this.panToolStripMenuItem.Name = "panToolStripMenuItem";
-            this.panToolStripMenuItem.ShortcutKeyDisplayString = "Space+Click drag";
-            this.panToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
-            this.panToolStripMenuItem.Text = "Pan";
+            this.mnuPan.Name = "mnuPan";
+            this.mnuPan.ShortcutKeyDisplayString = "Space+Click drag";
+            this.mnuPan.Size = new System.Drawing.Size(232, 26);
+            this.mnuPan.Text = "Pan";
             // 
             // statusStrip1
             // 
@@ -354,6 +354,20 @@ namespace MWLite.GUI.Forms
             this.mnuSaveProject.Size = new System.Drawing.Size(261, 26);
             this.mnuSaveProject.Text = "Save changes";
             // 
+            // mnuHelp
+            // 
+            this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAbout});
+            this.mnuHelp.Name = "mnuHelp";
+            this.mnuHelp.Size = new System.Drawing.Size(53, 24);
+            this.mnuHelp.Text = "Help";
+            // 
+            // mnuAbout
+            // 
+            this.mnuAbout.Name = "mnuAbout";
+            this.mnuAbout.Size = new System.Drawing.Size(216, 26);
+            this.mnuAbout.Text = "About";
+            // 
             // toolZoomIn
             // 
             this.toolZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -429,20 +443,6 @@ namespace MWLite.GUI.Forms
             this.toolClearSelection.Text = "Clear Selection (Ctrl+Backspace)";
             this.toolClearSelection.Visible = false;
             // 
-            // mnuAbout
-            // 
-            this.mnuAbout.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(53, 24);
-            this.mnuAbout.Text = "Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.aboutToolStripMenuItem.Text = "About";
-            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(1010, 614);
@@ -499,13 +499,13 @@ namespace MWLite.GUI.Forms
         private ToolStripMenuItem mnuZoomToSelected;
         private ToolStripMenuItem mnuClearSelection;
         private ToolStripMenuItem mnuNavigate;
-        private ToolStripMenuItem zoomInToolStripMenuItem;
-        private ToolStripMenuItem zoomOutToolStripMenuItem;
-        private ToolStripMenuItem zoomToLayerToolStripMenuItem;
-        private ToolStripMenuItem panToolStripMenuItem;
+        private ToolStripMenuItem mnuZoomIn;
+        private ToolStripMenuItem mnuZoomOut;
+        private ToolStripMenuItem mnuZoomMax;
+        private ToolStripMenuItem mnuPan;
         private ToolStripMenuItem mnuSaveProject;
+        private ToolStripMenuItem mnuHelp;
         private ToolStripMenuItem mnuAbout;
-        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 
