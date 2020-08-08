@@ -236,7 +236,7 @@ namespace MWLite.GUI.Forms
         /// </param>
         private void AxMap1FileDropped(object sender, _DMapEvents_FileDroppedEvent e)
         {
-            Helpers.LayerHelper.AddLayer(this.axMap1.FileManager.Open(e.filename));
+            Helpers.LayerHelper.AddLayer(axMap1.FileManager.Open(e.filename));
         }
 
         private void mnuMeasuringOptions_Click(object sender, EventArgs e)
