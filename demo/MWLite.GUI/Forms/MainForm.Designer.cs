@@ -103,7 +103,7 @@ namespace MWLite.GUI.Forms
             this._mainToolStrip.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this._mainToolStrip.Name = "_mainToolStrip";
             this._mainToolStrip.Padding = new System.Windows.Forms.Padding(0);
-            this._mainToolStrip.Size = new System.Drawing.Size(381, 55);
+            this._mainToolStrip.Size = new System.Drawing.Size(329, 55);
             this._mainToolStrip.TabIndex = 0;
             this._mainToolStrip.Text = "toolStrip1";
             // 
@@ -185,6 +185,7 @@ namespace MWLite.GUI.Forms
             this.toolClearSelection.Padding = new System.Windows.Forms.Padding(5);
             this.toolClearSelection.Size = new System.Drawing.Size(52, 52);
             this.toolClearSelection.Text = "Clear Selection (Ctrl+Backspace)";
+            this.toolClearSelection.Visible = false;
             // 
             // _menuStrip1
             // 
