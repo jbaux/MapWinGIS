@@ -138,7 +138,8 @@ namespace MWLite.GUI.Forms
         {
             sf.DefaultDrawingOptions.FillType = tkFillType.ftStandard;
 
-            int fieldIndex = sf.Table.FieldIndexByName["owner"];
+            Table t = sf.Table;
+            int fieldIndex = t.FieldIndexByName["owner"];
             if (fieldIndex == -1)
             {
                 bool successEdit = sf.StartEditingTable();
@@ -157,11 +158,15 @@ namespace MWLite.GUI.Forms
             Debug.Assert(success);
             sf.Categories.ApplyExpressions();
 
-            var scheme = new ColorScheme();
-            var AI = (uint)ColorTranslator.ToOle(Color.FromArgb(red:192, green:0, blue:255));
-            var human = (uint)ColorTranslator.ToOle(Color.FromArgb(red:251, green:176, blue:64));
-            scheme.SetColors(AI, human);
-            sf.Categories.ApplyColorScheme3(tkColorSchemeType.ctSchemeGraduated, scheme, tkShapeElements.shElementFill, CategoryStartIndex:0, CategoryEndIndex:1);
+            // TODO: fix this better
+            if (sf.Categories.Count > 1)
+            {
+                var scheme = new ColorScheme();
+                var AI = (uint)ColorTranslator.ToOle(Color.FromArgb(red:192, green:0, blue:255));
+                var human = (uint)ColorTranslator.ToOle(Color.FromArgb(red:251, green:176, blue:64));
+                scheme.SetColors(AI, human);
+                sf.Categories.ApplyColorScheme3(tkColorSchemeType.ctSchemeGraduated, scheme, tkShapeElements.shElementFill, CategoryStartIndex:0, CategoryEndIndex:1);
+            }
         }
 
         private void AutosaveTick(Object s, EventArgs e)
