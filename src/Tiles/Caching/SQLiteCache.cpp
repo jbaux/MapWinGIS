@@ -160,7 +160,7 @@ void SQLiteCache::CreateDatabase(bool& outSuccess)
 					"Y INTEGER NOT NULL, Zoom INTEGER NOT NULL, Type INTEGER NOT NULL, Size INTEGER NOT NULL, CacheTime DATETIME );";
 		val = sqlite3_exec(_conn, sql, NULL, NULL, NULL);
 		
-		if (!val)
+		if (val == SQLITE_OK)
 		{
 			CString s;
 			s = "CREATE TRIGGER IF NOT EXISTS set_created AFTER INSERT ON Tiles "
@@ -169,13 +169,13 @@ void SQLiteCache::CreateDatabase(bool& outSuccess)
 				"END;";
 
 			val = sqlite3_exec(_conn, s, NULL, NULL, NULL);
-			if (!val)
+			if (val == SQLITE_OK)
 			{
 				sql = "CREATE TABLE IF NOT EXISTS TilesData (id INTEGER NOT NULL PRIMARY KEY CONSTRAINT fk_Tiles_id "
 					  "REFERENCES Tiles(id) ON DELETE CASCADE, Tile BLOB NULL);";
 				val = sqlite3_exec(_conn, sql, NULL, NULL, NULL);
 				
-				if (!val)
+				if (val == SQLITE_OK)
 				{
 					sql = "CREATE TRIGGER IF NOT EXISTS tiles_cascade_delete "
 						  "BEFORE DELETE ON Tiles "
