@@ -54,8 +54,6 @@ namespace MWLite.GUI.Forms
 
             ToolStripManager.LoadSettings(this);
 
-            //TilesHelper.Init(mnuTiles);
-
             InitLegend();
 
             InitMenus();
@@ -85,7 +83,7 @@ namespace MWLite.GUI.Forms
                 if (!project.IsEmpty)
                 {
                     App.Map.GrabProjectionFromData = true;
-
+                    
                     // Begin each project with the vector shape file ready for editing.
                     int handle = -1;
                     foreach (var l in App.Legend.Layers)

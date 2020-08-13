@@ -31,5 +31,6 @@
         Snapshot = 26,
         SelectMapsFolder = 27,
         About = 28,
+        Preferences = 29,
     }
 }

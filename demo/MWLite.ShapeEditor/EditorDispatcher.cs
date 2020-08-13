@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using MapWinGIS;
-using MWLite.Core;
 using MWLite.Core.UI;
 using MWLite.GUI.Classes;
 using MWLite.ShapeEditor.Helpers;
-using MWLite.ShapeEditor.Operations;
 
 namespace MWLite.ShapeEditor
 {
@@ -55,6 +49,9 @@ namespace MWLite.ShapeEditor
                     {
                         MessageHelper.Info($"Failed to save.");
                     }
+                    break;
+                case EditorCommand.Preferences:
+                    App.Instance.RunCommand(AppCommand.Preferences);
                     break;
             }
             

@@ -100,6 +100,14 @@ namespace MWLite.GUI.Classes
                     }
                     return true;
                 }
+                case AppCommand.Preferences:
+                {
+                    using (var form = new PreferencesForm())
+                    {
+                        form.ShowDialog(MainForm.Instance);
+                    }
+                    return true;
+                }
             }
             return false;
         }
