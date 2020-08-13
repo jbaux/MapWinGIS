@@ -29,9 +29,15 @@
 // ***********************************************************
 void SQLiteCache::Close()
 {
-	if (_conn)
+	const int closeRet = sqlite3_close(_conn);
+	if (closeRet != SQLITE_OK)
 	{
-		sqlite3_close(_conn);
+		CString msg;
+		msg.Format("SQLiteCache::Close: %s", sqlite3_errmsg(_conn));
+		CallbackHelper::ErrorMsg(msg);
+	}
+	else
+	{
 		_conn = NULL;
 	}
 }
@@ -43,6 +49,7 @@ void SQLiteCache::Close()
 bool SQLiteCache::Initialize(SqliteOpenMode openMode)
 {
 	_section.Lock();
+	bool success = false;
 	switch(openMode)
 	{
 		case SqliteOpenMode::OpenIfExists:
@@ -52,7 +59,7 @@ bool SQLiteCache::Initialize(SqliteOpenMode openMode)
 				CStringW s = get_DbName();
 				if (Utility::FileExistsW(s))
 				{
-					CreateDatabase();
+					CreateDatabase(success);
 				}
 				_openNeeded = false;
 			}
@@ -60,13 +67,13 @@ bool SQLiteCache::Initialize(SqliteOpenMode openMode)
 		case SqliteOpenMode::OpenOrCreate:
 			// need to open or create
 			if (_createNeeded) {
-				CreateDatabase();
+				CreateDatabase(success);
 				_createNeeded = false;
 				_openNeeded = false;
 			}
 	}
 	_section.Unlock();
-	return _conn != NULL;
+	return success;
 }
 
 // ***********************************************************
@@ -101,13 +108,13 @@ CStringW SQLiteCache::get_DbName()
 // ***********************************************************
 bool SQLiteCache::set_DbName(CStringW name)
 {
-
+	bool success = true;
 	if (name.MakeLower() != _dbName.MakeLower())
 	{
 		_dbName = name;
-		CreateDatabase();
+		CreateDatabase(success);
 	}
-	return true;
+	return success;
 }
 
 // ***********************************************************
@@ -127,7 +134,7 @@ CStringW SQLiteCache::get_DefaultDbName()
 // ***********************************************************
 //		CreateDatabase()
 // ***********************************************************
-bool SQLiteCache::CreateDatabase()
+void SQLiteCache::CreateDatabase(bool& outSuccess)
 {
 	if (_dbName.GetLength() == 0) {
 		_dbName = get_DefaultDbName();
@@ -136,15 +143,18 @@ bool SQLiteCache::CreateDatabase()
 	USES_CONVERSION;
 	CString name = W2A(_dbName);	// TODO: use Unicode
 	
-	if (_conn)
-	{
-		int val = sqlite3_close(_conn);
-		_conn = NULL;
-	}
+	Close();
 
-	bool ret = false;
-	int val = sqlite3_open_v2(name, &_conn, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE| SQLITE_OPEN_FULLMUTEX, NULL);
-	if (!val)
+	int val = sqlite3_open_v2(name, &_conn, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_FULLMUTEX, NULL);
+	if (val != SQLITE_OK)
+	{
+		CString msg;
+		msg.Format("SQLiteCache::CreateDatabase: %s. Filename: %s",
+				   sqlite3_errmsg(_conn), static_cast<const char*>(name));
+		CallbackHelper::ErrorMsg(msg);
+		Close();
+	}
+	else
 	{
 		char* sql = "CREATE TABLE IF NOT EXISTS Tiles (id INTEGER NOT NULL PRIMARY KEY, X INTEGER NOT NULL, "
 					"Y INTEGER NOT NULL, Zoom INTEGER NOT NULL, Type INTEGER NOT NULL, Size INTEGER NOT NULL, CacheTime DATETIME );";
@@ -173,12 +183,12 @@ bool SQLiteCache::CreateDatabase()
 						  "DELETE from TilesData WHERE TilesData.Id = OLD.id; "
 						  "END;";
 
-					return !sqlite3_exec(_conn, sql, NULL, NULL, NULL);
+					val = sqlite3_exec(_conn, sql, NULL, NULL, NULL);
+					outSuccess = (val == SQLITE_OK);
 				}
 			}
 		}
 	}
-	return ret;
 }
 
 // ***********************************************************

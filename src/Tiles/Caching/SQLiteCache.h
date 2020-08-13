@@ -46,7 +46,7 @@ private:
 
 private:
 	CStringW get_DefaultDbName();
-	bool CreateDatabase();
+	void CreateDatabase(bool& outSuccess);
 	void AutoClear();
 	bool get_TilesXY(int provider, int zoom, int xMin, int xMax, int yMin, int yMax, std::list<CPoint*>& list);
 	void ProcessQueue();
