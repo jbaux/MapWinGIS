@@ -1846,8 +1846,7 @@ void GdalRaster::SerializeCore(CPLXMLNode* psTree)
 	if (_buffSize != 100.0)
 		Utility::CPLCreateXMLAttributeAndValue(psTree, "BufferSize", CPLString().Printf("%d", _buffSize));
 
-	if (_clearGDALCache != VARIANT_FALSE)
-		Utility::CPLCreateXMLAttributeAndValue(psTree, "ClearGdalCache", CPLString().Printf("%d", (int)_clearGDALCache));
+	Utility::CPLCreateXMLAttributeAndValue(psTree, "ClearGdalCache", _clearGDALCache ? "1" : "0");
 
 	if (_activeBandIndex != -1)
 		Utility::CPLCreateXMLAttributeAndValue(psTree, "SourceGridBandIndex", CPLString().Printf("%d", _activeBandIndex));
