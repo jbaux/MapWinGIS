@@ -71,6 +71,21 @@ namespace MWLite.GUI.Forms
             Map.ShapeEditor.ShowLength = false; // Reduce the visual clutter.
             Map.ShapeEditor.ShowBearing = false; // Reduce the visual clutter.
             axMap1.Measuring.UndoButton = tkUndoShortcut.usCtrlZ;
+
+            // Fix poor performance of rendering images when zoomed-in
+            int layerCount = axMap1.NumLayers;
+            for (int i = 0; i < layerCount; i++)
+            {
+                int layerHandle = axMap1.get_LayerHandle(i);
+                if (axMap1.get_GetObject(layerHandle) is MapWinGIS.Image img)
+                {
+                    img.ClearGDALCache = false;
+                    /*if (img.ClearOverviews())
+                        System.Console.Write(true);
+                    axMap1.FileManager.ClearGdalOverviews(Filename: img.Filename);
+                    axMap1.FileManager.BuildGdalOverviews(Filename: img.Filename);*/
+                }
+            }
         }
 
         private void RegisterEventHandlers()
