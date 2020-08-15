@@ -55,6 +55,7 @@ namespace MWLite.GUI.Forms
 
         private void InitMap()
         {
+            var settings = AppSettings.Instance;
             //axMap1.Tiles.SetProxy("127.0.0.1", 8888);
             //axMap1.Tiles.SetProxyAuthentication("temp", "1234", "");
             axMap1.GrabProjectionFromData = true;
@@ -64,12 +65,14 @@ namespace MWLite.GUI.Forms
             axMap1.SendMouseUp = true;
             axMap1.InertiaOnPanning = tkCustomState.csAuto;
             axMap1.ShowRedrawTime = true;
+            Map.TileProvider = settings.ShowOpenStreetMaps ? tkTileProvider.OpenStreetMap : tkTileProvider.ProviderNone;
             Map.Identifier.IdentifierMode = tkIdentifierMode.imSingleLayer;
             Map.Identifier.HotTracking = false;
             Map.ShapeEditor.HighlightVertices = tkLayerSelection.lsNoLayer;
             Map.ShapeEditor.SnapBehavior = tkLayerSelection.lsNoLayer;
             Map.ShapeEditor.ShowLength = false; // Reduce the visual clutter.
             Map.ShapeEditor.ShowBearing = false; // Reduce the visual clutter.
+            Map.ShapeEditor.ShowArea = settings.ShowShapeAreaWhileEditing;
             axMap1.Measuring.UndoButton = tkUndoShortcut.usCtrlZ;
 
             // Fix poor performance of rendering images when zoomed-in

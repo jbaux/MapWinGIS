@@ -1,5 +1,4 @@
-﻿using MapWinGIS;
-using MWLite.GUI.Classes;
+﻿using MWLite.GUI.Classes;
 using System;
 using System.Windows.Forms;
 
@@ -16,21 +15,13 @@ namespace MWLite.GUI.Forms
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            bool value = chbOpenStreetMap.Checked;
-            AxMapWinGIS.AxMap map = App.Map;
-            map.TileProvider = value ? tkTileProvider.OpenStreetMap : tkTileProvider.ProviderNone;
-            map.Redraw();
-            AppSettings.Instance.ShowOpenStreetMaps = value;
+            AppSettings.Instance.ShowOpenStreetMaps = chbOpenStreetMap.Checked;
             AppSettings.Save();
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            bool value = chbShapeArea.Checked;
-            AxMapWinGIS.AxMap map = App.Map;
-            map.ShapeEditor.ShowArea = value;
-            map.Redraw();
-            AppSettings.Instance.ShowShapeAreaWhileEditing = value;
+            AppSettings.Instance.ShowShapeAreaWhileEditing = chbShapeArea.Checked;
             AppSettings.Save();
         }
     }

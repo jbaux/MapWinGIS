@@ -76,6 +76,9 @@ namespace MWLite.GUI.Forms
             }
             string lastProjectPath = AppSettings.Instance.LastProject;
 
+            AppSettings.Instance.PropertyChanged -= AppSettingsPropertyChanged;
+            AppSettings.Instance.PropertyChanged += AppSettingsPropertyChanged;
+
             RefreshProjectList(mapFoldersPath: AppSettings.Instance.MapFoldersPath,  currentProjectPath: lastProjectPath);
 
             var project = App.Project;
@@ -130,6 +133,29 @@ namespace MWLite.GUI.Forms
             _autosaveTimer.Tick += new EventHandler(AutosaveTick);
             _autosaveTimer.Interval = 5 * 60 * 1000; // 5 minutes
             _autosaveTimer.Start();
+        }
+
+        private void AppSettingsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var settings = AppSettings.Instance;
+            if (e.PropertyName == nameof(settings.ShowShapeAreaWhileEditing))
+            {
+                AxMapWinGIS.AxMap map = App.Map;
+                if (map != null)
+                {
+                    map.ShapeEditor.ShowArea = settings.ShowShapeAreaWhileEditing;
+                    map.Redraw();
+                }
+            }
+            else if (e.PropertyName == nameof(settings.ShowOpenStreetMaps))
+            {
+                AxMapWinGIS.AxMap map = App.Map;
+                if (map != null)
+                {
+                    map.TileProvider = settings.ShowOpenStreetMaps ? tkTileProvider.OpenStreetMap : tkTileProvider.ProviderNone;
+                    map.Redraw();
+                }
+            }
         }
 
         private void ColourShapesByOwner(Shapefile sf)

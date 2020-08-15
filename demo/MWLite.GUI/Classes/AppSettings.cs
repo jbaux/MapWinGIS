@@ -1,33 +1,108 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
-using MWLite.Core.UI;
+﻿using MWLite.Core.UI;
 using MWLite.GUI.Helpers;
+using System;
+using System.ComponentModel;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
 
 namespace MWLite.GUI.Classes
 {
     [Serializable]
-    public class AppSettings
+    public class AppSettings : INotifyPropertyChanged
     {
         public AppSettings()
         {
             BingApiKey = "";
             LastProject = "";
-            ShowTooltip = true;
             MapFoldersPath = "w:\\my drive\\";
             ShowShapeAreaWhileEditing = false;
             ShowOpenStreetMaps = false;
         }
 
-        public bool ShowTooltip { get; set; }
-        public string LastProject { get; set;}
-        public string BingApiKey { get; set; }
-        public string MapFoldersPath { get; set; }
-        public bool ShowShapeAreaWhileEditing { get; set; }
-        public bool ShowOpenStreetMaps { get; set; }
+        private bool _showTooltip;
+        public bool ShowTooltip
+        {
+            get => _showTooltip;
+            set
+            {
+                if (value != _showTooltip)
+                {
+                    _showTooltip = value;
+                    OnPropertyChange();
+                }
+            }
+        }
+
+        private string _lastProject;
+        public string LastProject
+        {
+            get => _lastProject;
+            set
+            {
+                if (value != _lastProject)
+                {
+                    _lastProject = value;
+                    OnPropertyChange();
+                }
+            }
+        }
+
+        private string _bingApiKey;
+        public string BingApiKey
+        {
+            get => _bingApiKey;
+            set
+            {
+                if (value != _bingApiKey)
+                {
+                    _bingApiKey = value;
+                    OnPropertyChange();
+                }
+            }
+        }
+
+        private string _mapFoldersPath;
+        public string MapFoldersPath
+        {
+            get => _mapFoldersPath;
+            set
+            {
+                if (value != _mapFoldersPath)
+                {
+                    _mapFoldersPath = value;
+                    OnPropertyChange();
+                }
+            }
+        }
+
+        private bool _showShapeAreaWhileEditing;
+        public bool ShowShapeAreaWhileEditing
+        {
+            get => _showShapeAreaWhileEditing;
+            set
+            {
+                if (value != _showShapeAreaWhileEditing)
+                {
+                    _showShapeAreaWhileEditing = value;
+                    OnPropertyChange();
+                }
+            }
+        }
+        
+        private bool _showOpenStreetMaps;
+        public bool ShowOpenStreetMaps
+        {
+            get => _showOpenStreetMaps;
+            set
+            {
+                if (value != _showOpenStreetMaps)
+                {
+                    _showOpenStreetMaps = value;
+                    OnPropertyChange();
+                }
+            }
+        }
 
         public void Validate()
         {
@@ -61,6 +136,13 @@ namespace MWLite.GUI.Classes
 
         private static AppSettings _settings;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChange([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public static AppSettings Instance
         {
             get
@@ -68,7 +150,11 @@ namespace MWLite.GUI.Classes
                 if (_settings == null)
                 {
                     Deserialize();
-                    if (_settings == null) _settings = new AppSettings();
+                    if (_settings == null)
+                    {
+                        _settings = new AppSettings();
+                    }
+
                     _settings.Validate();
                 }
                 return _settings;
