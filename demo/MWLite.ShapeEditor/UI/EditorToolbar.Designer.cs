@@ -32,12 +32,13 @@
             this._editToolStrip = new System.Windows.Forms.ToolStrip();
             this.toolRedo = new System.Windows.Forms.ToolStripButton();
             this.toolUndo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolAddShape = new System.Windows.Forms.ToolStripButton();
             this.toolEditShape = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
             this.toolMergeShapes = new System.Windows.Forms.ToolStripButton();
-            this.toolSplitShapes = new System.Windows.Forms.ToolStripButton();
             this.toolMoveShapes = new System.Windows.Forms.ToolStripButton();
             this.toolRotateShapes = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
@@ -45,12 +46,11 @@
             this.toolEraseByPolygon2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolClipByPolygon = new System.Windows.Forms.ToolStripMenuItem();
             this.toolSplitByPolygon = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolRemoveShapes = new System.Windows.Forms.ToolStripButton();
-            this.toolEraseByPolygon = new System.Windows.Forms.ToolStripButton();
             this.toolSplitByPolyline = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolRemoveShapes = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolEraseByPolygon = new System.Windows.Forms.ToolStripMenuItem();
             this._editToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,9 +66,9 @@
             this._editToolStrip.Dock = System.Windows.Forms.DockStyle.None;
             this._editToolStrip.ImageScalingSize = new System.Drawing.Size(38, 38);
             this._editToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolRedo,
-            this.toolUndoCount,
             this.toolUndo,
+            this.toolUndoCount,
+            this.toolRedo,
             this.toolStripSeparator2,
             this.toolSave,
             this.toolStripSeparator1,
@@ -76,20 +76,18 @@
             this.toolEditShape,
             this.toolStripSeparator25,
             this.toolMergeShapes,
-            this.toolSplitShapes,
+            this.toolSplitByPolyline,
+            this.toolStripSeparator28,
             this.toolMoveShapes,
             this.toolRotateShapes,
-            this.toolStripSeparator28,
+            this.toolStripDropDownButton1,
             this.toolPolygonOperation,
-            this.toolRemoveShapes,
-            this.toolEraseByPolygon,
-            this.toolSplitByPolyline,
             this.toolStripSeparator23});
             this._editToolStrip.Location = new System.Drawing.Point(0, 0);
             this._editToolStrip.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this._editToolStrip.Name = "_editToolStrip";
             this._editToolStrip.Padding = new System.Windows.Forms.Padding(0);
-            this._editToolStrip.Size = new System.Drawing.Size(807, 55);
+            this._editToolStrip.Size = new System.Drawing.Size(703, 55);
             this._editToolStrip.TabIndex = 2;
             // 
             // toolRedo
@@ -112,6 +110,11 @@
             this.toolUndo.Size = new System.Drawing.Size(52, 52);
             this.toolUndo.Text = "Undo (Ctrl+Z)";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
+            // 
             // toolSave
             // 
             this.toolSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -121,6 +124,11 @@
             this.toolSave.Padding = new System.Windows.Forms.Padding(5);
             this.toolSave.Size = new System.Drawing.Size(52, 52);
             this.toolSave.Text = "Save (Ctrl+S)";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
             // 
             // toolAddShape
             // 
@@ -158,17 +166,6 @@
             this.toolMergeShapes.Padding = new System.Windows.Forms.Padding(5);
             this.toolMergeShapes.Size = new System.Drawing.Size(52, 52);
             this.toolMergeShapes.Text = "Merge Shapes";
-            // 
-            // toolSplitShapes
-            // 
-            this.toolSplitShapes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolSplitShapes.Image = global::Resources.GlobalResources._15noun_Split_Tool_2758633;
-            this.toolSplitShapes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolSplitShapes.Name = "toolSplitShapes";
-            this.toolSplitShapes.Padding = new System.Windows.Forms.Padding(5);
-            this.toolSplitShapes.Size = new System.Drawing.Size(52, 52);
-            this.toolSplitShapes.Text = "Split Shapes";
-            this.toolSplitShapes.Visible = false;
             // 
             // toolMoveShapes
             // 
@@ -228,26 +225,6 @@
             this.toolSplitByPolygon.Size = new System.Drawing.Size(216, 26);
             this.toolSplitByPolygon.Text = "Split By Polygon";
             // 
-            // toolRemoveShapes
-            // 
-            this.toolRemoveShapes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolRemoveShapes.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
-            this.toolRemoveShapes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolRemoveShapes.Name = "toolRemoveShapes";
-            this.toolRemoveShapes.Padding = new System.Windows.Forms.Padding(5);
-            this.toolRemoveShapes.Size = new System.Drawing.Size(52, 52);
-            this.toolRemoveShapes.Text = "Delete selection (Delete key)";
-            // 
-            // toolEraseByPolygon
-            // 
-            this.toolEraseByPolygon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolEraseByPolygon.Image = global::Resources.GlobalResources._14noun_eraser_2758606;
-            this.toolEraseByPolygon.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolEraseByPolygon.Name = "toolEraseByPolygon";
-            this.toolEraseByPolygon.Padding = new System.Windows.Forms.Padding(5);
-            this.toolEraseByPolygon.Size = new System.Drawing.Size(52, 52);
-            this.toolEraseByPolygon.Text = "Erase by shape (Ctrl+Shift+N)";
-            // 
             // toolSplitByPolyline
             // 
             this.toolSplitByPolyline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -263,15 +240,31 @@
             this.toolStripSeparator23.Name = "toolStripSeparator23";
             this.toolStripSeparator23.Size = new System.Drawing.Size(6, 55);
             // 
-            // toolStripSeparator1
+            // toolStripDropDownButton1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolRemoveShapes,
+            this.toolEraseByPolygon});
+            this.toolStripDropDownButton1.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(52, 52);
+            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
             // 
-            // toolStripSeparator2
+            // toolRemoveShapes
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
+            this.toolRemoveShapes.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
+            this.toolRemoveShapes.Name = "toolRemoveShapes";
+            this.toolRemoveShapes.Size = new System.Drawing.Size(234, 44);
+            this.toolRemoveShapes.Text = "Delete shapes";
+            // 
+            // toolEraseByPolygon
+            // 
+            this.toolEraseByPolygon.Image = global::Resources.GlobalResources._14noun_eraser_2758606;
+            this.toolEraseByPolygon.Name = "toolEraseByPolygon";
+            this.toolEraseByPolygon.Size = new System.Drawing.Size(234, 44);
+            this.toolEraseByPolygon.Text = "Erase by shape";
             // 
             // EditorToolbar
             // 
@@ -288,7 +281,6 @@
         #endregion
         private System.Windows.Forms.ToolStripButton toolAddShape;
         private System.Windows.Forms.ToolStripButton toolMergeShapes;
-        private System.Windows.Forms.ToolStripButton toolSplitShapes;
         private System.Windows.Forms.ToolStripButton toolRotateShapes;
         private System.Windows.Forms.ToolStripButton toolEditShape;
         private System.Windows.Forms.ToolStripButton toolUndo;
@@ -304,10 +296,11 @@
         private System.Windows.Forms.ToolStripMenuItem toolClipByPolygon;
         private System.Windows.Forms.ToolStripMenuItem toolSplitByPolygon;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
-        private System.Windows.Forms.ToolStripButton toolEraseByPolygon;
-        private System.Windows.Forms.ToolStripButton toolRemoveShapes;
         private System.Windows.Forms.ToolStripButton toolSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem toolRemoveShapes;
+        private System.Windows.Forms.ToolStripMenuItem toolEraseByPolygon;
     }
 }

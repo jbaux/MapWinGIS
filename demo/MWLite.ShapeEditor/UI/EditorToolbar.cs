@@ -23,7 +23,7 @@ namespace MWLite.ShapeEditor.UI
             var sf = App.Instance.Map.get_Shapefile(layerHandle);
             bool hasShapefile = sf != null;
 
-            toolSplitShapes.Enabled = false;
+            //toolSplitShapes.Enabled = false;
             toolMergeShapes.Enabled = false;
             toolRotateShapes.Enabled = false;
 
@@ -32,7 +32,7 @@ namespace MWLite.ShapeEditor.UI
             {
                 editing = sf.InteractiveEditing;
                 int numSelected = sf.NumSelected;
-                toolSplitShapes.Enabled = numSelected > 0;
+                //toolSplitShapes.Enabled = numSelected > 0;
                 toolMergeShapes.Enabled = numSelected > 1;
                 toolRotateShapes.Enabled = numSelected > 0;
             }
@@ -50,12 +50,12 @@ namespace MWLite.ShapeEditor.UI
             toolUndoCount.Text = string.Format("{0}\\{1}", map.UndoList.UndoCount, map.UndoList.TotalLength);
 
             toolMergeShapes.Enabled = false;
-            toolSplitShapes.Enabled = false;
+            //toolSplitShapes.Enabled = false;
             if (sf != null && sf.InteractiveEditing)
             {
                 int selectedCount = sf.NumSelected;
                 toolMergeShapes.Enabled = selectedCount > 1;
-                toolSplitShapes.Enabled = selectedCount > 0;
+                //toolSplitShapes.Enabled = selectedCount > 0;
                 toolMoveShapes.Enabled = selectedCount > 0;
                 toolRotateShapes.Enabled = selectedCount > 0;
             }
