@@ -30,8 +30,8 @@
         {
             this.toolUndoCount = new System.Windows.Forms.ToolStripLabel();
             this._editToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolRedo = new System.Windows.Forms.ToolStripButton();
             this.toolUndo = new System.Windows.Forms.ToolStripButton();
+            this.toolRedo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -39,18 +39,19 @@
             this.toolEditShape = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
             this.toolMergeShapes = new System.Windows.Forms.ToolStripButton();
+            this.toolSplitByPolyline = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
             this.toolMoveShapes = new System.Windows.Forms.ToolStripButton();
             this.toolRotateShapes = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolRemoveShapes = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolEraseByPolygon = new System.Windows.Forms.ToolStripMenuItem();
             this.toolPolygonOperation = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolEraseByPolygon2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolClipByPolygon = new System.Windows.Forms.ToolStripMenuItem();
             this.toolSplitByPolygon = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolSplitByPolyline = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolRemoveShapes = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolEraseByPolygon = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolRemoveShapes2 = new System.Windows.Forms.ToolStripButton();
             this._editToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +81,7 @@
             this.toolStripSeparator28,
             this.toolMoveShapes,
             this.toolRotateShapes,
+            this.toolRemoveShapes2,
             this.toolStripDropDownButton1,
             this.toolPolygonOperation,
             this.toolStripSeparator23});
@@ -87,18 +89,8 @@
             this._editToolStrip.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this._editToolStrip.Name = "_editToolStrip";
             this._editToolStrip.Padding = new System.Windows.Forms.Padding(0);
-            this._editToolStrip.Size = new System.Drawing.Size(703, 55);
+            this._editToolStrip.Size = new System.Drawing.Size(717, 55);
             this._editToolStrip.TabIndex = 2;
-            // 
-            // toolRedo
-            // 
-            this.toolRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolRedo.Image = global::Resources.GlobalResources._17noun_redo_2458031;
-            this.toolRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolRedo.Name = "toolRedo";
-            this.toolRedo.Padding = new System.Windows.Forms.Padding(5);
-            this.toolRedo.Size = new System.Drawing.Size(52, 52);
-            this.toolRedo.Text = "Redo (Ctrl+Shift+Z)";
             // 
             // toolUndo
             // 
@@ -109,6 +101,16 @@
             this.toolUndo.Padding = new System.Windows.Forms.Padding(5);
             this.toolUndo.Size = new System.Drawing.Size(52, 52);
             this.toolUndo.Text = "Undo (Ctrl+Z)";
+            // 
+            // toolRedo
+            // 
+            this.toolRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolRedo.Image = global::Resources.GlobalResources._17noun_redo_2458031;
+            this.toolRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolRedo.Name = "toolRedo";
+            this.toolRedo.Padding = new System.Windows.Forms.Padding(5);
+            this.toolRedo.Size = new System.Drawing.Size(52, 52);
+            this.toolRedo.Text = "Redo (Ctrl+Shift+Z)";
             // 
             // toolStripSeparator2
             // 
@@ -167,6 +169,21 @@
             this.toolMergeShapes.Size = new System.Drawing.Size(52, 52);
             this.toolMergeShapes.Text = "Merge Shapes";
             // 
+            // toolSplitByPolyline
+            // 
+            this.toolSplitByPolyline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolSplitByPolyline.Image = global::Resources.GlobalResources._15noun_Split_Tool_2758633;
+            this.toolSplitByPolyline.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolSplitByPolyline.Name = "toolSplitByPolyline";
+            this.toolSplitByPolyline.Padding = new System.Windows.Forms.Padding(5);
+            this.toolSplitByPolyline.Size = new System.Drawing.Size(52, 52);
+            this.toolSplitByPolyline.Text = "Split by polyline (Ctrl + \\)";
+            // 
+            // toolStripSeparator28
+            // 
+            this.toolStripSeparator28.Name = "toolStripSeparator28";
+            this.toolStripSeparator28.Size = new System.Drawing.Size(6, 55);
+            // 
             // toolMoveShapes
             // 
             this.toolMoveShapes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -187,10 +204,31 @@
             this.toolRotateShapes.Size = new System.Drawing.Size(52, 52);
             this.toolRotateShapes.Text = "Rotate shapes";
             // 
-            // toolStripSeparator28
+            // toolStripDropDownButton1
             // 
-            this.toolStripSeparator28.Name = "toolStripSeparator28";
-            this.toolStripSeparator28.Size = new System.Drawing.Size(6, 55);
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolRemoveShapes,
+            this.toolEraseByPolygon});
+            this.toolStripDropDownButton1.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(14, 52);
+            this.toolStripDropDownButton1.Text = "Delete";
+            // 
+            // toolRemoveShapes
+            // 
+            this.toolRemoveShapes.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
+            this.toolRemoveShapes.Name = "toolRemoveShapes";
+            this.toolRemoveShapes.Size = new System.Drawing.Size(234, 44);
+            this.toolRemoveShapes.Text = "Delete shapes";
+            // 
+            // toolEraseByPolygon
+            // 
+            this.toolEraseByPolygon.Image = global::Resources.GlobalResources._14noun_eraser_2758606;
+            this.toolEraseByPolygon.Name = "toolEraseByPolygon";
+            this.toolEraseByPolygon.Size = new System.Drawing.Size(234, 44);
+            this.toolEraseByPolygon.Text = "Erase by shape";
             // 
             // toolPolygonOperation
             // 
@@ -225,46 +263,21 @@
             this.toolSplitByPolygon.Size = new System.Drawing.Size(216, 26);
             this.toolSplitByPolygon.Text = "Split By Polygon";
             // 
-            // toolSplitByPolyline
-            // 
-            this.toolSplitByPolyline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolSplitByPolyline.Image = global::Resources.GlobalResources._15noun_Split_Tool_2758633;
-            this.toolSplitByPolyline.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolSplitByPolyline.Name = "toolSplitByPolyline";
-            this.toolSplitByPolyline.Padding = new System.Windows.Forms.Padding(5);
-            this.toolSplitByPolyline.Size = new System.Drawing.Size(52, 52);
-            this.toolSplitByPolyline.Text = "Split by polyline (Ctrl + \\)";
-            // 
             // toolStripSeparator23
             // 
             this.toolStripSeparator23.Name = "toolStripSeparator23";
             this.toolStripSeparator23.Size = new System.Drawing.Size(6, 55);
             // 
-            // toolStripDropDownButton1
+            // toolRemoveShapes2
             // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolRemoveShapes,
-            this.toolEraseByPolygon});
-            this.toolStripDropDownButton1.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(52, 52);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
-            // 
-            // toolRemoveShapes
-            // 
-            this.toolRemoveShapes.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
-            this.toolRemoveShapes.Name = "toolRemoveShapes";
-            this.toolRemoveShapes.Size = new System.Drawing.Size(234, 44);
-            this.toolRemoveShapes.Text = "Delete shapes";
-            // 
-            // toolEraseByPolygon
-            // 
-            this.toolEraseByPolygon.Image = global::Resources.GlobalResources._14noun_eraser_2758606;
-            this.toolEraseByPolygon.Name = "toolEraseByPolygon";
-            this.toolEraseByPolygon.Size = new System.Drawing.Size(234, 44);
-            this.toolEraseByPolygon.Text = "Erase by shape";
+            this.toolRemoveShapes2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolRemoveShapes2.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
+            this.toolRemoveShapes2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolRemoveShapes2.Name = "toolRemoveShapes2";
+            this.toolRemoveShapes2.Padding = new System.Windows.Forms.Padding(5);
+            this.toolRemoveShapes2.Size = new System.Drawing.Size(52, 52);
+            this.toolRemoveShapes2.Text = "Delete";
+            this.toolRemoveShapes2.ToolTipText = "Delete (Delete key)";
             // 
             // EditorToolbar
             // 
@@ -302,5 +315,6 @@
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem toolRemoveShapes;
         private System.Windows.Forms.ToolStripMenuItem toolEraseByPolygon;
+        private System.Windows.Forms.ToolStripButton toolRemoveShapes2;
     }
 }

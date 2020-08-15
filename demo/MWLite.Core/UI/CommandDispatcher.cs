@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,31 +8,48 @@ namespace MWLite.Core.UI
 {
     public abstract class CommandDispatcher<T> where T : struct, IConvertible
     {
+        private readonly string[] Prefixes = new[] { "tool", "mnu", "ctx" };
+        private readonly Dictionary<string, T> CommandNameToEnumValue =
+            Enum.GetValues(typeof(T)).Cast<T>().ToDictionary(v => v.ToString().ToLower(), v => v);
+
         public bool CommandFromName(ToolStripItem item, ref T command)
         {
             string itemName = item.Name;
             itemName = itemName.ToLower();
-            var prefixes = new[] {"tool", "mnu", "ctx"};
-            foreach (var prefix in prefixes)
+            foreach (var prefix in Prefixes)
             {
                 if (itemName.StartsWith(prefix) && itemName.Length > prefix.Length)
+                {
                     itemName = itemName.Substring(prefix.Length);
+
+                    // Allow for multiple items to use the same command by ending with different numbers.
+                    // This was required as the form designer doesn't allow duplicate control names.
+                    char lastChar = itemName[itemName.Length-1];
+                    if (char.IsDigit(lastChar))
+                    {
+                        itemName = itemName.Substring(0, itemName.Length-1);
+                    }
+
+                    break;
+                }
             }
 
-            var dict = Enum.GetValues(typeof(T)).Cast<T>().ToDictionary(v => v.ToString().ToLower(), v => v);
-            if (dict.ContainsKey(itemName))
+            if (CommandNameToEnumValue.TryGetValue(itemName, out command))
             {
-                command = dict[itemName];
                 return true;
             }
 
             Debug.Print("Command not found: " + itemName);
 
-            var menu = item as ToolStripDropDownItem;
-            if (menu != null && menu.DropDownItems.Count > 0)
+            if (item is ToolStripDropDownItem menu && menu.DropDownItems.Count > 0)
+            {
                 return false;
+            }
 
-            if (item is ToolStripSeparator) return false;
+            if (item is ToolStripSeparator)
+            {
+                return false;
+            }
 
             CommandNotFound(item);
             return false;
@@ -47,14 +65,18 @@ namespace MWLite.Core.UI
         public void InitMenu(ToolStripItemCollection items)
         {
             if (items == null)
+            {
                 return;
+            }
 
             foreach (ToolStripItem item in items)
             {
                 if (item.Tag == null)
+                {
                     item.Click += ItemClick;
-                var menuItem = item as ToolStripDropDownItem;
-                if (menuItem != null)
+                }
+
+                if (item is ToolStripDropDownItem menuItem)
                 {
                     InitMenu(menuItem.DropDownItems);
                 }
@@ -66,12 +88,14 @@ namespace MWLite.Core.UI
         /// </summary>
         private void ItemClick(object sender, EventArgs e)
         {
-            var item = sender as ToolStripItem;
-            if (item == null)
-                return;
-            var command = Activator.CreateInstance<T>();
-            if (CommandFromName(item, ref command))
-                Run(command);
+            if (sender is ToolStripItem item)
+            {
+                var command = Activator.CreateInstance<T>();
+                if (CommandFromName(item, ref command))
+                {
+                    Run(command);
+                }
+            }
         }
     }
 }
