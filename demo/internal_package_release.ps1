@@ -15,7 +15,7 @@ Copy-Item ..\src\bin\Win32 -Destination "$MWLitePath\MapWinGIS\" -Recurse
 Set-Content -Path "$MWLitePath\run_with_logging.bat" -Value @"
 @ECHO OFF
 ECHO Writing logs to: error.log
-MapWindowLite.exe 2> error.log
+PianoPlayer.exe 2> error.log
 "@
 Set-Content -Path "$MWLitePath\install.cmd" -Value @"
 @setlocal enableextensions
