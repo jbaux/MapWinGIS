@@ -28,26 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chbOpenStreetMap = new System.Windows.Forms.CheckBox();
+            this.chbShapeArea = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // checkBox1
+            // chbOpenStreetMap
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(22, 23);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(183, 21);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Display open street map";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.chbOpenStreetMap.AutoSize = true;
+            this.chbOpenStreetMap.Location = new System.Drawing.Point(22, 23);
+            this.chbOpenStreetMap.Name = "chbOpenStreetMap";
+            this.chbOpenStreetMap.Size = new System.Drawing.Size(183, 21);
+            this.chbOpenStreetMap.TabIndex = 0;
+            this.chbOpenStreetMap.Text = "Display open street map";
+            this.chbOpenStreetMap.UseVisualStyleBackColor = true;
+            this.chbOpenStreetMap.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // chbShapeArea
+            // 
+            this.chbShapeArea.AutoSize = true;
+            this.chbShapeArea.Location = new System.Drawing.Point(22, 50);
+            this.chbShapeArea.Name = "chbShapeArea";
+            this.chbShapeArea.Size = new System.Drawing.Size(242, 21);
+            this.chbShapeArea.TabIndex = 1;
+            this.chbShapeArea.Text = "Display area when editing shapes";
+            this.chbShapeArea.UseVisualStyleBackColor = true;
+            this.chbShapeArea.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // PreferencesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(256, 302);
-            this.Controls.Add(this.checkBox1);
+            this.ClientSize = new System.Drawing.Size(292, 302);
+            this.Controls.Add(this.chbShapeArea);
+            this.Controls.Add(this.chbOpenStreetMap);
             this.Name = "PreferencesForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -59,6 +72,7 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chbOpenStreetMap;
+        private System.Windows.Forms.CheckBox chbShapeArea;
     }
 }

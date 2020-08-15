@@ -18,12 +18,16 @@ namespace MWLite.GUI.Classes
             LastProject = "";
             ShowTooltip = true;
             MapFoldersPath = "w:\\my drive\\";
+            ShowShapeAreaWhileEditing = false;
+            ShowOpenStreetMaps = false;
         }
 
         public bool ShowTooltip { get; set; }
         public string LastProject { get; set;}
         public string BingApiKey { get; set; }
         public string MapFoldersPath { get; set; }
+        public bool ShowShapeAreaWhileEditing { get; set; }
+        public bool ShowOpenStreetMaps { get; set; }
 
         public void Validate()
         {
