@@ -50,7 +50,7 @@ namespace MWLite.GUI.Forms
             this._mainToolStrip = new System.Windows.Forms.ToolStrip();
             this.toolZoomIn = new System.Windows.Forms.ToolStripButton();
             this.toolZoomOut = new System.Windows.Forms.ToolStripButton();
-            this.toolZoomMax = new System.Windows.Forms.ToolStripButton();
+            this.toolZoomToLayer = new System.Windows.Forms.ToolStripButton();
             this.toolPan = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolSelect = new System.Windows.Forms.ToolStripButton();
@@ -69,7 +69,7 @@ namespace MWLite.GUI.Forms
             this.mnuNavigate = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuZoomIn = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuZoomOut = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuZoomMax = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuZoomToLayer = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPan = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,7 +95,7 @@ namespace MWLite.GUI.Forms
             this._mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolZoomIn,
             this.toolZoomOut,
-            this.toolZoomMax,
+            this.toolZoomToLayer,
             this.toolPan,
             this.toolStripSeparator10,
             this.toolSelect,
@@ -131,16 +131,16 @@ namespace MWLite.GUI.Forms
             this.toolZoomOut.Size = new System.Drawing.Size(52, 53);
             this.toolZoomOut.Text = "Zoom out (- key)";
             // 
-            // toolZoomMax
+            // toolZoomToLayer
             // 
-            this.toolZoomMax.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolZoomMax.Image = global::Resources.GlobalResources._03noun_Log_Out_2458064;
-            this.toolZoomMax.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolZoomMax.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.toolZoomMax.Name = "toolZoomMax";
-            this.toolZoomMax.Padding = new System.Windows.Forms.Padding(5);
-            this.toolZoomMax.Size = new System.Drawing.Size(52, 53);
-            this.toolZoomMax.Text = "Zoom to max extents";
+            this.toolZoomToLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolZoomToLayer.Image = global::Resources.GlobalResources._03noun_Log_Out_2458064;
+            this.toolZoomToLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolZoomToLayer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.toolZoomToLayer.Name = "toolZoomToLayer";
+            this.toolZoomToLayer.Padding = new System.Windows.Forms.Padding(5);
+            this.toolZoomToLayer.Size = new System.Drawing.Size(52, 53);
+            this.toolZoomToLayer.Text = "Zoom to max extents";
             // 
             // toolPan
             // 
@@ -280,7 +280,7 @@ namespace MWLite.GUI.Forms
             this.mnuNavigate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuZoomIn,
             this.mnuZoomOut,
-            this.mnuZoomMax,
+            this.mnuZoomToLayer,
             this.mnuPan});
             this.mnuNavigate.Name = "mnuNavigate";
             this.mnuNavigate.Size = new System.Drawing.Size(81, 24);
@@ -300,11 +300,11 @@ namespace MWLite.GUI.Forms
             this.mnuZoomOut.Size = new System.Drawing.Size(232, 26);
             this.mnuZoomOut.Text = "Zoom out";
             // 
-            // mnuZoomMax
+            // mnuZoomToLayer
             // 
-            this.mnuZoomMax.Name = "mnuZoomMax";
-            this.mnuZoomMax.Size = new System.Drawing.Size(232, 26);
-            this.mnuZoomMax.Text = "Zoom to max extents";
+            this.mnuZoomToLayer.Name = "mnuZoomToLayer";
+            this.mnuZoomToLayer.Size = new System.Drawing.Size(232, 26);
+            this.mnuZoomToLayer.Text = "Zoom to max extents";
             // 
             // mnuPan
             // 
@@ -324,7 +324,7 @@ namespace MWLite.GUI.Forms
             // mnuAbout
             // 
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(216, 26);
+            this.mnuAbout.Size = new System.Drawing.Size(125, 26);
             this.mnuAbout.Text = "About";
             // 
             // statusStrip1
@@ -479,7 +479,7 @@ namespace MWLite.GUI.Forms
         private StatusStrip statusStrip1;
         private ToolStripButton toolZoomIn;
         private ToolStripButton toolZoomOut;
-        private ToolStripButton toolZoomMax;
+        private ToolStripButton toolZoomToLayer;
         private ToolStripButton toolPan;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripPanel toolStripPanel1;
@@ -501,7 +501,7 @@ namespace MWLite.GUI.Forms
         private ToolStripMenuItem mnuNavigate;
         private ToolStripMenuItem mnuZoomIn;
         private ToolStripMenuItem mnuZoomOut;
-        private ToolStripMenuItem mnuZoomMax;
+        private ToolStripMenuItem mnuZoomToLayer;
         private ToolStripMenuItem mnuPan;
         private ToolStripMenuItem mnuSaveProject;
         private ToolStripMenuItem mnuHelp;
