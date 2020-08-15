@@ -140,7 +140,6 @@ private:
 
 	int _nBands;					// No of bands in the image
 
-	int _buffSize;
 	int _colorMapSize;
 	ColorEntry _colorMap[4096];
 

@@ -1845,9 +1845,6 @@ void GdalRaster::SerializeCore(CPLXMLNode* psTree)
 	if (_allowHillshade != VARIANT_FALSE)
 		Utility::CPLCreateXMLAttributeAndValue(psTree, "AllowHillshade", CPLString().Printf("%d", (int)_allowHillshade));
 
-	if (_buffSize != 100.0)
-		Utility::CPLCreateXMLAttributeAndValue(psTree, "BufferSize", CPLString().Printf("%d", _buffSize));
-
 	Utility::CPLCreateXMLAttributeAndValue(psTree, "ClearGdalCache", _clearGDALCache ? "1" : "0");
 
 	if (_activeBandIndex != -1)
@@ -1977,9 +1974,6 @@ void GdalRaster::DeserializeCore(CPLXMLNode* node)
 
 	s = CPLGetXMLValue(node, "AllowHillshade", "1");
 	if (s != "") SetAllowHillshade((bool)(atoi(s) != 0));
-
-	s = CPLGetXMLValue(node, "BufferSize", "100");
-	if (s != "") _buffSize = atoi(s);
 
 	s = CPLGetXMLValue(node, "ClearGdalCache", "1");
 	if (s != "") SetClearGdalCache((bool)(atoi(s) != 0));
