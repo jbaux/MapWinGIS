@@ -176,21 +176,26 @@ namespace MWLite.GUI.Forms
                 }
             }
 
-            // TODO: don't destroy and re-create categories every time.
-            sf.Categories.Clear();
-            bool success = sf.Categories.Generate(fieldIndex, tkClassificationType.ctUniqueValues, numClasses:0);  // numClasses is ignored when ctUniqueValues is used.⌈
-            Debug.Assert(success);
+            int AICategoryIndex = sf.Categories.CategoryIndexByName["AI"];
+            if (AICategoryIndex == -1)
+            {
+                ShapefileCategory ct = sf.Categories.Add("AI");
+                ct.Expression = "[owner] = 0";
+            }
+
+            int humanCategoryIndex = sf.Categories.CategoryIndexByName["human"];
+            if (humanCategoryIndex == -1)
+            {
+                ShapefileCategory ct = sf.Categories.Add("human");
+                ct.Expression = "[owner] = 1";
+            }
             sf.Categories.ApplyExpressions();
 
-            // TODO: fix this better
-            if (sf.Categories.Count > 1)
-            {
-                var scheme = new ColorScheme();
-                var AI = (uint)ColorTranslator.ToOle(Color.FromArgb(red:192, green:0, blue:255));
-                var human = (uint)ColorTranslator.ToOle(Color.FromArgb(red:251, green:176, blue:64));
-                scheme.SetColors(AI, human);
-                sf.Categories.ApplyColorScheme3(tkColorSchemeType.ctSchemeGraduated, scheme, tkShapeElements.shElementFill, CategoryStartIndex:0, CategoryEndIndex:1);
-            }
+            var scheme = new ColorScheme();
+            var AI = (uint)ColorTranslator.ToOle(Color.FromArgb(red:192, green:0, blue:255));
+            var human = (uint)ColorTranslator.ToOle(Color.FromArgb(red:251, green:176, blue:64));
+            scheme.SetColors(AI, human);
+            sf.Categories.ApplyColorScheme3(tkColorSchemeType.ctSchemeGraduated, scheme, tkShapeElements.shElementFill, CategoryStartIndex:0, CategoryEndIndex:1);
         }
 
         private void AutosaveTick(Object s, EventArgs e)
