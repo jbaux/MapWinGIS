@@ -21,8 +21,7 @@ namespace MWLite.GUI.Forms
 
         protected virtual void OnSelectionChanged(SelectionChangedArgs e)
         {
-            EventHandler<SelectionChangedArgs> handler = SelectionChanged;
-            if (handler != null) handler(this, e);
+            SelectionChanged?.Invoke(this, e);
         }
 
         public MapForm()
