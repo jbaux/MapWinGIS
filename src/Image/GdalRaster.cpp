@@ -54,6 +54,8 @@ bool GdalRaster::OpenCore(CStringA& filename, GDALAccess accessType)
 	bool retVal = false;
 	_warped = false;
 
+	// Kludge: very quick fix to address performance problems
+	GDALSetCacheMax64(2 * 1024 * 1024 * 1024ll);
 	__try
 	{
 		GDALAllRegister();
