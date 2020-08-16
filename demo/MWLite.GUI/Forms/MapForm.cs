@@ -71,6 +71,7 @@ namespace MWLite.GUI.Forms
             Map.ShapeEditor.SnapBehavior = tkLayerSelection.lsNoLayer;
             Map.ShapeEditor.ShowLength = false; // Reduce the visual clutter.
             Map.ShapeEditor.ShowBearing = false; // Reduce the visual clutter.
+            Map.ShapeEditor.IndicesVisible = false; // Reduce the visual clutter.
             Map.ShapeEditor.ShowArea = settings.ShowShapeAreaWhileEditing;
             axMap1.Measuring.UndoButton = tkUndoShortcut.usCtrlZ;
 
