@@ -66,5 +66,30 @@ namespace MWLite.ShapeEditor.UI
                 item.Enabled = StateHelper.GetEnabled(item);
             }
         }
+
+        private void toolRemoveShapes2_MouseHover(object sender, System.EventArgs e)
+        {
+            dropdownDeleteErase.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+        }
+
+        private void toolRemoveShapes2_MouseLeave(object sender, System.EventArgs e)
+        {
+            dropdownDeleteErase.BackColor = System.Drawing.SystemColors.Control;
+        }
+
+        private void toolRemoveShapes2_MouseEnter(object sender, System.EventArgs e)
+        {
+            dropdownDeleteErase.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+        }
+
+        private void dropdownDeleteErase_MouseEnter(object sender, System.EventArgs e)
+        {
+            toolRemoveShapes2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+        }
+
+        private void dropdownDeleteErase_MouseLeave(object sender, System.EventArgs e)
+        {
+            toolRemoveShapes2.BackColor = System.Drawing.SystemColors.Control;
+        }
     }
 }

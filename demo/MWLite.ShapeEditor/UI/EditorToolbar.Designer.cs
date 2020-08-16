@@ -43,7 +43,7 @@
             this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
             this.toolMoveShapes = new System.Windows.Forms.ToolStripButton();
             this.toolRotateShapes = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.dropdownDeleteErase = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolRemoveShapes = new System.Windows.Forms.ToolStripMenuItem();
             this.toolEraseByPolygon = new System.Windows.Forms.ToolStripMenuItem();
             this.toolPolygonOperation = new System.Windows.Forms.ToolStripDropDownButton();
@@ -82,7 +82,7 @@
             this.toolMoveShapes,
             this.toolRotateShapes,
             this.toolRemoveShapes2,
-            this.toolStripDropDownButton1,
+            this.dropdownDeleteErase,
             this.toolPolygonOperation,
             this.toolStripSeparator23});
             this._editToolStrip.Location = new System.Drawing.Point(0, 0);
@@ -204,17 +204,19 @@
             this.toolRotateShapes.Size = new System.Drawing.Size(52, 52);
             this.toolRotateShapes.Text = "Rotate shapes";
             // 
-            // toolStripDropDownButton1
+            // dropdownDeleteErase
             // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dropdownDeleteErase.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.dropdownDeleteErase.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolRemoveShapes,
             this.toolEraseByPolygon});
-            this.toolStripDropDownButton1.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(14, 52);
-            this.toolStripDropDownButton1.Text = "Delete";
+            this.dropdownDeleteErase.Image = global::Resources.GlobalResources._07noun_Delete_2458056;
+            this.dropdownDeleteErase.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.dropdownDeleteErase.Name = "dropdownDeleteErase";
+            this.dropdownDeleteErase.Size = new System.Drawing.Size(14, 52);
+            this.dropdownDeleteErase.Text = "Delete";
+            this.dropdownDeleteErase.MouseEnter += new System.EventHandler(this.dropdownDeleteErase_MouseEnter);
+            this.dropdownDeleteErase.MouseLeave += new System.EventHandler(this.dropdownDeleteErase_MouseLeave);
             // 
             // toolRemoveShapes
             // 
@@ -278,6 +280,9 @@
             this.toolRemoveShapes2.Size = new System.Drawing.Size(52, 52);
             this.toolRemoveShapes2.Text = "Delete";
             this.toolRemoveShapes2.ToolTipText = "Delete (Delete key)";
+            this.toolRemoveShapes2.MouseEnter += new System.EventHandler(this.toolRemoveShapes2_MouseEnter);
+            this.toolRemoveShapes2.MouseLeave += new System.EventHandler(this.toolRemoveShapes2_MouseLeave);
+            this.toolRemoveShapes2.MouseHover += new System.EventHandler(this.toolRemoveShapes2_MouseHover);
             // 
             // EditorToolbar
             // 
@@ -312,7 +317,7 @@
         private System.Windows.Forms.ToolStripButton toolSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripDropDownButton dropdownDeleteErase;
         private System.Windows.Forms.ToolStripMenuItem toolRemoveShapes;
         private System.Windows.Forms.ToolStripMenuItem toolEraseByPolygon;
         private System.Windows.Forms.ToolStripButton toolRemoveShapes2;
