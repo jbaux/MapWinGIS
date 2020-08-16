@@ -77,12 +77,16 @@ HCURSOR CMapView::GetCursorIcon()
 					break;
 
 				case cmPan:
-					newCursor = (_useAlternatePanCursor == TRUE) ? _cursorAlternatePan : _cursorPan;
+					//newCursor = (_useAlternatePanCursor == TRUE) ? _cursorAlternatePan : _cursorPan;
+					newCursor = LoadCursor(NULL, IDC_HAND);
 					break;
 
                 case cmSelection:
                 case cmSelectByPolygon:
-					newCursor = _cursorSelect;
+					//newCursor = _cursorSelect;
+					// Hack: normal looking cursor for selections, as that's the most common use
+					// Todo: don't hard-code this here
+					newCursor = LoadCursor(NULL, IDC_ARROW);
 					break;
 
 				case cmMeasure:
@@ -109,10 +113,11 @@ HCURSOR CMapView::GetCursorIcon()
 					case cmRotateShapes:
 					NewCursor = _cursorRotate;
 					break;
+					*/
 
-					case cmMoveShapes:
-					NewCursor = _cursorMove;
-					break;*/
+				case cmMoveShapes:
+					newCursor = _cursorMove;
+					break;
 
 				case cmNone:
 					newCursor = (HCURSOR)m_uDCursorHandle;

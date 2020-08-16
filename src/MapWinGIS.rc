@@ -191,16 +191,16 @@ END
 // Cursor
 //
 
-IDC_ZOOMIN              CURSOR                  "Resource/cursor4.cur"
-IDC_PAN                 CURSOR                  "Resource/cursor1.cur"
-IDC_SELECT              CURSOR                  "Resource/cursor2.cur"
-IDC_ZOOMOUT             CURSOR                  "Resource/cursor3.cur"
-IDC_MEASURE             CURSOR                  "Resource/cursor5.cur"
-IDC_DIGITIZE_CURSOR     CURSOR                  "Resource/digitize_cursor.cur"
+IDC_ZOOMIN              CURSOR                  "Resource/zoom_in.cur"
+IDC_PAN                 CURSOR                  "Resource/drag_cursor.cur"
+IDC_SELECT              CURSOR                  "Resource/select_rectangle.cur"
+IDC_ZOOMOUT             CURSOR                  "Resource/zoom_out.cur"
+IDC_MEASURE             CURSOR                  "Resource/measure_cursor.cur"
+IDC_DIGITIZE_CURSOR     CURSOR                  "Resource/edit_cursor.cur"
 IDC_VERTEX_CURSOR       CURSOR                  "Resource/vertex_cursor.cur"
 IDC_ROTATE_CURSOR       CURSOR                  "Resource/rotate_cursor.cur"
-IDC_MOVE_CURSOR         CURSOR                  "Resource/move_cursor.cur"
-IDC_SELECT2_CURSOR      CURSOR                  "Resource/select_cursor.cur"
+IDC_MOVE_CURSOR         CURSOR                  "Resource/move.cur"
+IDC_SELECT2_CURSOR      CURSOR                  "Resource/select_rectangle.cur"
 IDC_IDENTIFY_CURSOR     CURSOR                  "Resource/identify_cursor.cur"
 IDC_PAN_ALTERNATE       CURSOR                  "Resource/pan_alt.cur"
 
