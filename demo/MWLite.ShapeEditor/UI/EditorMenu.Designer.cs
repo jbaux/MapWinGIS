@@ -37,6 +37,7 @@
             this.mnuCut = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPreferences = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuShapesEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAddShape = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEditShape = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +46,6 @@
             this.mnuRemoveShapes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEraseByPolygon = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSplitByPolyline = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPreferences = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,7 +81,7 @@
             this.mnuUndo.Image = global::Resources.GlobalResources._16noun_Undo_2458027;
             this.mnuUndo.Name = "mnuUndo";
             this.mnuUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mnuUndo.Size = new System.Drawing.Size(216, 26);
+            this.mnuUndo.Size = new System.Drawing.Size(210, 26);
             this.mnuUndo.Text = "Undo";
             // 
             // mnuRedo
@@ -90,13 +90,13 @@
             this.mnuRedo.Name = "mnuRedo";
             this.mnuRedo.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.Z)));
-            this.mnuRedo.Size = new System.Drawing.Size(216, 26);
+            this.mnuRedo.Size = new System.Drawing.Size(210, 26);
             this.mnuRedo.Text = "Redo";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(213, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(207, 6);
             // 
             // mnuCut
             // 
@@ -104,7 +104,7 @@
             this.mnuCut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.mnuCut.Name = "mnuCut";
             this.mnuCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.mnuCut.Size = new System.Drawing.Size(216, 26);
+            this.mnuCut.Size = new System.Drawing.Size(210, 26);
             this.mnuCut.Text = "Cu&t";
             // 
             // mnuCopy
@@ -113,7 +113,7 @@
             this.mnuCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.mnuCopy.Name = "mnuCopy";
             this.mnuCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.mnuCopy.Size = new System.Drawing.Size(216, 26);
+            this.mnuCopy.Size = new System.Drawing.Size(210, 26);
             this.mnuCopy.Text = "&Copy";
             // 
             // mnuPaste
@@ -122,8 +122,14 @@
             this.mnuPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.mnuPaste.Name = "mnuPaste";
             this.mnuPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.mnuPaste.Size = new System.Drawing.Size(216, 26);
+            this.mnuPaste.Size = new System.Drawing.Size(210, 26);
             this.mnuPaste.Text = "&Paste";
+            // 
+            // mnuPreferences
+            // 
+            this.mnuPreferences.Name = "mnuPreferences";
+            this.mnuPreferences.Size = new System.Drawing.Size(210, 26);
+            this.mnuPreferences.Text = "Preferences";
             // 
             // mnuShapesEdit
             // 
@@ -142,13 +148,15 @@
             // mnuAddShape
             // 
             this.mnuAddShape.Name = "mnuAddShape";
-            this.mnuAddShape.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.mnuAddShape.ShortcutKeyDisplayString = "D";
+            this.mnuAddShape.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.mnuAddShape.Size = new System.Drawing.Size(275, 26);
-            this.mnuAddShape.Text = "Add";
+            this.mnuAddShape.Text = "Draw";
             // 
             // mnuEditShape
             // 
             this.mnuEditShape.Name = "mnuEditShape";
+            this.mnuEditShape.ShortcutKeyDisplayString = "E";
             this.mnuEditShape.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.mnuEditShape.Size = new System.Drawing.Size(275, 26);
             this.mnuEditShape.Text = "Edit";
@@ -156,6 +164,7 @@
             // mnuMoveShapes
             // 
             this.mnuMoveShapes.Name = "mnuMoveShapes";
+            this.mnuMoveShapes.ShortcutKeyDisplayString = "M";
             this.mnuMoveShapes.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
             this.mnuMoveShapes.Size = new System.Drawing.Size(275, 26);
             this.mnuMoveShapes.Text = "Move";
@@ -163,6 +172,8 @@
             // mnuRotateShapes
             // 
             this.mnuRotateShapes.Name = "mnuRotateShapes";
+            this.mnuRotateShapes.ShortcutKeyDisplayString = "R";
+            this.mnuRotateShapes.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.mnuRotateShapes.Size = new System.Drawing.Size(275, 26);
             this.mnuRotateShapes.Text = "Rotate";
             // 
@@ -177,23 +188,17 @@
             // 
             this.mnuEraseByPolygon.Name = "mnuEraseByPolygon";
             this.mnuEraseByPolygon.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.N)));
+            | System.Windows.Forms.Keys.D)));
             this.mnuEraseByPolygon.Size = new System.Drawing.Size(275, 26);
             this.mnuEraseByPolygon.Text = "Erase by shape";
             // 
             // mnuSplitByPolyline
             // 
             this.mnuSplitByPolyline.Name = "mnuSplitByPolyline";
-            this.mnuSplitByPolyline.ShortcutKeyDisplayString = "Ctrl + \\";
-            this.mnuSplitByPolyline.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemBackslash)));
+            this.mnuSplitByPolyline.ShortcutKeyDisplayString = "S";
+            this.mnuSplitByPolyline.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.mnuSplitByPolyline.Size = new System.Drawing.Size(275, 26);
             this.mnuSplitByPolyline.Text = "Split by polyline";
-            // 
-            // mnuPreferences
-            // 
-            this.mnuPreferences.Name = "mnuPreferences";
-            this.mnuPreferences.Size = new System.Drawing.Size(216, 26);
-            this.mnuPreferences.Text = "Preferences";
             // 
             // EditorMenu
             // 

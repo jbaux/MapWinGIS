@@ -193,9 +193,9 @@ void CMapView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				}
 			}
 			break;
-		case 'P':
-			UpdateCursor(cmPan, false);
-			break;
+		//case 'P':
+		//	UpdateCursor(cmPan, false);
+		//	break;
 		case 'Z':
 			{
 				if (ctrl) {
@@ -205,21 +205,21 @@ void CMapView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				UpdateCursor(cmZoomIn, false);
 			}
 			break;
-		case 'M':
-			if (m_cursorMode == cmMeasure)
-			{
-				_measuring->Clear();
-				tkMeasuringType type;
-				_measuring->get_MeasuringType(&type);
-				tkMeasuringType newType = type == MeasureArea ? MeasureDistance : MeasureArea;
-				_measuring->put_MeasuringType(newType);
-				Redraw2(RedrawSkipDataLayers);
-			}
-			else
-			{
-				UpdateCursor(cmMeasure, false);
-			}
-			break;
+		//case 'M':
+		//	if (m_cursorMode == cmMeasure)
+		//	{
+		//		_measuring->Clear();
+		//		tkMeasuringType type;
+		//		_measuring->get_MeasuringType(&type);
+		//		tkMeasuringType newType = type == MeasureArea ? MeasureDistance : MeasureArea;
+		//		_measuring->put_MeasuringType(newType);
+		//		Redraw2(RedrawSkipDataLayers);
+		//	}
+		//	else
+		//	{
+		//		UpdateCursor(cmMeasure, false);
+		//	}
+		//	break;
 		case VK_BACK:
 			ZoomToPrev();
 			break;
@@ -238,38 +238,38 @@ void CMapView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			ZoomToMaxExtents();
 			break;
 		case VK_LEFT:
-			if (ctrl) {
-				// moving to previous layer
-				_activeLayerPosition--;
-				if (_activeLayers.size() > 0)
-				{
-					if (_activeLayerPosition < 0) {
-						_activeLayerPosition = _activeLayers.size() - 1;
-					}
-					int handle = GetLayerHandle(_activeLayerPosition);
-					ZoomToLayer(handle);
-				}
-			}
-			else
+			//if (ctrl) {
+			//	// moving to previous layer
+			//	_activeLayerPosition--;
+			//	if (_activeLayers.size() > 0)
+			//	{
+			//		if (_activeLayerPosition < 0) {
+			//			_activeLayerPosition = _activeLayers.size() - 1;
+			//		}
+			//		int handle = GetLayerHandle(_activeLayerPosition);
+			//		ZoomToLayer(handle);
+			//	}
+			//}
+			//else
 			{
 				box->SetBounds(_extents.left - dx, _extents.bottom, 0.0, _extents.right - dx, _extents.top, 0.0);		
 				this->SetExtents(box);
 			}
 			break;
 		case VK_RIGHT:
-			if (ctrl) {
-				// moving to the next layer
-				_activeLayerPosition++;
-				if (_activeLayers.size() > 0)
-				{
-					if (_activeLayerPosition >= (int)_activeLayers.size()) {
-						_activeLayerPosition = 0;
-					}
-					int handle = GetLayerHandle(_activeLayerPosition);
-					ZoomToLayer(handle);
-				}
-			}
-			else
+			//if (ctrl) {
+			//	// moving to the next layer
+			//	_activeLayerPosition++;
+			//	if (_activeLayers.size() > 0)
+			//	{
+			//		if (_activeLayerPosition >= (int)_activeLayers.size()) {
+			//			_activeLayerPosition = 0;
+			//		}
+			//		int handle = GetLayerHandle(_activeLayerPosition);
+			//		ZoomToLayer(handle);
+			//	}
+			//}
+			//else
 			{
 				box->SetBounds(_extents.left + dx, _extents.bottom, 0.0, _extents.right + dx, _extents.top, 0.0);		
 				this->SetExtents(box);

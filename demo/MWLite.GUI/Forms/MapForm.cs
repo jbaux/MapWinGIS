@@ -223,6 +223,34 @@ namespace MWLite.GUI.Forms
                  case Keys.Down:
                      e.IsInputKey = true;
                      return;
+                case Keys.D:
+                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.AddShape);
+                    e.IsInputKey = true;
+                    break;
+                case Keys.E:
+                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.EditShape);
+                    e.IsInputKey = true;
+                    break;
+                case Keys.J:
+                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.MergeShapes);
+                    e.IsInputKey = true;
+                    break;
+                case Keys.S:
+                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.SplitByPolyline);
+                    e.IsInputKey = true;
+                    break;
+                case Keys.M:
+                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.MoveShapes);
+                    e.IsInputKey = true;
+                    break;
+                case Keys.R:
+                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.RotateShapes);
+                    e.IsInputKey = true;
+                    break;
+                case Keys.A:
+                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.SelectByRectangle);
+                    e.IsInputKey = true;
+                    break;
              }
         }
 

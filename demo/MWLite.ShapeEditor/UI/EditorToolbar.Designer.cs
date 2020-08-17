@@ -141,7 +141,7 @@
             this.toolAddShape.Name = "toolAddShape";
             this.toolAddShape.Padding = new System.Windows.Forms.Padding(5);
             this.toolAddShape.Size = new System.Drawing.Size(52, 53);
-            this.toolAddShape.Text = "Add shape (Ctrl+N)";
+            this.toolAddShape.Text = "Add shape (D)";
             // 
             // toolEditShape
             // 
@@ -152,7 +152,7 @@
             this.toolEditShape.Name = "toolEditShape";
             this.toolEditShape.Padding = new System.Windows.Forms.Padding(5);
             this.toolEditShape.Size = new System.Drawing.Size(52, 53);
-            this.toolEditShape.Text = "Edit shape points (Ctrl+E)";
+            this.toolEditShape.Text = "Edit shape (E)";
             // 
             // toolStripSeparator25
             // 
@@ -167,7 +167,7 @@
             this.toolMergeShapes.Name = "toolMergeShapes";
             this.toolMergeShapes.Padding = new System.Windows.Forms.Padding(5);
             this.toolMergeShapes.Size = new System.Drawing.Size(52, 52);
-            this.toolMergeShapes.Text = "Merge Shapes";
+            this.toolMergeShapes.Text = "Join shapes (J)";
             // 
             // toolSplitByPolyline
             // 
@@ -178,6 +178,7 @@
             this.toolSplitByPolyline.Padding = new System.Windows.Forms.Padding(5);
             this.toolSplitByPolyline.Size = new System.Drawing.Size(52, 52);
             this.toolSplitByPolyline.Text = "Split by polyline (Ctrl + \\)";
+            this.toolSplitByPolyline.ToolTipText = "Split by polyline (S)";
             // 
             // toolStripSeparator28
             // 
