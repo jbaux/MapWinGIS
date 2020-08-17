@@ -5,7 +5,6 @@ using MWLite.Core.Exts;
 using MWLite.Core.UI;
 using MWLite.GUI.Classes;
 using MWLite.GUI.Controls;
-using MWLite.ShapeEditor.Forms;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -33,10 +32,7 @@ namespace MWLite.GUI.Forms
             InitMap();
         }
 
-        internal AxMap Map
-        {
-            get { return axMap1; }
-        }
+        internal AxMap Map => axMap1;
 
         public void LoadMapState(string filename)
         {
@@ -119,7 +115,7 @@ namespace MWLite.GUI.Forms
 
         void axMap1_BackgroundLoadingFinished(object sender, _DMapEvents_BackgroundLoadingFinishedEvent e)
         {
-            Debug.Print("Loading finished: {0}; TaskId: {1}; LayerHandle: {2} Features: {3}; Loaded: {4}", 
+            Debug.Print("Loading finished: {0}; TaskId: {1}; LayerHandle: {2} Features: {3}; Loaded: {4}",
             DateTime.Now.TimeOfDay.ToString(), e.taskId, e.layerHandle, e.numFeatures, e.numLoaded);
         }
 
@@ -147,7 +143,7 @@ namespace MWLite.GUI.Forms
             }
             else
             {
-                Debug.WriteLine("Layer reprojected:" + e.success);    
+                Debug.WriteLine("Layer reprojected:" + e.success);
             }
         }
 
@@ -271,7 +267,9 @@ namespace MWLite.GUI.Forms
         private void axMap1_MouseMoveEvent(object sender, _DMapEvents_MouseMoveEvent e)
         {
             if (!axMap1.Focused)
+            {
                 axMap1.Focus();
+            }
         }
 
         public void HideTooltip()
