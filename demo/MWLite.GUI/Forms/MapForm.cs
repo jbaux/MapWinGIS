@@ -215,43 +215,51 @@ namespace MWLite.GUI.Forms
 
         private void axMap1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-             switch (e.KeyCode)
-             {
-                 case Keys.Left:
-                 case Keys.Right:
-                 case Keys.Up:
-                 case Keys.Down:
-                     e.IsInputKey = true;
-                     return;
-                case Keys.D:
-                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.AddShape);
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                case Keys.Right:
+                case Keys.Up:
+                case Keys.Down:
                     e.IsInputKey = true;
-                    break;
-                case Keys.E:
-                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.EditShape);
-                    e.IsInputKey = true;
-                    break;
-                case Keys.J:
-                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.MergeShapes);
-                    e.IsInputKey = true;
-                    break;
-                case Keys.S:
-                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.SplitByPolyline);
-                    e.IsInputKey = true;
-                    break;
-                case Keys.M:
-                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.MoveShapes);
-                    e.IsInputKey = true;
-                    break;
-                case Keys.R:
-                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.RotateShapes);
-                    e.IsInputKey = true;
-                    break;
-                case Keys.A:
-                    ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.SelectByRectangle);
-                    e.IsInputKey = true;
-                    break;
-             }
+                    return;
+            }
+
+            // TODO: move shortcuts somewhere better
+            if (!e.Control && !e.Alt && !e.Shift)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.D:
+                        ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.AddShape);
+                        e.IsInputKey = true;
+                        break;
+                    case Keys.E:
+                        ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.EditShape);
+                        e.IsInputKey = true;
+                        break;
+                    case Keys.J:
+                        ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.MergeShapes);
+                        e.IsInputKey = true;
+                        break;
+                    case Keys.S:
+                        ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.SplitByPolyline);
+                        e.IsInputKey = true;
+                        break;
+                    case Keys.M:
+                        ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.MoveShapes);
+                        e.IsInputKey = true;
+                        break;
+                    case Keys.R:
+                        ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.RotateShapes);
+                        e.IsInputKey = true;
+                        break;
+                    case Keys.A:
+                        ShapeEditor.Editor.RunCommand(ShapeEditor.EditorCommand.SelectByRectangle);
+                        e.IsInputKey = true;
+                        break;
+                }
+            }
         }
 
         private void axMap1_ProjectionChanged(object sender, System.EventArgs e)
