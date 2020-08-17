@@ -86,11 +86,14 @@ namespace MWLite.ShapeEditor
             string s = string.Empty;
             switch (e.target)
             {
-                case tkDeleteTarget.dtShape: s = "shape";
+                case tkDeleteTarget.dtShape:
+                    s = "shape";
                     break;
-                case tkDeleteTarget.dtPart: s = "part";
+                case tkDeleteTarget.dtPart:
+                    s = "part";
                     break;
-                case tkDeleteTarget.dtVertex: s = "vertex";
+                case tkDeleteTarget.dtVertex:
+                    s = "vertex";
                     break;
             }
 
@@ -142,11 +145,11 @@ namespace MWLite.ShapeEditor
                     case tkCursorMode.cmRotateShapes:
                     case tkCursorMode.cmMoveShapes:
                     case tkCursorMode.cmSelection:
-                    {
-                        var menu = App.SelectionContextMenu;
-                        menu.Show(_map, e.x, e.y);
-                        break;
-                    }
+                        {
+                            var menu = App.SelectionContextMenu;
+                            menu.Show(_map, e.x, e.y);
+                            break;
+                        }
                     case tkCursorMode.cmEditShape:
                     case tkCursorMode.cmAddShape:
                     case tkCursorMode.cmClipByPolygon:
@@ -154,16 +157,16 @@ namespace MWLite.ShapeEditor
                     case tkCursorMode.cmSplitByPolygon:
                     case tkCursorMode.cmSplitByPolyline:
                     case tkCursorMode.cmSelectByPolygon:
-                    {
-                        var menu = App.VertexContextMenu;
-                        menu.Show(_map, e.x, e.y);
-                        break;
-                    }
-                    //{
-                    //    var menu = App.DigitizingContextMenu;
-                    //    menu.Show(_map, e.x, e.y);
-                    //    break;
-                    //}
+                        {
+                            var menu = App.VertexContextMenu;
+                            menu.Show(_map, e.x, e.y);
+                            break;
+                        }
+                        //{
+                        //    var menu = App.DigitizingContextMenu;
+                        //    menu.Show(_map, e.x, e.y);
+                        //    break;
+                        //}
                 }
             }
         }
