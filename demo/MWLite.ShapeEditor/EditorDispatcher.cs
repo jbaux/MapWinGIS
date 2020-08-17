@@ -134,10 +134,16 @@ namespace MWLite.ShapeEditor
                     SetMapCursor(tkCursorMode.cmSplitByPolyline);
                     return true;
                 case EditorCommand.RotateShapes:
-                    SetMapCursor(tkCursorMode.cmRotateShapes);
+                    if (App.SelectedShapefile.NumSelected > 0)
+                    {
+                        SetMapCursor(tkCursorMode.cmRotateShapes);
+                    }
                     return true;
                 case EditorCommand.MoveShapes:
-                    SetMapCursor(tkCursorMode.cmMoveShapes);
+                    if (App.SelectedShapefile.NumSelected > 0)
+                    {
+                        SetMapCursor(tkCursorMode.cmMoveShapes);
+                    }
                     return true;
                 
                 case EditorCommand.AddShape:
