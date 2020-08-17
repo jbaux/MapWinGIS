@@ -54,6 +54,7 @@ namespace MWLite.GUI.Forms
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolSelect = new System.Windows.Forms.ToolStripButton();
             this.toolZoomToSelected = new System.Windows.Forms.ToolStripButton();
+            this.toolZoomToLayer = new System.Windows.Forms.ToolStripButton();
             this.toolClearSelection = new System.Windows.Forms.ToolStripButton();
             this._menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +64,6 @@ namespace MWLite.GUI.Forms
             this.mnuCloseApp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSelections = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSelect = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuZoomToSelected = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuClearSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNavigate = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuZoomIn = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +79,7 @@ namespace MWLite.GUI.Forms
             this.toolStripPanel1 = new System.Windows.Forms.ToolStripPanel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.toolZoomToLayer = new System.Windows.Forms.ToolStripButton();
+            this.mnuZoomToSelected = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -105,7 +105,7 @@ namespace MWLite.GUI.Forms
             this._mainToolStrip.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this._mainToolStrip.Name = "_mainToolStrip";
             this._mainToolStrip.Padding = new System.Windows.Forms.Padding(0);
-            this._mainToolStrip.Size = new System.Drawing.Size(420, 55);
+            this._mainToolStrip.Size = new System.Drawing.Size(329, 55);
             this._mainToolStrip.TabIndex = 0;
             this._mainToolStrip.Text = "toolStrip1";
             // 
@@ -155,7 +155,7 @@ namespace MWLite.GUI.Forms
             this.toolSelect.Name = "toolSelect";
             this.toolSelect.Padding = new System.Windows.Forms.Padding(5);
             this.toolSelect.Size = new System.Drawing.Size(52, 52);
-            this.toolSelect.Text = "Select by rectangle (Ctrl+R)";
+            this.toolSelect.Text = "Select by rectangle (A)";
             // 
             // toolZoomToSelected
             // 
@@ -165,7 +165,18 @@ namespace MWLite.GUI.Forms
             this.toolZoomToSelected.Name = "toolZoomToSelected";
             this.toolZoomToSelected.Padding = new System.Windows.Forms.Padding(5);
             this.toolZoomToSelected.Size = new System.Drawing.Size(52, 52);
-            this.toolZoomToSelected.Text = "Zoom To Selected (Ctrl +)";
+            this.toolZoomToSelected.Text = "Zoom To Selected (Ctrl+=)";
+            // 
+            // toolZoomToLayer
+            // 
+            this.toolZoomToLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolZoomToLayer.Image = global::Resources.GlobalResources._03noun_Log_Out_2458064;
+            this.toolZoomToLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolZoomToLayer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.toolZoomToLayer.Name = "toolZoomToLayer";
+            this.toolZoomToLayer.Padding = new System.Windows.Forms.Padding(5);
+            this.toolZoomToLayer.Size = new System.Drawing.Size(52, 53);
+            this.toolZoomToLayer.Text = "Zoom to max extents (Home key)";
             // 
             // toolClearSelection
             // 
@@ -235,7 +246,6 @@ namespace MWLite.GUI.Forms
             // 
             this.mnuSelections.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuSelect,
-            this.mnuZoomToSelected,
             this.mnuClearSelection});
             this.mnuSelections.Name = "mnuSelections";
             this.mnuSelections.Size = new System.Drawing.Size(61, 24);
@@ -247,14 +257,6 @@ namespace MWLite.GUI.Forms
             this.mnuSelect.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.mnuSelect.Size = new System.Drawing.Size(261, 26);
             this.mnuSelect.Text = "Select by rectangle";
-            // 
-            // mnuZoomToSelected
-            // 
-            this.mnuZoomToSelected.Name = "mnuZoomToSelected";
-            this.mnuZoomToSelected.ShortcutKeyDisplayString = "Ctrl +";
-            this.mnuZoomToSelected.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
-            this.mnuZoomToSelected.Size = new System.Drawing.Size(261, 26);
-            this.mnuZoomToSelected.Text = "Zoom to selected";
             // 
             // mnuClearSelection
             // 
@@ -269,6 +271,7 @@ namespace MWLite.GUI.Forms
             this.mnuNavigate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuZoomIn,
             this.mnuZoomOut,
+            this.mnuZoomToSelected,
             this.mnuZoomToLayer,
             this.mnuPan});
             this.mnuNavigate.Name = "mnuNavigate";
@@ -279,27 +282,28 @@ namespace MWLite.GUI.Forms
             // 
             this.mnuZoomIn.Name = "mnuZoomIn";
             this.mnuZoomIn.ShortcutKeyDisplayString = "+";
-            this.mnuZoomIn.Size = new System.Drawing.Size(232, 26);
+            this.mnuZoomIn.Size = new System.Drawing.Size(275, 26);
             this.mnuZoomIn.Text = "Zoom in";
             // 
             // mnuZoomOut
             // 
             this.mnuZoomOut.Name = "mnuZoomOut";
             this.mnuZoomOut.ShortcutKeyDisplayString = "-";
-            this.mnuZoomOut.Size = new System.Drawing.Size(232, 26);
+            this.mnuZoomOut.Size = new System.Drawing.Size(275, 26);
             this.mnuZoomOut.Text = "Zoom out";
             // 
             // mnuZoomToLayer
             // 
             this.mnuZoomToLayer.Name = "mnuZoomToLayer";
-            this.mnuZoomToLayer.Size = new System.Drawing.Size(232, 26);
+            this.mnuZoomToLayer.ShortcutKeyDisplayString = "Home";
+            this.mnuZoomToLayer.Size = new System.Drawing.Size(275, 26);
             this.mnuZoomToLayer.Text = "Zoom to max extents";
             // 
             // mnuPan
             // 
             this.mnuPan.Name = "mnuPan";
             this.mnuPan.ShortcutKeyDisplayString = "Space+Click drag";
-            this.mnuPan.Size = new System.Drawing.Size(232, 26);
+            this.mnuPan.Size = new System.Drawing.Size(275, 26);
             this.mnuPan.Text = "Pan";
             // 
             // mnuHelp
@@ -313,7 +317,7 @@ namespace MWLite.GUI.Forms
             // mnuAbout
             // 
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(216, 26);
+            this.mnuAbout.Size = new System.Drawing.Size(125, 26);
             this.mnuAbout.Text = "About";
             // 
             // statusStrip1
@@ -432,16 +436,13 @@ namespace MWLite.GUI.Forms
             this.dockPanel1.Skin = dockPanelSkin1;
             this.dockPanel1.TabIndex = 0;
             // 
-            // toolZoomToLayer
+            // mnuZoomToSelected
             // 
-            this.toolZoomToLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolZoomToLayer.Image = global::Resources.GlobalResources._03noun_Log_Out_2458064;
-            this.toolZoomToLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolZoomToLayer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.toolZoomToLayer.Name = "toolZoomToLayer";
-            this.toolZoomToLayer.Padding = new System.Windows.Forms.Padding(5);
-            this.toolZoomToLayer.Size = new System.Drawing.Size(52, 53);
-            this.toolZoomToLayer.Text = "Zoom to max extents";
+            this.mnuZoomToSelected.Name = "mnuZoomToSelected";
+            this.mnuZoomToSelected.ShortcutKeyDisplayString = "Ctrl+=";
+            this.mnuZoomToSelected.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
+            this.mnuZoomToSelected.Size = new System.Drawing.Size(275, 26);
+            this.mnuZoomToSelected.Text = "Zoom to selected";
             // 
             // MainForm
             // 
@@ -495,7 +496,6 @@ namespace MWLite.GUI.Forms
         private ToolStripButton toolSelect;
         private ToolStripMenuItem mnuSelections;
         private ToolStripMenuItem mnuSelect;
-        private ToolStripMenuItem mnuZoomToSelected;
         private ToolStripMenuItem mnuClearSelection;
         private ToolStripMenuItem mnuNavigate;
         private ToolStripMenuItem mnuZoomIn;
@@ -506,6 +506,7 @@ namespace MWLite.GUI.Forms
         private ToolStripMenuItem mnuHelp;
         private ToolStripMenuItem mnuAbout;
         private ToolStripButton toolZoomToLayer;
+        private ToolStripMenuItem mnuZoomToSelected;
     }
 }
 
