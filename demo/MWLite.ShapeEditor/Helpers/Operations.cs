@@ -22,16 +22,16 @@ namespace MWLite.ShapeEditor.Helpers
                 case MergeResult.Ok:
                     App.Map.Redraw2(tkRedrawType.RedrawSkipDataLayers);
                     App.RefreshUI();
-                    MessageHelper.Info("Shapes were merged successfully.");
+                    MessageHelper.Info("Shapes were joined successfully.");
                     break;
                 case MergeResult.TooManyShapes:
-                    MessageHelper.Info("Too many shapes. The number of shapes for operation is limited to 50.");
+                    MessageHelper.Info("Too many shapes. The largest number of shapes that can be joined is fifty.");
                     break;
                 case MergeResult.Failed:
-                    MessageHelper.Info("Failed to merge.");
+                    MessageHelper.Info("Failed to join.");
                     break;
                 case MergeResult.NoInput:
-                    MessageHelper.Info("No input for operation was found.");
+                    MessageHelper.Info("Select at least two shapes to perform a join.");
                     break;
             }
         }
