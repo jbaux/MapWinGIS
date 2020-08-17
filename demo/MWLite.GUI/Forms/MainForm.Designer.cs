@@ -254,8 +254,8 @@ namespace MWLite.GUI.Forms
             // mnuSelect
             // 
             this.mnuSelect.Name = "mnuSelect";
-            this.mnuSelect.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.mnuSelect.Size = new System.Drawing.Size(261, 26);
+            this.mnuSelect.ShortcutKeyDisplayString = "A";
+            this.mnuSelect.Size = new System.Drawing.Size(229, 26);
             this.mnuSelect.Text = "Select by rectangle";
             // 
             // mnuClearSelection
