@@ -98,7 +98,8 @@ IShapeValidationInfo* CShapefile::ValidateInputCore(IShapefile* isf, CString met
                                                     bool reportOnly)
 {
     tkShapefileSourceType sourceType;
-    if (isf->get_SourceType(&sourceType))
+	const HRESULT res = isf->get_SourceType(&sourceType);
+    if (FAILED(res))
     {
         ErrorMessage(tkSHAPEFILE_UNINITIALIZED);
         return nullptr;

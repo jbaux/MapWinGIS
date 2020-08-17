@@ -89,7 +89,7 @@
     </Midl>
     <!-- cpp compiler options -->
     <ClCompile>
-      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/MP  /we4165 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
