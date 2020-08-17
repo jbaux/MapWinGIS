@@ -262,8 +262,7 @@ namespace MWLite.GUI.Forms
             // 
             this.mnuClearSelection.Name = "mnuClearSelection";
             this.mnuClearSelection.ShortcutKeyDisplayString = "";
-            this.mnuClearSelection.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
-            this.mnuClearSelection.Size = new System.Drawing.Size(261, 26);
+            this.mnuClearSelection.Size = new System.Drawing.Size(229, 26);
             this.mnuClearSelection.Text = "Clear selection";
             // 
             // mnuNavigate
@@ -317,7 +316,7 @@ namespace MWLite.GUI.Forms
             // mnuAbout
             // 
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(125, 26);
+            this.mnuAbout.Size = new System.Drawing.Size(216, 26);
             this.mnuAbout.Text = "About";
             // 
             // statusStrip1
