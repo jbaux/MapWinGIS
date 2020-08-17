@@ -1,11 +1,9 @@
-﻿using System;
+﻿using MapWinGIS;
+using MWLite.Core.UI;
+using MWLite.ShapeEditor.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using MapWinGIS;
-using MWLite.Core.UI;
-using MWLite.ShapeEditor.Forms;
-using MWLite.ShapeEditor.Operations;
 
 namespace MWLite.ShapeEditor.Helpers
 {
@@ -28,7 +26,7 @@ namespace MWLite.ShapeEditor.Helpers
                 }
                 else
                 {
-                    if (ogrLayer != null )
+                    if (ogrLayer != null)
                     {
                         if (ogrLayer.DynamicLoading)
                         {
@@ -62,7 +60,9 @@ namespace MWLite.ShapeEditor.Helpers
                     if (sf.InteractiveEditing)
                     {
                         if (!SaveLayerChanges(layerHandle))
+                        {
                             return false;
+                        }
                     }
                 }
             }
@@ -84,7 +84,7 @@ namespace MWLite.ShapeEditor.Helpers
             }
             return "";
         }
-         
+
 
         public static bool SaveLayerChanges(int layerHandle)
         {
@@ -92,7 +92,7 @@ namespace MWLite.ShapeEditor.Helpers
 
             var sf = map.get_Shapefile(layerHandle);
             var ogrLayer = map.get_OgrLayer(layerHandle);
-            
+
             bool success = false;
             if (ogrLayer != null)
             {
@@ -101,9 +101,9 @@ namespace MWLite.ShapeEditor.Helpers
             }
             else
             {
-                success = sf.StopEditingShapes(ApplyChanges:true, StopEditTable:true, cBack:null);
+                success = sf.StopEditingShapes(ApplyChanges: true, StopEditTable: true, cBack: null);
             }
-            
+
             if (success)
             {
                 sf.InteractiveEditing = false;
@@ -174,6 +174,55 @@ namespace MWLite.ShapeEditor.Helpers
                 return SaveLayerChanges(layerHandle);
             }
             return true;
+        }
+
+        public const int OwnerAI = 0;
+        public const int OwnerHuman = 1;
+        public static void SetShapeOwner(AxMapWinGIS.AxMap map, Shapefile sf, int ownerValue, int? singleShapeIndex = null)
+        {
+            int fieldIndex = sf.Table.FieldIndexByName["owner"];
+            Debug.Assert(fieldIndex != -1);
+            if (fieldIndex != -1)
+            {
+                bool anyChanges = false;
+
+                void SetOwnerField(int shapeIndex)
+                {
+                    object currentOwnerValue = sf.CellValue[fieldIndex, shapeIndex];
+                    if (currentOwnerValue == null || (int)currentOwnerValue != ownerValue)
+                    {
+                        bool success = sf.EditCellValue(fieldIndex, shapeIndex, ownerValue);
+                        Debug.Assert(success);
+
+                        anyChanges = true;
+                    }
+                }
+
+                if (singleShapeIndex != null)
+                {
+                    SetOwnerField(singleShapeIndex.Value);
+                }
+                else
+                {
+                    int shapeCount = sf.NumShapes;
+                    for (int i = 0; i < shapeCount; i++)
+                    {
+                        if (sf.ShapeSelected[i])
+                        {
+                            SetOwnerField(i);
+                        }
+                    }
+                }
+
+                if (anyChanges)
+                {
+                    // Apply the change of colour to the shape that was edited.
+                    sf.Categories.ApplyExpressions();
+
+                    // Fixes the colour not showing immediately on new shapes.
+                    map.Redraw();
+                }
+            }
         }
     }
 }

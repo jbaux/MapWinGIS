@@ -42,5 +42,7 @@ namespace MWLite.ShapeEditor
         HighlightingAll = 32,
         Save = 33,
         Preferences = 34,
+        MarkAsAI = 35,
+        MarkAsHuman = 36,
     }
 }

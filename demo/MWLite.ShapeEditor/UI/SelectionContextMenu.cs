@@ -40,6 +40,9 @@ namespace MWLite.ShapeEditor.UI
                 ctxRemoveShapes.Enabled = selectedCount > 0;
                 ctxRotateShapes.Enabled = selectedCount > 0;
                 ctxClearSelection.Enabled = selectedCount > 0;
+                ctxMarkAsAI.Enabled = selectedCount > 0;
+                ctxMarkAsHuman.Enabled = selectedCount > 0;
+                markAsToolStripMenuItem.Enabled = selectedCount > 0;
             }
 
             var list = new[] { ctxCopy, ctxCut, ctxPaste };
@@ -52,6 +55,11 @@ namespace MWLite.ShapeEditor.UI
         public ContextMenuStrip Menu
         {
             get { return contextMenuStrip1;  }
+        }
+
+        private void markAsToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

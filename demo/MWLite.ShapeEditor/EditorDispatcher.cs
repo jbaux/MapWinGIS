@@ -1,28 +1,40 @@
-﻿using System.Windows.Forms;
-using MapWinGIS;
+﻿using MapWinGIS;
 using MWLite.Core.UI;
 using MWLite.GUI.Classes;
 using MWLite.ShapeEditor.Helpers;
+using System.Windows.Forms;
 
 namespace MWLite.ShapeEditor
 {
-    internal class EditorDispatcher: CommandDispatcher<EditorCommand>
+    internal class EditorDispatcher : CommandDispatcher<EditorCommand>
     {
         private void SetMapCursor(tkCursorMode mode)
         {
             App.Instance.Map.CursorMode = mode;
             App.Instance.RefreshUI();
         }
-        
+
         public override void Run(EditorCommand command)
         {
-            if (HandleGroupOperation(command)) return;
+            if (HandleGroupOperation(command))
+            {
+                return;
+            }
 
-            if (HandleChangeTool(command)) return;
+            if (HandleChangeTool(command))
+            {
+                return;
+            }
 
-            if (HandleVertexEditor(command)) return;
+            if (HandleVertexEditor(command))
+            {
+                return;
+            }
 
-            if (HandleSnappingAndHighlighting(command)) return;
+            if (HandleSnappingAndHighlighting(command))
+            {
+                return;
+            }
 
             var map = App.Instance.Map;
             switch (command)
@@ -53,8 +65,20 @@ namespace MWLite.ShapeEditor
                 case EditorCommand.Preferences:
                     App.Instance.RunCommand(AppCommand.Preferences);
                     break;
+                case EditorCommand.MarkAsAI:
+                    {
+                        Shapefile sf = App.SelectedShapefile;
+                        EditorHelper.SetShapeOwner(App.Map, sf, ownerValue: EditorHelper.OwnerAI);
+                        break;
+                    }
+                case EditorCommand.MarkAsHuman:
+                    {
+                        Shapefile sf = App.SelectedShapefile;
+                        EditorHelper.SetShapeOwner(App.Map, sf, ownerValue: EditorHelper.OwnerHuman);
+                        break;
+                    }
             }
-            
+
             App.Instance.RefreshUI();
         }
 
@@ -145,7 +169,7 @@ namespace MWLite.ShapeEditor
                         SetMapCursor(tkCursorMode.cmMoveShapes);
                     }
                     return true;
-                
+
                 case EditorCommand.AddShape:
                     SetMapCursor(tkCursorMode.cmAddShape);
                     return true;

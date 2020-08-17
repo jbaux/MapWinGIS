@@ -102,29 +102,10 @@ namespace MWLite.ShapeEditor
         static void _map_AfterShapeEdit(object sender, _DMapEvents_AfterShapeEditEvent e)
         {
             // Tag modified shapes as having being modified by an analyst.
+            Shapefile sf = _map.get_Shapefile(e.layerHandle);
+            if (sf != null)
             {
-                var sf = _map.get_Shapefile(e.layerHandle);
-                if (sf != null)
-                {
-                    int fieldIndex = sf.Table.FieldIndexByName["owner"];
-                    Debug.Assert(fieldIndex != -1);
-                    if (fieldIndex != -1)
-                    {
-                        object ownerValue = sf.CellValue[fieldIndex, e.shapeIndex];
-                        const int ownerAnalyst = 1;
-                        if (ownerValue == null || (int)ownerValue != ownerAnalyst)
-                        {
-                            bool success = sf.EditCellValue(fieldIndex, e.shapeIndex, ownerAnalyst);
-                            Debug.Assert(success);
-
-                            // Apply the change of colour to the shape that was edited.
-                            sf.Categories.ApplyExpressions();
-
-                            // Fixes the colour not showing immediately on new shapes.
-                            _map.Redraw();
-                        }
-                    }
-                }
+                EditorHelper.SetShapeOwner(_map, sf, ownerValue: EditorHelper.OwnerHuman, singleShapeIndex: e.shapeIndex);
             }
         }
 
