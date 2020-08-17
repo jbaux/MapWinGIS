@@ -123,7 +123,7 @@ IShapeValidationInfo* CShapefile::ValidateInputCore(IShapefile* isf, CString met
 
     IShapeValidationInfo* iinfo = ShapeValidator::Validate(isf, validationMode, svtInput,
                                                            className, methodName, parameterName, _globalCallback, _key,
-                                                           selectedOnly != 0, reportOnly);
+                                                           selectedOnly != VARIANT_FALSE, reportOnly);
 
     auto* sf = (CShapefile*)isf;
     sf->SetValidationInfo(iinfo, svtInput);
