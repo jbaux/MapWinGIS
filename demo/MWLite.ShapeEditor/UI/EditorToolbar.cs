@@ -67,6 +67,7 @@ namespace MWLite.ShapeEditor.UI
             }
         }
 
+        #region Highlight the delete button and drop-down together
         private void toolRemoveShapes2_MouseHover(object sender, System.EventArgs e)
         {
             dropdownDeleteErase.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -91,5 +92,6 @@ namespace MWLite.ShapeEditor.UI
         {
             toolRemoveShapes2.BackColor = System.Drawing.SystemColors.Control;
         }
+        #endregion
     }
 }
