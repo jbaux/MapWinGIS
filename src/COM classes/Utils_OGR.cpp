@@ -750,28 +750,35 @@ class GCPCoordTransformation : public OGRCoordinateTransformation
 {
 public:
 
-	void               *hTransformArg;
-	int                 bUseTPS;
+	void*                hTransformArg;
+	const bool           bUseTPS;
 	OGRSpatialReference* poSRS;
+	const int            nGCPCount;
+	const GDAL_GCP*      pasGCPList;
+	const int            nReqOrder;
 
 	GCPCoordTransformation(int nGCPCount,
+		// pasGCPList is not copied in, and can only be freed after GCPCoordTransformation is destroyed.
 		const GDAL_GCP *pasGCPList,
 		int  nReqOrder,
 		OGRSpatialReference* poSRS)
+		: hTransformArg()
+		, bUseTPS(nReqOrder < 0)
+		, poSRS(poSRS)
+		, nGCPCount(nGCPCount)
+		, pasGCPList(pasGCPList)
+		, nReqOrder(nReqOrder)
 	{
-		if (nReqOrder < 0)
+		if (bUseTPS)
 		{
-			bUseTPS = TRUE;
 			hTransformArg =
 				GDALCreateTPSTransformer(nGCPCount, pasGCPList, FALSE);
 		}
 		else
 		{
-			bUseTPS = FALSE;
 			hTransformArg =
 				GDALCreateGCPTransformer(nGCPCount, pasGCPList, nReqOrder, FALSE);
 		}
-		this->poSRS = poSRS;
 		if (poSRS)
 			poSRS->Reference();
 	}
@@ -791,16 +798,34 @@ public:
 			poSRS->Dereference();
 	}
 
+	virtual OGRCoordinateTransformation* Clone() const override
+	{
+		return new GCPCoordTransformation(nGCPCount, pasGCPList, nReqOrder, poSRS);
+	}
+
 	virtual OGRSpatialReference *GetSourceCS() { return poSRS; }
 	virtual OGRSpatialReference *GetTargetCS() { return poSRS; }
 
 	virtual int Transform(int nCount,
-		double *x, double *y, double *z = NULL)
+		double *x, double *y, double *z, double *t, int *pabSuccess) override
 	{
-		int *pabSuccess = (int *)CPLMalloc(sizeof(int)* nCount);
 		int bOverallSuccess, i;
 
-		bOverallSuccess = TransformEx(nCount, x, y, z, pabSuccess);
+		if (t != NULL)
+		{
+			CPLError(CE_Fatal, 0, "Time values cannot be transformed. Unsupported by GDALTPSTransform and GDALGCPTransform.\n");
+		}
+
+		if (bUseTPS)
+		{
+			bOverallSuccess = GDALTPSTransform(hTransformArg, FALSE,
+				nCount, x, y, z, pabSuccess);
+		}
+		else
+		{
+			bOverallSuccess = GDALGCPTransform(hTransformArg, FALSE,
+				nCount, x, y, z, pabSuccess);
+		}
 
 		for (i = 0; i < nCount; i++)
 		{
@@ -811,21 +836,7 @@ public:
 			}
 		}
 
-		CPLFree(pabSuccess);
-
 		return bOverallSuccess;
-	}
-
-	virtual int TransformEx(int nCount,
-		double *x, double *y, double *z = NULL,
-		int *pabSuccess = NULL)
-	{
-		if (bUseTPS)
-			return GDALTPSTransform(hTransformArg, FALSE,
-			nCount, x, y, z, pabSuccess);
-		else
-			return GDALGCPTransform(hTransformArg, FALSE,
-			nCount, x, y, z, pabSuccess);
 	}
 };
 
