@@ -19,10 +19,6 @@ if ($zipLibsCount -ne 1) {
     Exit
 }
 
-Get-ChildItem GDAL_SDK\v141\bin\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
-Get-ChildItem GDAL_SDK\v141\include\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
-Get-ChildItem GDAL_SDK\v141\lib\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
-
 Get-ChildItem temp\* -Force | Remove-Item -force -recurse
 
 Get-ChildItem -Filter release-1911-gdal-*.zip | Expand-Archive -DestinationPath temp\
@@ -33,6 +29,9 @@ if ($myInput -ne 'y') {
     Exit
 }
 
+Get-ChildItem GDAL_SDK\v141\bin\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
+Get-ChildItem GDAL_SDK\v141\include\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
+Get-ChildItem GDAL_SDK\v141\lib\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
 Move-Item -Path .\temp\bin\* -Destination .\GDAL_SDK\v141\bin\win32\
 Move-Item -Path .\temp\include\* -Destination .\GDAL_SDK\v141\include\win32\
 Move-Item -Path .\temp\lib\* -Destination .\GDAL_SDK\v141\lib\win32\
