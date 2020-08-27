@@ -3040,6 +3040,11 @@ public:
 		OGRCoordinateTransformation::DestroyCT(poCT2);
 	}
 
+	virtual OGRCoordinateTransformation* Clone() const override
+	{
+		return new CompositeCT(poCT1, poCT2->Clone());
+	}
+
 	virtual OGRSpatialReference *GetSourceCS()
 	{
 		return poCT1 ? poCT1->GetSourceCS() :
@@ -3063,15 +3068,15 @@ public:
 		return nResult;
 	}
 
-	virtual int TransformEx(int nCount,
-		double *x, double *y, double *z = NULL,
-		int *pabSuccess = NULL)
+	virtual int Transform(int nCount,
+		double *x, double *y, double *z = NULL, double *t = NULL,
+		int *pabSuccess = NULL) override
 	{
 		int nResult = TRUE;
 		if (poCT1)
-			nResult = poCT1->TransformEx(nCount, x, y, z, pabSuccess);
+			nResult = poCT1->Transform(nCount, x, y, z, t, pabSuccess);
 		if (nResult && poCT2)
-			nResult = poCT2->TransformEx(nCount, x, y, z, pabSuccess);
+			nResult = poCT2->Transform(nCount, x, y, z, t, pabSuccess);
 		return nResult;
 	}
 };
