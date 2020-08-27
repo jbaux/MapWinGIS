@@ -1,10 +1,31 @@
+$zipCount = (Get-ChildItem -Filter release-1911-gdal-*.zip).count
+if ($zipCount -lt 2) {
+    Write-Host "Missing GIS internals zip files."
+    Write-Host "Two zip files are required: compiled binaries and compiled libs and headers."
+    Pause
+    Exit
+}
+if ($zipCount -gt 2) {
+    Write-Host "Too many zip files."
+    Write-Host "Two zip files are required: compiled binaries and compiled libs and headers."
+    Pause
+    Exit
+}
+$zipLibsCount = (Get-ChildItem -Filter release-1911-gdal-*-libs.zip).count
+if ($zipLibsCount -ne 1) {
+    Write-Host "Missing the GIS internals compiled libs and headers zip file."
+    Write-Host "Two zip files are required: compiled binaries and compiled libs and headers."
+    Pause
+    Exit
+}
+
 Get-ChildItem GDAL_SDK\v141\bin\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
 Get-ChildItem GDAL_SDK\v141\include\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
 Get-ChildItem GDAL_SDK\v141\lib\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
 
 Get-ChildItem temp\* -Force | Remove-Item -force -recurse
-Expand-Archive -LiteralPath "release-1911-gdal-3-1-2-mapserver-7-6-1.zip" -DestinationPath temp\
-Expand-Archive -LiteralPath "release-1911-gdal-3-1-2-mapserver-7-6-1-libs.zip" -DestinationPath temp\
+
+Get-ChildItem -Filter release-1911-gdal-*.zip | Expand-Archive -DestinationPath temp\
 
 Write-Host "Licenses for GIS Internals are available in the folder: $PSScriptRoot\temp\"
 do { $myInput = (Read-Host 'Continue to use GIS Internals? (Y/N)').ToLower() } while ($myInput -notin @('y','n'))
