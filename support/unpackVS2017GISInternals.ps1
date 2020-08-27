@@ -29,6 +29,7 @@ if ($myInput -ne 'y') {
     Exit
 }
 
+Write-Host "Moving files..."
 Get-ChildItem GDAL_SDK\v141\bin\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
 Get-ChildItem GDAL_SDK\v141\include\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
 Get-ChildItem GDAL_SDK\v141\lib\* -Force -Exclude !!!*.txt |  Remove-Item -force -recurse
