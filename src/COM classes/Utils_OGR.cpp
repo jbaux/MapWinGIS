@@ -798,14 +798,17 @@ public:
 			poSRS->Dereference();
 	}
 
+#if GDAL_VERSION_MAJOR >= 3
 	virtual OGRCoordinateTransformation* Clone() const override
 	{
 		return new GCPCoordTransformation(nGCPCount, pasGCPList, nReqOrder, poSRS);
 	}
+#endif
 
 	virtual OGRSpatialReference *GetSourceCS() { return poSRS; }
 	virtual OGRSpatialReference *GetTargetCS() { return poSRS; }
 
+#if GDAL_VERSION_MAJOR >= 3
 	virtual int Transform(int nCount,
 		double *x, double *y, double *z, double *t, int *pabSuccess) override
 	{
@@ -838,6 +841,41 @@ public:
 
 		return bOverallSuccess;
 	}
+#else
+	virtual int Transform(int nCount,
+		double *x, double *y, double *z) override
+	{
+		int *pabSuccess = (int *)CPLMalloc(sizeof(int)* nCount);
+		int bOverallSuccess, i;
+
+		bOverallSuccess = TransformEx(nCount, x, y, z, pabSuccess);
+
+		for (i = 0; i < nCount; i++)
+		{
+			if (!pabSuccess[i])
+			{
+				bOverallSuccess = FALSE;
+				break;
+			}
+		}
+
+		CPLFree(pabSuccess);
+
+		return bOverallSuccess;
+	}
+
+	virtual int TransformEx(int nCount,
+		double *x, double *y, double *z = NULL,
+		int *pabSuccess = NULL) override
+	{
+		if (bUseTPS)
+			return GDALTPSTransform(hTransformArg, FALSE,
+				nCount, x, y, z, pabSuccess);
+		else
+			return GDALGCPTransform(hTransformArg, FALSE,
+				nCount, x, y, z, pabSuccess);
+	}
+#endif
 };
 
 /************************************************************************/
@@ -3051,10 +3089,12 @@ public:
 		OGRCoordinateTransformation::DestroyCT(poCT2);
 	}
 
+#if GDAL_VERSION_MAJOR >= 3
 	virtual OGRCoordinateTransformation* Clone() const override
 	{
 		return new CompositeCT(poCT1, poCT2->Clone());
 	}
+#endif
 
 	virtual OGRSpatialReference *GetSourceCS()
 	{
@@ -3079,6 +3119,7 @@ public:
 		return nResult;
 	}
 
+#if GDAL_VERSION_MAJOR >= 3
 	virtual int Transform(int nCount,
 		double *x, double *y, double *z = NULL, double *t = NULL,
 		int *pabSuccess = NULL) override
@@ -3090,6 +3131,19 @@ public:
 			nResult = poCT2->Transform(nCount, x, y, z, t, pabSuccess);
 		return nResult;
 	}
+#else
+	virtual int TransformEx(int nCount,
+		double *x, double *y, double *z = NULL,
+		int *pabSuccess = NULL) override
+	{
+		int nResult = TRUE;
+		if (poCT1)
+			nResult = poCT1->TransformEx(nCount, x, y, z, pabSuccess);
+		if (nResult && poCT2)
+			nResult = poCT2->TransformEx(nCount, x, y, z, pabSuccess);
+		return nResult;
+	}
+#endif
 };
 
 /************************************************************************/
