@@ -54,7 +54,7 @@
     <IntDir>$(Configuration)\$(Platform)\</IntDir>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <LinkIncremental>false</LinkIncremental>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MixedMinimumRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules />
     <CodeAnalysisRuleAssemblies />
     <TargetExt>.ocx</TargetExt>
@@ -89,7 +89,7 @@
     </Midl>
     <!-- cpp compiler options -->
     <ClCompile>
-      <AdditionalOptions>/MP  /we4165 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/MP  /we4165 /we4555 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
