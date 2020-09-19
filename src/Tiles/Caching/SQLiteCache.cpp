@@ -122,12 +122,12 @@ bool SQLiteCache::set_DbName(CStringW name)
 // ***********************************************************
 CStringW SQLiteCache::get_DefaultDbName()
 {
-	wchar_t* path = new wchar_t[MAX_PATH + 1];
-	GetModuleFileNameW(NULL, path, MAX_PATH);
+	CStringW path;
+	LPWSTR pathBuffer = path.GetBuffer(MAX_PATH + 1);
+	GetModuleFileNameW(NULL, pathBuffer, MAX_PATH);
+	path.ReleaseBuffer();
 	CStringW name = Utility::GetFolderFromPath(path);
-	name += L"\\";
-	name += DB_NAME;
-	delete[] path;
+	name += L"\\" DB_NAME;
 	return name;
 }
 

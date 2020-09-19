@@ -3634,12 +3634,13 @@ void CTableClass::RestoreFields(CPLXMLNode* node)
 // ********************************************************
 void CTableClass::RestoreJoins(CPLXMLNode* node)
 {
+	CStringW previousCWD;
 	CStringW folderName = L"";
-	wchar_t* cwd = NULL;
 	if (this->_filename != L"")
 	{
-		cwd = new wchar_t[4096];
-		_wgetcwd(cwd, 4096);
+		const size_t cwdSize = 2048;
+		_wgetcwd(previousCWD.GetBuffer(cwdSize), cwdSize);
+		previousCWD.ReleaseBuffer();
 
 		folderName = Utility::GetFolderFromPath(this->_filename);
 		_wchdir(folderName);
@@ -3702,9 +3703,9 @@ void CTableClass::RestoreJoins(CPLXMLNode* node)
 		node = node->psNext;
 	}
 
-	if (this->_filename != "")
+	if (!previousCWD.IsEmpty())
 	{
-		_wchdir(cwd);
+		_wchdir(previousCWD);
 	}
 }
 
