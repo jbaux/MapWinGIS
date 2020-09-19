@@ -2144,61 +2144,70 @@ void CShapefileDrawer::AddPolygonToPath(GraphicsPath* pathFill, IShapeData* shp,
 #pragma endregion
 
 #pragma region DrawPolyGDI
+static void InternalDrawPolyGDI(CDC* dc, ShpfileType shptype, Gdiplus::GraphicsPath* path,
+                                const POINT* lpPoints, int pointsCount, const INT* lpPolyPoints, int nCount)
+{
+	if (shptype == SHP_POLYLINE)
+	{
+		static_assert(sizeof(lpPolyPoints[0]) == sizeof(DWORD), "DWORD and INT have the same size");
+		dc->PolyPolyline(lpPoints, reinterpret_cast<const DWORD*>(lpPolyPoints), nCount);
+	}
+	else if (shptype == SHP_POLYGON)
+	{
+		dc->PolyPolygon(lpPoints, lpPolyPoints, nCount);
+	}
+
+	if (path != nullptr)
+	{
+		static_assert(sizeof(Gdiplus::Point) == sizeof(POINT), "Gdiplus::Point and POINT structs are identical");
+		static_assert(offsetof(Gdiplus::Point, X) == offsetof(POINT, x), "Gdiplus::Point and POINT structs are identical");
+		static_assert(offsetof(Gdiplus::Point, Y) == offsetof(POINT, y), "Gdiplus::Point and POINT structs are identical");
+		path->AddLines(reinterpret_cast<const Gdiplus::Point*>(lpPoints), pointsCount);
+	}
+}
+
 // ***************************************************************
 //	  DrawPolyGDI()
 // ***************************************************************
 // Disk version
 void CShapefileDrawer::DrawPolyGDI( PolygonData* shapeData, CDrawingOptionsEx* options, Gdiplus::GraphicsPath& path, bool pathIsNeeded )
 {
-	int* points = new int[shapeData->pointCount * 2];
-	int* parts = new int[shapeData->partCount];
-	double* srcPoints = shapeData->points;
+	const int pointCount = shapeData->pointCount;
+	const int partCount = shapeData->partCount;
+	std::vector<POINT> points(pointCount);
+	std::vector<int> parts(partCount);
+	const double* const srcPoints = shapeData->points;
 
-	int count = 0;
-	for (int part = 0; part < shapeData->partCount; part++)
+	for (int part = 0; part < partCount; part++)
 	{
-		int end, start;
-		if (part == shapeData->partCount - 1)	
+		int end;
+		if (part == partCount - 1)	
 		{
-			end = shapeData->pointCount;
+			end = pointCount;
 		}
 		else
 		{
 			end = shapeData->parts[part+1];
 		}
 		
-		start = *(shapeData->parts + part);
+		const int start = *(shapeData->parts + part);
 		
 		int partCount = 0;
 		for (int j = start; j < end; j++)
 		{
-			int k2 = count * 2;
-			points[k2] = (int)((srcPoints[j * 2] - _extents->left) * _dx);
-			points[k2 + 1] = (int)((_extents->top - srcPoints[j * 2 + 1]) * _dy);
+			POINT pt {
+				(int)((srcPoints[j * 2] - _extents->left) * _dx),
+				(int)((_extents->top - srcPoints[j * 2 + 1]) * _dy)
+			};
+			points.push_back(pt);
 			
-			count++;
 			partCount++;
 		}
 			
 		parts[part] = partCount;
-	}		
-	
-	if ( _shptype == SHP_POLYLINE )
-	{
-		_dc->PolyPolyline(reinterpret_cast<POINT*>(points), (DWORD*)parts, shapeData->partCount);
-	}
-	else if ( _shptype == SHP_POLYGON )
-	{
-		_dc->PolyPolygon(reinterpret_cast<POINT*>(points), parts, shapeData->partCount);
-	}
-	
-	if (pathIsNeeded)
-	{
-		path.AddLines(reinterpret_cast<Gdiplus::Point*>(points), count);
 	}
 
-	delete[] points;
-	delete[] parts; 
+	InternalDrawPolyGDI(_dc, _shptype, pathIsNeeded ? &path : nullptr, points.data(), points.size(), parts.data(), partCount);
 }
 
 // ******************************************************************
@@ -2207,54 +2216,36 @@ void CShapefileDrawer::DrawPolyGDI( PolygonData* shapeData, CDrawingOptionsEx* o
 // Regular in-memory version
 void CShapefileDrawer::DrawPolyGDI( IShapeWrapper* shp, CDrawingOptionsEx* options, Gdiplus::GraphicsPath& path, bool pathIsNeeded )
 {
-	int numPoints = shp->get_PointCount();
-	int numParts = shp->get_PartCount();
+	const int numPoints = shp->get_PointCount();
+	const int numParts = shp->get_PartCount();
 
 	if (numPoints == 0 || numParts == 0)
 		return;
 	
-	int* points = new int[numPoints * 2];
-	int* parts = new int[numParts];
+	std::vector<POINT> points(numPoints);
+	std::vector<int> parts(numParts);
 
-	int count = 0;
 	for(int part = 0; part < numParts; part++)
 	{
-		long start, end;
-		start = shp->get_PartStartPoint(part);
-		end = shp->get_PartEndPoint(part);
+		const int start = shp->get_PartStartPoint(part);
+		const int end = shp->get_PartEndPoint(part);
 			
 		int partCount = 0;
 		double x, y;
 		for(int j = start; j <= end; j++)
 		{
 			shp->get_PointXY(j, x, y);
-
-			int k2 = count * 2;
-			points[k2] = (int)((x - _extents->left) * _dx);
-			points[k2 + 1] = (int)((_extents->top - y) * _dy);
-
-			count++;
+			POINT pt {
+				(int)((x - _extents->left) * _dx),
+				(int)((_extents->top - y) * _dy)
+			};
+			points.push_back(pt);
 			partCount++;
 		}
 		parts[part] = partCount;
 	}
 
-	if ( _shptype == SHP_POLYLINE )
-	{
-		_dc->PolyPolyline(reinterpret_cast<POINT*>(points), (DWORD*)parts, numParts);
-	}
-	else if ( _shptype == SHP_POLYGON )
-	{
-		_dc->PolyPolygon(reinterpret_cast<POINT*>(points), parts, numParts);
-	}
-	
-	if (pathIsNeeded)
-	{
-		path.AddLines(reinterpret_cast<Gdiplus::Point*>(points), count);
-	}
-
-	delete[] points;
-	delete[] parts; 
+	InternalDrawPolyGDI(_dc, _shptype, pathIsNeeded ? &path : nullptr, points.data(), points.size(), parts.data(), numParts);
 }
 
 // ******************************************************************
@@ -2263,49 +2254,40 @@ void CShapefileDrawer::DrawPolyGDI( IShapeWrapper* shp, CDrawingOptionsEx* optio
 // Fast in-memory version
 void CShapefileDrawer::DrawPolyGDI( IShapeData* shp, CDrawingOptionsEx* options, Gdiplus::GraphicsPath& path, bool pathIsNeeded )
 {
-	if (shp->get_PointCount() == 0 || shp->get_PartCount() == 0)
+	const int numParts = shp->get_PartCount();
+	if (numParts == 0)
+		return;
+	const int numPoints = shp->get_PointCount();
+	if (numPoints == 0)
 		return;
 	
-	int numParts = shp->get_PartCount();
-	int* points = new int[shp->get_PointCount() * 2];
-	int* parts = new int[numParts];
-	double* srcPoints = shp->get_PointsXY();
-
-	int count = 0;
+	std::vector<POINT> points(numPoints);
+	std::vector<int> parts(numParts);
+	const double* const srcPoints = shp->get_PointsXY();
+	
+	const double dx = _dx;
+	const double dy = _dy;
+	const double extentLeft = _extents->left;
+	const double extentTop = _extents->top;
 	for(int part = 0; part < numParts; part++)
 	{
-		int start = shp->get_PartStartPoint(part);
-		int end = shp->get_PartEndPoint(part);
-			
+		const int start = shp->get_PartStartPoint(part);
+		const int end = shp->get_PartEndPoint(part);
+		
 		int partCount = 0;
 		for(int j = start; j <= end; j++)
 		{
-			int k2 = count * 2;
-			points[k2] = (int)((srcPoints[j * 2] - _extents->left) * _dx);
-			points[k2 + 1] = (int)((_extents->top - srcPoints[j * 2 + 1]) * _dy);
+			POINT pt {
+				(int)((srcPoints[j * 2] - extentLeft) * dx),
+				(int)((extentTop - srcPoints[j * 2 + 1]) * dy)};
+			points.push_back(pt);
 
-			count++;
 			partCount++;
 		}
 		parts[part] = partCount;
 	}
 
-	if ( _shptype == SHP_POLYLINE )
-	{
-		_dc->PolyPolyline(reinterpret_cast<POINT*>(points), (DWORD*)parts, numParts);
-	}
-	else if ( _shptype == SHP_POLYGON )
-	{
-		_dc->PolyPolygon(reinterpret_cast<POINT*>(points), parts, numParts);
-	}
-	
-	if (pathIsNeeded)
-	{
-		path.AddLines(reinterpret_cast<Gdiplus::Point*>(points), count);
-	}
-
-	delete[] points;
-	delete[] parts; 
+	InternalDrawPolyGDI(_dc, _shptype, pathIsNeeded ? &path : nullptr, points.data(), points.size(), parts.data(), numParts);
 }
 
 // ******************************************************************
