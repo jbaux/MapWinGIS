@@ -210,23 +210,7 @@ public:
 		brushOld = NULL;
 	}
 	
-	// Constructor 2
-	CDrawingOptionsEx(const CDrawingOptionsEx& opt)
-	{
-		this->picture = NULL;
-		this->linePattern = NULL;
-		this->brush = NULL;
-		this->pen = NULL;
-		this->penPlus = NULL;
-		this->brushPlus = NULL;
-		this->bitmapPlus = NULL;
-		this->imgAttributes = NULL;
-		this->penOld = NULL;
-		this->brushOld = NULL;
-
-		*this = opt;
-		picture = NULL;
-	}
+	CDrawingOptionsEx(const CDrawingOptionsEx&) = delete;
 	#pragma endregion
 	
 	#pragma region Destructor
