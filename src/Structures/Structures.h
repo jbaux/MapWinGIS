@@ -44,7 +44,7 @@ public:
 
 	double GetRelativeZoomFromClick(int y)
 	{
-		double val = (y - Bar.top) /(double)(Bar.bottom - Bar.top);
+		double val = (static_cast<LONG>(y) - Bar.top) /(double)(Bar.bottom - Bar.top);
 		if (val < 0.0) val = 0.0;
 		if (val > 1.0) val = 1.0;
 		return 1 - val;

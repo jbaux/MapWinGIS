@@ -2252,7 +2252,7 @@ STDMETHODIMP CLabels::SaveToDbf2(BSTR xField, BSTR yField, BSTR angleField, BSTR
 	
     
 
-    for (int i = 0; i < fields->Length(); i++)
+    for (unsigned int i = 0; i < fields->Length(); i++)
 	{
 		if (i == 2 && !saveAngle)
 			continue;

@@ -558,7 +558,7 @@ IGridColorScheme* CGdalRasterBand::GenerateEqualIntervalColorScheme(double minVa
 		IGridColorBreak* br = NULL;
 		ComHelper::CreateInstance(idGridColorBreak, (IDispatch**)&br);
 		br->put_LowValue(minValue + i * step);
-		br->put_HighValue(minValue + (i + 1) * step);
+		br->put_HighValue(minValue + static_cast<double>(i + 1) * step);
 		scheme->InsertBreak(br);
 	}
 

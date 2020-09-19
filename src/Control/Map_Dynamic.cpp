@@ -288,7 +288,8 @@ void CMapView::DrawCoordinates(Gdiplus::Graphics* g)
                     if (_showCoordinatesBackground)
                     {
 					    // draw a white box behind the coordinates
-					    Gdiplus::Rect r(_viewWidth - rect.Width - 7.0f, 7.0f, rect.Width, rect.Height);
+					    Gdiplus::Rect r(_viewWidth - static_cast<INT>(rect.Width) - 7, 7,
+						                static_cast<INT>(rect.Width), static_cast<INT>(rect.Height));
 					    g->FillRectangle(&GetMeasuringBase()->_whiteBrush, r);
                         // with white background, we don't need shadowed text
                         g->DrawString(s.GetString(), s.GetLength(), _fontCourier, point, &GetMeasuringBase()->_textBrush);
