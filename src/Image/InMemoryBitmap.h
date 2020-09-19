@@ -36,14 +36,14 @@ private:
 public:
 	// for tiles
 	int Provider;
+	
+	// The actual bitmap	
+	Gdiplus::Bitmap* m_bitmap;
 
 	HGLOBAL getData()
 	{
 		return m_data;
 	}
-	
-	// The actual bitmap	
-	Gdiplus::Bitmap* m_bitmap;
 	
 	int get_Width()
 	{
