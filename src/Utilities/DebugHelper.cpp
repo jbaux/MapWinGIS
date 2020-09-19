@@ -75,7 +75,7 @@ namespace Debug
 		return "";
 	}
 
-	void PrintOutput(DebugTarget target, CString& msg, bool error = false)
+	void PrintOutput(DebugTarget target, const CString& msg, bool error = false)
 	{
 		CString s;
 		if (target == DebugAny)
@@ -89,7 +89,7 @@ namespace Debug
 	// ****************************************************************** 
 	//		Format
 	// ****************************************************************** 
-	CString Format(char* format, ...)
+	CString Format(_In_z_ _Printf_format_string_ const char* const format, ...)
 	{
 #ifndef RELEASE_MODE		
 		TCHAR buffer[1024];
@@ -137,7 +137,7 @@ namespace Debug
 	// ****************************************************************** 
 	//		WriteLine
 	// ****************************************************************** 
-	void WriteLine(CString format, ...)
+	void WriteLine(_In_z_ _Printf_format_string_ const char* const format, ...)
 	{
 	#ifndef RELEASE_MODE	
 		if (!CheckDebugTarget(DebugAny)) return;
@@ -148,15 +148,14 @@ namespace Debug
 		int len = vsnprintf(buffer, _countof(buffer), format, args);
 		va_end(args);
 
-		format = buffer;
-		PrintOutput(DebugAny, format);
+		PrintOutput(DebugAny, buffer);
 	#endif
 	}
 
 	// ****************************************************************** 
 	//		WriteError
 	// ****************************************************************** 
-	void WriteError(CString format, ...)
+	void WriteError(_In_z_ _Printf_format_string_ const char* const format, ...)
 	{
 	#ifndef RELEASE_MODE	
 		if (!CheckDebugTarget(DebugAny)) return;
@@ -166,8 +165,7 @@ namespace Debug
 		int len = vsnprintf(buffer, _countof(buffer), format, args);
 		va_end(args);
 
-		format = buffer;
-		PrintOutput(DebugAny, format, true);
+		PrintOutput(DebugAny, buffer, true);
 	#endif
 	}
 
