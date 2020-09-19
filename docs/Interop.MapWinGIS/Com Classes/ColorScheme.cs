@@ -137,9 +137,13 @@ namespace MapWinGIS
         }
 
         /// <summary>
-        /// Clears all the existing breaks and creates 2 breaks with the specified colours.
+        /// Clears all the existing breaks and creates two breaks with the specified colours.
         /// </summary>
-        /// <remarks>The values of the breaks will be 0.0 for the first one and 1.0 for the second.</remarks>
+        /// <remarks>The values of the breaks will be 0.0 for the first one and 1.0 for the second.
+        /// The uint colour values are interpreted as BGR. In other words, red is the least significant byte,
+        /// blue the most significant.
+        /// 
+        /// </remarks>
         /// <param name="Color1">The colour of the first break.</param>
         /// <param name="Color2">The colour of the second break.</param>
         public void SetColors(uint Color1, uint Color2)

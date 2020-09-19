@@ -4,7 +4,7 @@
 /// \image html CreateBuffer.png
 /// \example CreateBuffer.cs
 
-/// This example demonstrates how to manually select shapes and to show information about the their relative area. The shapes area selected by mouse dragging. Chart is update automatically.
+/// This example demonstrates how to manually select shapes and to show information about the their relative area. The shapes area selected by mouse dragging. Chart is updated automatically.
 ///Here is a screenshot with the results of the code execution.
 /// \image html SelectBox.png
 /// \example SelectBox.cs
