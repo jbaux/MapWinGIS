@@ -864,13 +864,14 @@ VARIANT_BOOL CCharts::DrawChartCore(CDC* dc, float x, float y, VARIANT_BOOL hide
 
 				Gdiplus::PathData pathData;
 				pathBottom.GetPathData(&pathData);
-				Gdiplus::PointF* pntStart, *pntEnd;
+				Gdiplus::PointF pntStart;
+				Gdiplus::PointF pntEnd;
 				if (pathData.Count > 0)
 				{
-					pntStart = &(pathData.Points[0]);
-					pntEnd = &(pathData.Points[pathData.Count - 1]);
+					pntStart = pathData.Points[0];
+					pntEnd = pathData.Points[pathData.Count - 1];
+					pathBottom.AddLine(pntEnd.X, pntEnd.Y - pieThickness, pntEnd.X, pntEnd.Y);
 				}
-				pathBottom.AddLine(pntEnd->X, pntEnd->Y - pieThickness, pntEnd->X, pntEnd->Y);
 
 				if (startAngle + sweepAngle > 180.0)
 				{
@@ -879,7 +880,10 @@ VARIANT_BOOL CCharts::DrawChartCore(CDC* dc, float x, float y, VARIANT_BOOL hide
 				else
 					pathBottom.AddArc(xStart, yStart, pieWidth, pieHeight, startAngle + sweepAngle, -sweepAngle);
 
-				pathBottom.AddLine(pntStart->X, pntStart->Y - (Gdiplus::REAL)pieThickness, pntStart->X, pntStart->Y);
+				if (pathData.Count > 0)
+				{
+					pathBottom.AddLine(pntStart.X, pntStart.Y - (Gdiplus::REAL)pieThickness, pntStart.X, pntStart.Y);
+				}
 
 				g.FillPath(&brushBackground, &pathBottom);
 				g.FillPath(&brushDimmed, &pathBottom);
