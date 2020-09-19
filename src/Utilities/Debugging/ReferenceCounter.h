@@ -3,24 +3,17 @@
 class ReferenceCounter
 {
 	static const int INTERFACES_COUNT = 100;
-	int referenceCounts[INTERFACES_COUNT];
-	int totalCounts[INTERFACES_COUNT];
+	int referenceCounts[INTERFACES_COUNT] = {0};
+	int totalCounts[INTERFACES_COUNT] = {0};
 public:
-	ReferenceCounter(void) 
-	{
-		for(int i = 0; i < INTERFACES_COUNT; i++)
-		{
-			referenceCounts[i] = 0;
-			totalCounts[i] = 0;
-		}
-	};
-	~ReferenceCounter(void) {};
+	ReferenceCounter(void)  {}
+	~ReferenceCounter(void) {}
 	void AddRef(tkInterface type)
 	{
-		int* val = &referenceCounts[(int)type];
-		(*val)++;
-		val = &totalCounts[(int)type];
-		(*val)++;
+		int* refCount = &referenceCounts[(int)type];
+		(*refCount)++;
+		int* totalCount = &totalCounts[(int)type];
+		(*totalCount)++;
 	}
 	void Release(tkInterface type)
 	{
