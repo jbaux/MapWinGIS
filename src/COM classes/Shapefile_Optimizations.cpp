@@ -109,7 +109,7 @@ STDMETHODIMP CShapefile::get_NumPoints(long ShapeIndex, long *pVal)
 	ShapeUtility::SwapEndian((char*)&intbuf, sizeof(int));
 
 	int contentLength = intbuf*2;	//(16 to 32 bit words)
-	if (contentLength <= 0) {
+	if (contentLength < sizeof(int)) {
 		return FALSE;
 	}
 
