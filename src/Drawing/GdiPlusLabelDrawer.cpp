@@ -141,7 +141,7 @@ void GdiPlusLabelDrawer::DrawLabel(CLabelOptions* options, CRect& r, double piX,
 
 	if (options->fontTransparency != 0)
 	{
-		bool pathNeeded = options && (options->shadowVisible || options->haloVisible || options->fontOutlineVisible);
+		bool pathNeeded = options->shadowVisible || options->haloVisible || options->fontOutlineVisible;
 		GraphicsPath* gp = NULL;
 		if (pathNeeded)
 		{
@@ -166,7 +166,7 @@ void GdiPlusLabelDrawer::DrawLabel(CLabelOptions* options, CRect& r, double piX,
 			gp->Transform(&mtx1);
 		}
 
-		if (options && options->haloVisible)
+		if (options->haloVisible)
 			_graphics->DrawPath(_penHalo, gp);
 
 		if (options->fontOutlineVisible)
@@ -185,7 +185,8 @@ void GdiPlusLabelDrawer::DrawLabel(CLabelOptions* options, CRect& r, double piX,
 			status = _graphics->DrawString(text, text.GetLength(), font, rect, &stringFormat, _brushFont);
 		}
 
-		if (pathNeeded) {
+		if (pathNeeded)
+		{
 			delete gp;
 		}
 	}
