@@ -12,6 +12,7 @@ class ATL_NO_VTABLE CFunction :
 {
 public:
 	CFunction()
+		: _function(NULL)
 	{
 		_pUnkMarshaler = NULL;
 

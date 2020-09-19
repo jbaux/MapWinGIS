@@ -684,7 +684,7 @@ void CShapefileDrawer::GetVisibilityMask(std::vector<int>& indices, vector<bool>
 void CShapefileDrawer::DrawPointCategory( CDrawingOptionsEx* options, std::vector<int>* indices, bool drawSelection)
 {
 	IShapeWrapper* shp = NULL;
-	tkDrawingShape pntShape;
+	tkDrawingShape pntShape = static_cast<tkDrawingShape>(-1);
 	
 	GraphicsPath* path = NULL;
 	GraphicsPath* path2 = NULL;		// for frame around character
@@ -1796,7 +1796,7 @@ void CShapefileDrawer::DrawPolylinePath(Gdiplus::GraphicsPath* path, CDrawingOpt
 				tkDefaultPointSymbol symbol;
 				tkLineLabelOrientation orientation;
 				float markerSize, intervalBase, markerOffsetBase;
-                float interval, markerOffset;
+                float interval = 0, markerOffset = NAN;
 				OLE_COLOR lineColor;
                 VARIANT_BOOL flipFirst;
                 VARIANT_BOOL intervalIsRelative;

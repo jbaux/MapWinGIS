@@ -161,7 +161,8 @@ END_EVENT_MAP()
 //		CMapView() constructor
 // ********************************************************************
 CMapView::CMapView() 
-	: _vals("AZ0CY1EX2GV3IT4KR5MP6ON7QL8SJ9UH0WF1DB2"), 
+	: m_backColor(),
+	_vals("AZ0CY1EX2GV3IT4KR5MP6ON7QL8SJ9UH0WF1DB2"), 
 	_valsLen(39), _isSnapshot(false),
 	_brushBlue(Gdiplus::Color::Blue),
 	_brushBlack(Gdiplus::Color::Black), 

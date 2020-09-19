@@ -8,7 +8,7 @@ namespace Coloring
 	class ColorEdge 
 	{
 	public:
-		ColorEdge(): angle(0.0) {}
+		ColorEdge(): angle(0.0), n1(), n2() {}
 		double angle;
 		ColorNode* n1;
 		ColorNode* n2;

@@ -38,6 +38,7 @@ struct FieldOperation
 		fieldIndex = -1;
 		fieldName = L"";
 		hasName = false;
+		operation = fsoSum;
 		valid = true;
 	}
 };

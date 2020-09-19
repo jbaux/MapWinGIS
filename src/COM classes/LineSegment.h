@@ -42,6 +42,7 @@ class ATL_NO_VTABLE CLineSegment :
 public:
 	
 	CLineSegment()
+		: _markerIntervalIsRelative(VARIANT_FALSE)
 	{
 		_pUnkMarshaler = NULL;
 		_lineType = lltSimple;

@@ -79,35 +79,32 @@ public:
 private:
 	struct UndoListItem
 	{
-		int BatchId;          // globally unique across all lists but same within batch
+		const int BatchId; // globally unique across all lists but same within batch
 		long ShapeIndex;
-		long LayerHandle;
+		const long LayerHandle;
 		tkUndoOperation Operation;
-		IShape* Shape;
-		TableRow* Row;
-		int StyleCategory;
-		bool WithinBatch;
-		vector<int>* ShapeIndices;
+		IShape* Shape = nullptr;
+		TableRow* Row = nullptr;
+		int StyleCategory = -1;
+		bool WithinBatch = false;
+		vector<int>* ShapeIndices = nullptr;
 		Point2D ProjOffset;
-		double RotationAngle;
+		double RotationAngle = 0.0;
 
 		UndoListItem(int id, long layerHandle, long shapeIndex, tkUndoOperation operation)
-		{
-			Init();
-			BatchId = id;
-			LayerHandle = layerHandle;
-			ShapeIndex = shapeIndex;
-			Operation = operation;
-		}
+			: BatchId(id)
+			, ShapeIndex(shapeIndex)
+			, LayerHandle(layerHandle)
+			, Operation(operation)
+		{}
 
 		UndoListItem(int id, long layerHandle, vector<int>* shapeIndices, tkUndoOperation operation)
-		{
-			Init();
-			BatchId = id;
-			LayerHandle = layerHandle;
-			ShapeIndices = shapeIndices;
-			Operation = operation;
-		}
+			: BatchId(id)
+			, ShapeIndex(-1)
+			, LayerHandle(layerHandle)
+			, Operation(operation)
+			, ShapeIndices(shapeIndices)
+		{}
 
 		void SetShape(IShape* newShape)
 		{
@@ -127,17 +124,6 @@ private:
 				Row = NULL;
 			}
 			Row = newRow;
-		}
-
-		void Init()
-		{
-			StyleCategory = -1;
-			RotationAngle = 0.0;
-			ShapeIndex = -1;
-			Shape = NULL;
-			Row = NULL;
-			WithinBatch = false;
-			ShapeIndices = NULL;
 		}
 
 		~UndoListItem() {

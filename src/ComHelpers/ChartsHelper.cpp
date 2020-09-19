@@ -30,7 +30,7 @@ bool ChartsHelper::ReadChartFields(IShapefile* sf, std::vector<double*>* values)
 	std::vector<FieldIndex> fields;
 	for (int j = 0; j < numBars; j++)
 	{
-		long fieldIndex;
+		long fieldIndex = -1;
 		CComPtr<IChartField> chartField = NULL;
 		charts->get_Field(j, &chartField);
 		if (chartField)

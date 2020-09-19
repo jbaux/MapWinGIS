@@ -40,8 +40,8 @@ class ATL_NO_VTABLE CTableClass :
 public:
 	CTableClass()
 		:_shapefile(NULL), _globalCallback(NULL), _lastErrorCode(tkNO_ERROR),
-		_isEditingTable(FALSE), _dbfHandle(NULL), m_maxRowId(-1), _appendMode(false),
-		_appendStartShapeCount(-1)
+		_isEditingTable(FALSE), _lastJoinId(-1), _dbfHandle(NULL), m_maxRowId(-1), _appendMode(false),
+		_appendStartShapeCount(-1), m_needToSaveAsNewFile(false)
 	{
 		_pUnkMarshaler = NULL;
 		_key = SysAllocString(L"");
@@ -168,7 +168,7 @@ private:
 		CStringW fieldFrom;
 		CStringW fieldTo;
 		CString options;
-		int joinId;
+		int joinId = -1;
 		CStringW fields; // comma separated list
 	};
 

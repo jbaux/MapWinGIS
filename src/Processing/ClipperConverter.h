@@ -7,7 +7,9 @@ public:
 	// coordinates for clipper are multiplied in case of geographic coordinate systems
 	double conversionFactor;
 	ClipperConverter() : conversionFactor(1.0){	}
-	ClipperConverter(IShapefile* sf) {
+	ClipperConverter(IShapefile* sf)
+		: conversionFactor()
+	{
 		this->SetConversionFactor(sf);
 	}
 	void SetConversionFactor(IShapefile* sf);

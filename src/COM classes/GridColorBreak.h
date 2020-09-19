@@ -39,6 +39,10 @@ public:
 		_lastErrorCode = tkNO_ERROR;
 		_globalCallback = NULL;
 		_key = SysAllocString(L"");
+		_highColor = 0;
+		_lowColor = 0;
+		_lowValue = 0;
+		_highValue = 0;
 		_visible = VARIANT_TRUE;
 	}
 	~CGridColorBreak()

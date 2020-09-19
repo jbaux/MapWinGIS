@@ -34,7 +34,7 @@ class ATL_NO_VTABLE CImageClass :
 	public IDispatchImpl<IImage, &IID_IImage, &LIBID_MapWinGIS, /*wMajor =*/ VERSION_MAJOR, /*wMinor =*/ VERSION_MINOR>
 {
 public:
-	CImageClass::CImageClass() : _bitsPerPixel(32)
+	CImageClass::CImageClass() : _bitsPerPixel(32), _inRam(true)
 	{
 		_pUnkMarshaler = NULL;
 		_globalCallback = NULL;

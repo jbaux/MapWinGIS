@@ -801,7 +801,7 @@ STDMETHODIMP CShape::get_Center(IPoint **pVal)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 	
-	double xMin, xMax, yMin, yMax;
+	double xMin = 0, xMax = 0, yMin = 0, yMax = 0;
 	double x, y;
 	
 	//CShapeWrapper* shp = (CShapeWrapper*)_shp;

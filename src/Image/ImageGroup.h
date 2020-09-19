@@ -20,6 +20,8 @@ public:
 	ScreenBitmap()
 	{
 		bitmap = NULL;
+		left = 0;
+		top = 0;
 		pixelPerProjectionX = 0.0;
 		pixelPerProjectionY = 0.0;
 		viewWidth = 0;
@@ -56,14 +58,14 @@ public:
 	{
 		dx = dX;
 		dy = dY;
-		width = Width;
-		height = Height;
 		xllCenter = XllCenter;
 		yllCenter = YllCenter;
+		width = Width;
+		height = Height;
 		isValid = true;
 		wasDrawn = false;
-		image = NULL;
-		screenBitmap = NULL;
+		image = nullptr;
+		screenBitmap = nullptr;
 	};
 
 	~ImageGroup()

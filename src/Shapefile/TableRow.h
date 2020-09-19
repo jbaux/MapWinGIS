@@ -61,6 +61,7 @@ public:
 	long oldIndex;
 
 	FieldWrapper()
+		: joinId(-1)
 	{
 		field = NULL;
 		oldIndex = -1;

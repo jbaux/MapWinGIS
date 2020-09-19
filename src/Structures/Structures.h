@@ -62,7 +62,7 @@ struct MeasurePoint
 		pnt2.y = y;
 		pnt2.Proj = Proj;
 	}
-	MeasurePoint() : Part(PartNone) {}
+	MeasurePoint() : Part(PartNone), x(), y() {}
 };
 
 struct OgrUpdateError
@@ -146,7 +146,7 @@ struct ImageSpecs
 
 struct pointEx
 {
-	pointEx(){}
+	pointEx() : X(), Y() {}
 	pointEx(double& x, double& y)
 	{
 		X = x;

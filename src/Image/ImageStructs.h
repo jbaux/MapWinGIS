@@ -35,19 +35,19 @@ typedef struct {
 } GIFAPPLICATION;
 
 struct colort{
-	colort(){}
+	colort() : r(),g(),b() {}
 	colort(int red, int green, int blue):r(red),g(green),b(blue){}
 	colort(int c){r = c; g = c>>8; b = c>>16;}
 	unsigned char r, g, b;
-	bool operator==(colort c){return !memcmp(this, &c, 3);}
+	bool operator==(colort c) const {return !memcmp(this, &c, 3);}
 	//bool operator==(colort c){return c.r==r && c.g==g && c.b == b;}
-	operator int(){return r | g << 8 | b << 16;}
+	operator int() const {return r | g << 8 | b << 16;}
 };
 
 struct ColorEntry{
 	ColorEntry(){next=NULL;}
 	ColorEntry(colort col, ColorEntry * ent):c(col),next(ent){}
-	bool operator!=(ColorEntry ent){return !(c == ent.c && next == ent.next);}
+	bool operator!=(ColorEntry ent) const {return !(c == ent.c && next == ent.next);}
 	colort c;
 	ColorEntry * next; // the next color to to plot
 };

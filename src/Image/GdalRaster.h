@@ -25,6 +25,7 @@ class GdalRaster
 public:
     GdalRaster()
 		: _transColor(RGB(0,0,0))
+		, _dataType()
 	{	
 		_dataset=NULL;
 		_predefinedColorScheme = NULL;
@@ -102,13 +103,9 @@ private:
 
 	struct BandMinMax
 	{
-		BandMinMax() {
-			Calculated = false;
-		}
-
-		double Min;
-		double Max;
-		bool Calculated;
+		double Min = NAN;
+		double Max = NAN;
+		bool Calculated = false;
 	};
 
 private:

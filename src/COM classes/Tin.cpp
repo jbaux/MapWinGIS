@@ -36,13 +36,17 @@ static char THIS_FILE[] = __FILE__;
 // CTin
 CTin::CTin()
 {	
-	_pUnkMarshaler = NULL;
-	_globalCallback = NULL;
-	_lastErrorCode = tkNO_ERROR;
 	USES_CONVERSION;
+	_pUnkMarshaler = nullptr;
+	_globalCallback = nullptr;
+	_lastErrorCode = tkNO_ERROR;
 	_key = SysAllocString(L"");
 	_filename = SysAllocString(L"");
-	_dTriangles = NULL;
+	_splitMethod = InscribedRadius;
+	_splitParam = 0.0;
+	_grid = nullptr;
+	_gridHeader = nullptr;
+	_dTriangles = nullptr;
 }
 
 CTin::~CTin()

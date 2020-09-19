@@ -22,7 +22,7 @@ public:
 	}
 
 private:
-	Font* _fonts[MAX_LABEL_SIZE + 1];
+	Font* _fonts[MAX_LABEL_SIZE + 1] = {nullptr};
 	Graphics* _graphics;
 	StringFormat stringFormat;
 

@@ -651,7 +651,7 @@ STDMETHODIMP CLabels::ApplyColorScheme3 (tkColorSchemeType Type, IColorScheme* C
 	{
 		double value = double(i - CategoryStartIndex)/double(CategoryEndIndex - CategoryStartIndex) * maxValue;
 		
-		OLE_COLOR color;
+		OLE_COLOR color = 0;
 		if (Type == ctSchemeRandom)			ColorScheme->get_RandomColor(value, &color);
 		else if (Type == ctSchemeGraduated)	ColorScheme->get_GraduatedColor(value, &color);
 		

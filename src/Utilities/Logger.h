@@ -12,7 +12,7 @@ namespace Debug
 			ofstream m_logger;
 			CStringW m_filename;
 		public:
-			Logger(void) {};
+			Logger(void) : errorsOnly(true) {};
 			~Logger(void) {};
 			
 			bool errorsOnly;

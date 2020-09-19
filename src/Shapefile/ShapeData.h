@@ -35,7 +35,9 @@ public:
 		_lastErrorCode = tkNO_ERROR;
 		_bounds = NULL;
 		_points = NULL;
+		_pointCount = 0;
 		_parts = NULL;
+		_partCount = 0;
 		put_RawData(shpData, recordLength);
 	}
 

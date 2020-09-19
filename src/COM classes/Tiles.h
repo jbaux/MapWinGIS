@@ -42,7 +42,7 @@ class ATL_NO_VTABLE CTiles :
 {
 public:
     CTiles()
-        : _manager(true), _mercatorProjection(nullptr), _reloadNeeded(true)
+        : _manager(true), _mercatorProjection(nullptr), _reloadNeeded(true), _visible(true)
     {
         _pUnkMarshaler = nullptr;
         _key = SysAllocString(L"");

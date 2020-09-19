@@ -72,6 +72,7 @@ public:
 	// Creates an empty instance of CMemoryBitmap class
 	CMemoryBitmap::CMemoryBitmap()
 	{
+		Provider = -1;
 		m_bitmap = NULL;
 		m_stream = NULL;
 		m_data = NULL;
