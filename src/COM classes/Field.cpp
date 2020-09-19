@@ -44,7 +44,7 @@ STDMETHODIMP CField::put_Name(BSTR newVal)
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 	USES_CONVERSION;
 	
-	if( _tcslen( OLE2CA(newVal) ) > 0 )
+	if( ::SysStringLen(newVal) > 0 )
 	{	
 		if (!CheckTableEditingState()) return S_OK;
 		::SysFreeString(_name);
