@@ -46,6 +46,9 @@ public:
 	{
 		this->Clear();
 	}
+
+	CShapeData(const CShapeData&) = delete;
+	CShapeData& operator=(const CShapeData&) = delete;
 	
 private:	
 	ShpfileType _shapeType;	// actually 2D type will be used, as Z, M values aren't supported here

@@ -36,6 +36,9 @@ public:
 			bitmap = NULL;
 		}
 	}
+
+	ScreenBitmap(const ScreenBitmap&) = delete;
+	ScreenBitmap& operator=(const ScreenBitmap&) = delete;
 };
 
 // for grouped images
@@ -83,6 +86,9 @@ public:
 		}
 
 	}
+
+	ImageGroup(const ImageGroup&) = delete;
+	ImageGroup& operator=(const ImageGroup&) = delete;
 	
 	// comparing 2 groups, their positions and their images
 	bool ImageGroup::operator==(const ImageGroup& group)

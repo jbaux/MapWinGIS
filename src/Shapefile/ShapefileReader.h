@@ -40,7 +40,10 @@ public:
 		{
 			delete[] _indexData;
 		}
-	};
+	}
+
+	CShapefileReader(const CShapefileReader&) = delete;
+	CShapefileReader& operator=(const CShapefileReader&) = delete;
 
 private:
 	bool _dataLoaded;
