@@ -56,6 +56,7 @@ const char * ErrorMsg( long ErrorCode );
 # define tkSPATIAL_OPERATION_FAILED 34
 # define tkFAILED_TO_READ_INPUT_NAMES 35
 # define tkINVALID_PARAMETERS_ARRAY 36
+# define tkSAFE_ARRAY_ERROR 37
 
 //201 - 300 = tkshp
 # define tkUNSUPPORTED_SHAPEFILE_TYPE 201

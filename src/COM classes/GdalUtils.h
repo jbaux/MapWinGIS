@@ -93,8 +93,6 @@ private:
 	BSTR _key;
 	CString _detailedError;
 
-	char** ConvertSafeArrayToChar(SAFEARRAY* safeArray) const;
-	static int* ConvertSafeArrayToInt(SAFEARRAY* safeArray, int &size);
 	void SetConfigOptionFromSafeArray(SAFEARRAY* configOptions, bool reset) const;
 	void HandleException(int exception);
 

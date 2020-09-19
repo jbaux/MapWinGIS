@@ -30,6 +30,9 @@
 #include "GdalUtils.h"
 #include <atlsafe.h>
 
+std::vector<int> ConvertSafeArrayToIntVector(SAFEARRAY* safeArray);
+char** ConvertSafeArrayToChar(SAFEARRAY* safeArray);
+
 // *********************************************************************
 //		~CGdalUtils
 // *********************************************************************
@@ -43,6 +46,10 @@ CGdalUtils::~CGdalUtils()
 // *********************************************************
 STDMETHODIMP CGdalUtils::GdalRasterWarp(BSTR sourceFilename, BSTR destinationFilename, SAFEARRAY* options, VARIANT_BOOL* retVal)
 {
+	// Variables here so that they're defined before all "goto cleaning" code.
+	GDALWarpAppOptions* gdalWarpOptions = NULL;
+	char** warpOptions = NULL;
+
 	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 	*retVal = VARIANT_FALSE;
 	_detailedError = "No error";
@@ -78,8 +85,8 @@ STDMETHODIMP CGdalUtils::GdalRasterWarp(BSTR sourceFilename, BSTR destinationFil
 		goto cleaning;
 	}
 
-	const auto warpOptions = ConvertSafeArrayToChar(options);
-	const auto gdalWarpOptions = GDALWarpAppOptionsNew(warpOptions, nullptr);
+	warpOptions = ConvertSafeArrayToChar(options);
+	gdalWarpOptions = GDALWarpAppOptionsNew(warpOptions, nullptr);
 	if (!gdalWarpOptions)
 	{
 		CallbackHelper::ErrorMsg(Debug::Format(static_cast<char *>("The warp options are invalid.")));
@@ -129,6 +136,10 @@ cleaning:
 // *********************************************************
 STDMETHODIMP CGdalUtils::GdalRasterTranslate(BSTR sourceFilename, BSTR destinationFilename, SAFEARRAY* options, VARIANT_BOOL* retVal)
 {
+	// Variables here so that they're defined before all "goto cleaning" code.
+	GDALTranslateOptions* gdalTranslateOptions = nullptr;
+	char** translateOptions = nullptr;
+
 	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 	*retVal = VARIANT_FALSE;
 	_detailedError = "No error";
@@ -155,8 +166,7 @@ STDMETHODIMP CGdalUtils::GdalRasterTranslate(BSTR sourceFilename, BSTR destinati
 		goto cleaning;
 	}
 
-	// Make options:	
-	char** translateOptions = nullptr;
+	// Make options:
 	try
 	{
 		translateOptions = ConvertSafeArrayToChar(options);
@@ -167,7 +177,7 @@ STDMETHODIMP CGdalUtils::GdalRasterTranslate(BSTR sourceFilename, BSTR destinati
 		goto cleaning;
 	}
 
-	const auto gdalTranslateOptions = GDALTranslateOptionsNew(translateOptions, nullptr);
+	gdalTranslateOptions = GDALTranslateOptionsNew(translateOptions, nullptr);
 	if (!gdalTranslateOptions)
 	{
 		CallbackHelper::ErrorMsg(Debug::Format(static_cast<char *>("The translate options are invalid.")));
@@ -217,6 +227,10 @@ cleaning:
 // *********************************************************
 STDMETHODIMP CGdalUtils::GdalVectorTranslate(BSTR sourceFilename, BSTR destinationFilename, SAFEARRAY* options, const VARIANT_BOOL useSharedConnection, VARIANT_BOOL* retVal)
 {
+	// Variables here so that they're defined before all "goto cleaning" code.
+	GDALVectorTranslateOptions* gdalVectorTranslateOptions = nullptr;
+	char** translateOptions = nullptr;
+
 	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 	*retVal = VARIANT_FALSE;
 	_detailedError = "No error";
@@ -235,7 +249,7 @@ STDMETHODIMP CGdalUtils::GdalVectorTranslate(BSTR sourceFilename, BSTR destinati
 	// Open file as GdalDataset:
 	CallbackHelper::Progress(_globalCallback, 0, "Open source file as vector", _key);
 
-	GDALDatasetH dt = GdalHelper::OpenOgrDatasetW(srcFilename, GA_ReadOnly, useSharedConnection == VARIANT_TRUE);
+	GDALDataset* dt = GdalHelper::OpenOgrDatasetW(srcFilename, GA_ReadOnly, useSharedConnection == VARIANT_TRUE);
 	if (!dt)
 	{
 		CallbackHelper::ErrorMsg(Debug::Format(static_cast<char *>("Can't open %s as a vector file."), srcFilename));
@@ -253,8 +267,8 @@ STDMETHODIMP CGdalUtils::GdalVectorTranslate(BSTR sourceFilename, BSTR destinati
 		goto cleaning;
 	}
 
-	const auto translateOptions = ConvertSafeArrayToChar(options);
-	const auto gdalVectorTranslateOptions = GDALVectorTranslateOptionsNew(translateOptions, nullptr);
+	translateOptions = ConvertSafeArrayToChar(options);
+	gdalVectorTranslateOptions = GDALVectorTranslateOptionsNew(translateOptions, nullptr);
 	if (!gdalVectorTranslateOptions)
 	{
 		CallbackHelper::ErrorMsg(Debug::Format(static_cast<char *>("The vector translate options are invalid.")));
@@ -266,7 +280,8 @@ STDMETHODIMP CGdalUtils::GdalVectorTranslate(BSTR sourceFilename, BSTR destinati
 	// Call the gdalWarp function:
 	GDALVectorTranslateOptionsSetProgress(gdalVectorTranslateOptions, GDALProgressCallback, &params);
 	m_globalSettings.SetGdalUtf8(true);
-	const auto dtNew = GDALVectorTranslate(OLE2A(destinationFilename), nullptr, 1, &dt, gdalVectorTranslateOptions, nullptr);
+	GDALDatasetH dtHandle = dt;
+	const auto dtNew = GDALVectorTranslate(OLE2A(destinationFilename), nullptr, 1, &dtHandle, gdalVectorTranslateOptions, nullptr);
 	m_globalSettings.SetGdalUtf8(false);
 	if (dtNew)
 	{
@@ -292,7 +307,7 @@ cleaning:
 		CSLDestroy(translateOptions);
 
 	if (dt)
-		GdalHelper::CloseSharedOgrDataset(static_cast<GDALDataset*>(dt));
+		GdalHelper::CloseSharedOgrDataset(dt);
 
 	CallbackHelper::ProgressCompleted(_globalCallback);
 
@@ -345,6 +360,9 @@ STDMETHODIMP CGdalUtils::ClipVectorWithVector(BSTR subjectFilename, BSTR overlay
 STDMETHODIMP CGdalUtils::GdalBuildOverviews(BSTR sourceFilename, const tkGDALResamplingMethod resamplingMethod,
 	SAFEARRAY* overviewList, SAFEARRAY *bandList, SAFEARRAY* configOptions, VARIANT_BOOL* retVal)
 {
+	std::vector<int> panOverviewList;
+	std::vector<int> panBandList;
+
 	AFX_MANAGE_STATE(AfxGetStaticModuleState());
 	*retVal = VARIANT_FALSE;
 	_detailedError = "No error";
@@ -382,11 +400,9 @@ STDMETHODIMP CGdalUtils::GdalBuildOverviews(BSTR sourceFilename, const tkGDALRes
 		goto cleaning;
 	}
 
-	auto nOverviews = 0;
-	int* panOverviewList = nullptr;
 	try
 	{
-		panOverviewList = ConvertSafeArrayToInt(overviewList, nOverviews);
+		panOverviewList = ConvertSafeArrayToIntVector(overviewList);
 	}
 	catch (int e)
 	{
@@ -394,7 +410,7 @@ STDMETHODIMP CGdalUtils::GdalBuildOverviews(BSTR sourceFilename, const tkGDALRes
 		goto cleaning;
 	}
 
-	if (nOverviews == 0)
+	if (panOverviewList.empty())
 	{
 		// Auto generate levels, see https://github.com/OSGeo/gdal/blob/master/gdal/apps/gdaladdo.cpp#L288
 		const auto nMinSize = 256;
@@ -405,15 +421,13 @@ STDMETHODIMP CGdalUtils::GdalBuildOverviews(BSTR sourceFilename, const tkGDALRes
 			DIV_ROUND_UP(nYSize, nOvrFactor) > nMinSize)
 		{
 			nOvrFactor *= 2;
-			panOverviewList[nOverviews++] = nOvrFactor;
+			panOverviewList.push_back(nOvrFactor);
 		}
 	}
 
-	auto nListBands = 0;
-	int* panBandList = nullptr;
 	try
 	{
-		panBandList = ConvertSafeArrayToInt(bandList, nListBands);
+		panBandList = ConvertSafeArrayToIntVector(bandList);
 	}
 	catch (int e)
 	{
@@ -427,7 +441,10 @@ STDMETHODIMP CGdalUtils::GdalBuildOverviews(BSTR sourceFilename, const tkGDALRes
 	// Call the GDALBuildOverviews function:	
 	m_globalSettings.SetGdalUtf8(true);
 	// BuildOverviews(const char *pszResampling, int nOverviews, int *panOverviewList, int nListBands, int *panBandList, GDALProgressFuncp fnProgress, void *pProgressData)		
-	const auto result = GDALBuildOverviews(dt, pszResampling, nOverviews, panOverviewList, nListBands, panBandList, static_cast<GDALProgressFunc>(GDALProgressCallback), &params);
+	const auto result = GDALBuildOverviews(dt, pszResampling,
+	                                       panOverviewList.size(), panOverviewList.data(),
+	                                       panBandList.size(), panBandList.data(),
+	                                       static_cast<GDALProgressFunc>(GDALProgressCallback), &params);
 	m_globalSettings.SetGdalUtf8(false);
 	if (result == CE_None)
 	{
@@ -450,11 +467,6 @@ cleaning:
 
 	SetConfigOptionFromSafeArray(configOptions, true);
 
-	// cleanup used arrays:
-	delete[] panOverviewList;
-	delete[] panBandList;
-	// TODO: Doesn't work: delete[] pszResampling;
-	
 	CallbackHelper::ProgressCompleted(_globalCallback);
 
 	return S_OK;
@@ -565,7 +577,7 @@ inline void CGdalUtils::ErrorMessage(const long errorCode)
 //		ConvertSafeArray()
 //      Convert a safearray (coming outside the ocx) to char** (used internal) 
 // ***************************************************************************************
-char** CGdalUtils::ConvertSafeArrayToChar(SAFEARRAY* safeArray) const
+char** ConvertSafeArrayToChar(SAFEARRAY* safeArray)
 {
 	if (safeArray == nullptr) return nullptr;
 
@@ -601,13 +613,17 @@ char** CGdalUtils::ConvertSafeArrayToChar(SAFEARRAY* safeArray) const
 }
 
 // ***************************************************************************************
-//		ConvertSafeArray()
-//      Convert a safearray (coming outside the ocx) to int[] (used internal) 
+//		ConvertSafeArrayToIntVector()
+//      Convert a safearray (coming outside the ocx) to vector<int> (used internally) 
 // ***************************************************************************************
-auto CGdalUtils::ConvertSafeArrayToInt(SAFEARRAY* safeArray, int &size) -> int*
+auto ConvertSafeArrayToIntVector(SAFEARRAY* safeArray) -> std::vector<int>
 {
-	size = 0;
-	if (safeArray == nullptr) return new int[1024];
+	std::vector<int> vec;
+
+	if (safeArray == nullptr)
+	{
+		return vec;
+	}
 
 	if (SafeArrayGetDim(safeArray) != 1)
 	{
@@ -615,31 +631,36 @@ auto CGdalUtils::ConvertSafeArrayToInt(SAFEARRAY* safeArray, int &size) -> int*
 		throw tkINVALID_PARAMETERS_ARRAY;
 	}
 
+	auto checkResult = [](HRESULT hr)
+	{
+		if (FAILED(hr))
+		{
+			CallbackHelper::ErrorMsg(Debug::Format("ConvertSafeArrayToIntVector HRESULT:%x", hr));
+			throw tkSAFE_ARRAY_ERROR;
+		}
+	};
+
 	USES_CONVERSION;
 	LONG lLBound, lUBound;
 	int* pVals;
-	const auto hr1 = SafeArrayGetLBound(safeArray, 1, &lLBound);
-	const auto  hr2 = SafeArrayGetUBound(safeArray, 1, &lUBound);
-	const auto  hr3 = SafeArrayAccessData(safeArray, reinterpret_cast<void**>(&pVals));
-	if (!FAILED(hr1) && !FAILED(hr2) && !FAILED(hr3))
+	VARTYPE vt;
+	checkResult(SafeArrayGetLBound(safeArray, 1, &lLBound));
+	checkResult(SafeArrayGetUBound(safeArray, 1, &lUBound));
+	checkResult(SafeArrayAccessData(safeArray, reinterpret_cast<void**>(&pVals)));
+	checkResult(SafeArrayGetVartype(safeArray, &vt));
+	if (vt != VT_INT)
 	{
-		const auto count = lUBound - lLBound + 1;
-		size = count;
-		const auto arr = new int[count];
-		for (auto i = 0; i < count; i++) {
-			// Add to array:
-			arr[i] = pVals[i];
-		}
-
-		// if safeArray was successfully locked, unlock it
-		if (!FAILED(hr3))
-		{
-			SafeArrayUnaccessData(safeArray);
-		}
-		return arr;
+		CallbackHelper::ErrorMsg(Debug::Format("ConvertSafeArrayToIntVector safe array failed to convert, it's not storing integers"));
+		throw tkSAFE_ARRAY_ERROR;
 	}
-
-	return nullptr;
+	const LONG count = lUBound - lLBound + 1;
+	vec.resize(count);
+	for (auto i = 0; i < count; i++)
+	{
+		vec[i] = pVals[i];
+	}
+	checkResult(SafeArrayUnaccessData(safeArray));
+	return vec;
 }
 
 
