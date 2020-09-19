@@ -807,7 +807,8 @@ STDMETHODIMP CShape::get_Center(IPoint **pVal)
 	//CShapeWrapper* shp = (CShapeWrapper*)_shp;
 	//std::vector<pointEx>* points = &shp->_points;
 
-	for( int i = 0; i < (int)_shp->get_PointCount(); i++ )
+	const int pointCount = _shp->get_PointCount();
+	for( int i = 0; i < pointCount; i++ )
 	{	
 		_shp->get_PointXY(i, x, y);
 
