@@ -1431,6 +1431,8 @@ STDMETHODIMP CImageClass::putref_Picture(IPictureDisp *newVal)
 			//New DC
 			hdc = CreateCompatibleDC(GetDC(GetDesktopWindow()));
 			
+#pragma warning( push )
+#pragma warning(suppress: 6387) // SelectPicture method's phBmpOut parameter can be null, the DAL on it is wrong.
 			//Change the dc of the IPicture
 			pic->SelectPicture(hdc,&hdcold,NULL);
 
@@ -1438,6 +1440,7 @@ STDMETHODIMP CImageClass::putref_Picture(IPictureDisp *newVal)
 
 			//Reset the dc of the IPicture
 			pic->SelectPicture(hdcold,NULL,NULL);
+#pragma warning( pop )
 
 			//Delete DC
 			DeleteDC(hdc);
