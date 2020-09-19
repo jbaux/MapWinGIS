@@ -172,7 +172,6 @@ private:
 	void FindAllBorders(int ntri,ITRIANGLE *tri);
 	int FindBorder(int ntri,int curIndex,ITRIANGLE *tri,int v1,int v2);
 	void FindMaxXYZAndMinXYZ(int nv,XYZ v[],XYZ &vMax,XYZ &vMin);
-	int CreateTin(int nv,XYZ *pxyz);
 	int Triangulate(int nv,XYZ *pxyz,ITRIANGLE *v,int *ntri);
 	int CircumCircle(double xp,double yp,
 		double x1,double y1,double x2,double y2,double x3,double y3,
