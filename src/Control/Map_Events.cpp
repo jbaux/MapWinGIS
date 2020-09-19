@@ -176,7 +176,7 @@ void CMapView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 						{
 							VARIANT_BOOL vb;
 							_measuring->get_Persistent(&vb);
-							_measuringPersistent = vb ? true: false;
+							_measuringPersistent = vb == VARIANT_TRUE;
 							_measuring->put_Persistent(VARIANT_TRUE);
 						}
 						_lastCursorMode = (tkCursorMode)m_cursorMode;
